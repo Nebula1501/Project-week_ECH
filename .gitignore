@@ -1,0 +1,20 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore node stuff (if you use it later)
+node_modules/
+
+# Ignore logs
+*.log
+
+# Ignore environment files
+.env
+
+# Ignore build output
+dist/
+build/
+
+# VERY IMPORTANT (your previous mistake)
+*.exe
+*.msi 
