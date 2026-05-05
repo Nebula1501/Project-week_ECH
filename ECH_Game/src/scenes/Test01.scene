@@ -2,6 +2,8 @@
     "id": "cff07dcb-1de8-4afb-b397-724eea8d4f97",
     "sceneType": "SCENE",
     "settings": {
+        "snapWidth": 64,
+        "snapHeight": 64,
         "exportClass": true,
         "autoImport": true,
         "importFileExtension": true,
@@ -26,6 +28,28 @@
                 }
             ],
             "tilemapId": "c3f61193-9e33-4d94-96cf-0d34cfe35154"
+        },
+        {
+            "prefabId": "9c7cf13b-abf4-41b7-85bc-f51ba62d864e",
+            "id": "1bd5c9ef-098f-4cad-beff-8f6daa5accd6",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "player",
+            "x": 276,
+            "y": 530
+        },
+        {
+            "prefabId": "3f464519-064f-428c-9e9e-40d2af2c52c1",
+            "id": "b5b85915-93f6-4405-9bb3-da296ec84f7e",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "invisibleWall",
+            "x": 166,
+            "y": 138
         }
     ],
     "plainObjects": [

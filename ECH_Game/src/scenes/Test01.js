@@ -4,6 +4,8 @@
 /* START OF COMPILED CODE */
 
 import DioramaBounds from "./DioramaBounds.js";
+import Player from "./Player.js";
+import InvisibleWall from "./InvisibleWall.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -64,6 +66,14 @@ export default class Test01 extends Phaser.Scene {
 
 		// dioramaBounds
 		new DioramaBounds(ground);
+
+		// player
+		const player = new Player(this, 276, 530);
+		this.add.existing(player);
+
+		// invisibleWall
+		const invisibleWall = new InvisibleWall(this, 166, 138);
+		this.add.existing(invisibleWall);
 
 		this.diorama = diorama;
 

@@ -7,6 +7,11 @@
                 "key": "guapen"
             },
             {
+                "url": "assets/sprites/player/sprite_player.png",
+                "type": "image",
+                "key": "sprite_player"
+            },
+            {
                 "url": "assets/tilemaps/tilesets/tileset_diorama.png",
                 "frameConfig": {
                     "frameWidth": 64,
@@ -18,13 +23,6 @@
                 },
                 "type": "spritesheet",
                 "key": "tileset_diorama"
-            },
-            {
-                "url": {
-                    "IMG": "assets/tilemaps/tilesets/tileset_ground_256.png"
-                },
-                "type": "texture",
-                "key": "tileset_ground_256"
             }
         ]
     },
