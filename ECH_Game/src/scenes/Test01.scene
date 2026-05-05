@@ -18,6 +18,13 @@
             "label": "ground",
             "x": 64,
             "y": 256,
+            "list": [
+                {
+                    "prefabId": "0d37f89e-78f1-4633-841a-6709e1d925c4",
+                    "id": "de1e95ca-53c5-4a97-a1a6-8632ec3c4900",
+                    "label": "dioramaBounds"
+                }
+            ],
             "tilemapId": "c3f61193-9e33-4d94-96cf-0d34cfe35154"
         }
     ],

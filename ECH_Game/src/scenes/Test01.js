@@ -3,6 +3,7 @@
 
 /* START OF COMPILED CODE */
 
+import DioramaBounds from "./DioramaBounds.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -59,7 +60,10 @@ export default class Test01 extends Phaser.Scene {
 		diorama.addTilesetImage("tileset_diorama");
 
 		// ground
-		diorama.createLayer("ground", ["tileset_diorama"], 64, 256);
+		const ground = diorama.createLayer("ground", ["tileset_diorama"], 64, 256);
+
+		// dioramaBounds
+		new DioramaBounds(ground);
 
 		this.diorama = diorama;
 
