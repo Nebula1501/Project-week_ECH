@@ -28,11 +28,7 @@ export default class PlayerMovement extends ScriptNode {
 			right: Phaser.Input.Keyboard.KeyCodes.D
 		});
 		this.speed = 200;
-		this.scene.events.once('create', () => {
-			const walls = this.scene.children.list.filter(child => child.constructor.name === 'InvisibleWall');
-			console.log('Walls found:', walls.length);
-			this.scene.physics.add.collider(this.gameObject, walls);
-		});
+		this.gameObject.body.setCollideWorldBounds(true);
 	}
 
 	update() {

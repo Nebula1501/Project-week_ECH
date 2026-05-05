@@ -3,11 +3,10 @@
 
 /* START OF COMPILED CODE */
 
-import HideOnAwake from "./HideOnAwake.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
-export default class InvisibleWall extends Phaser.Physics.Arcade.Image {
+export default class Obstacle extends Phaser.Physics.Arcade.Image {
 
 	constructor(scene, x, y, texture, frame) {
 		super(scene, x ?? 0, y ?? 0, texture || "guapen", frame);
@@ -16,9 +15,6 @@ export default class InvisibleWall extends Phaser.Physics.Arcade.Image {
 		this.body.pushable = false;
 		this.body.immovable = true;
 		this.body.setSize(208, 240, false);
-
-		// hideOnAwake
-		new HideOnAwake(this);
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.
