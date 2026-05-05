@@ -1,0 +1,63 @@
+{
+    "id": "cff07dcb-1de8-4afb-b397-724eea8d4f97",
+    "sceneType": "SCENE",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "importFileExtension": true,
+        "preloadPackFiles": [],
+        "createMethodName": "editorCreate",
+        "sceneKey": "Test01",
+        "borderWidth": 1920,
+        "borderHeight": 1080
+    },
+    "displayList": [
+        {
+            "type": "EditableTilemapLayer",
+            "id": "94bf4508-4498-4af7-bc07-228e5126bcf8",
+            "label": "ground",
+            "x": 64,
+            "y": 256,
+            "tilemapId": "c3f61193-9e33-4d94-96cf-0d34cfe35154"
+        }
+    ],
+    "plainObjects": [
+        {
+            "id": "c3f61193-9e33-4d94-96cf-0d34cfe35154",
+            "type": "EditableTilemap",
+            "label": "diorama",
+            "width": 30,
+            "height": 10,
+            "tileWidth": 64,
+            "tileHeight": 64,
+            "tilesets": [
+                {
+                    "name": "tileset_diorama",
+                    "imageKey": "tileset_diorama",
+                    "tileWidth": 64,
+                    "tileHeight": 64,
+                    "tileMargin": 0,
+                    "tileSpacing": 0
+                }
+            ],
+            "paintLayerId": "94bf4508-4498-4af7-bc07-228e5126bcf8",
+            "paintTileset": "tileset_diorama",
+            "layers": [
+                {
+                    "name": "ground",
+                    "data": "[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,0,0,0]",
+                    "width": 30,
+                    "height": 10,
+                    "tileWidth": 64,
+                    "tileHeight": 64
+                }
+            ]
+        }
+    ],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    }
+}
