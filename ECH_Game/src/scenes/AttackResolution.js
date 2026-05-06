@@ -51,7 +51,6 @@ export default class AttackResolution extends ScriptNode {
 		const otherResolution = other._attackResolution;
 		if (!otherResolution) return;
 
-		// Prevent double resolution
 		if (this.resolving || otherResolution.resolving) return;
 		this.resolving = true;
 		otherResolution.resolving = true;
@@ -59,16 +58,36 @@ export default class AttackResolution extends ScriptNode {
 		const myPower = this.powerValue;
 		const theirPower = otherResolution.powerValue;
 
-		if (myPower === theirPower) {
-			this.die();
-			otherResolution.die();
-		} else if (myPower > theirPower) {
-			otherResolution.die();
-			this.resolving = false;
-		} else {
-			this.die();
-			otherResolution.resolving = false;
-		}
+		// Reposition side by side
+		const myX = other.x - 64;
+		const myY = other.y;
+		this.gameObject.setPosition(myX, myY);
+		if (this.gameObject.body) this.gameObject.body.reset(myX, myY);
+
+		// Switch both to combat state
+		this.gameObject._stateManager?.switchState('combat');
+		other._stateManager?.switchState('combat');
+
+		// Resolve after combat duration
+		this.scene.time.delayedCall(3000, () => {
+			if (!this.gameObject || !this.gameObject.active) return;
+			if (!other || !other.active) return;
+
+			if (myPower === theirPower) {
+				this.die();
+				otherResolution.die();
+			} else if (myPower > theirPower) {
+				otherResolution.die();
+				this.resolving = false;
+				const defaultState = this.gameObject.getData('defaultState') ?? 'neutral';
+				this.gameObject._stateManager?.switchState(defaultState);
+			} else {
+				this.die();
+				otherResolution.resolving = false;
+				const otherDefault = other.getData('defaultState') ?? 'neutral';
+				other._stateManager?.switchState(otherDefault);
+			}
+		});
 	}
 
 	die() {
@@ -79,7 +98,7 @@ export default class AttackResolution extends ScriptNode {
 		// Spawn corpse at this position
 		const corpseTypes = ['t2herb', 't2carn', 't1herb'];
 		if (corpseTypes.includes(type)) {
-			const corpse = new Corpse(this.scene, x + 150, y);
+			const corpse = new Corpse(this.scene, x, y);
 			this.scene.add.existing(corpse);
 			corpse.setData('type', 'corpse');
 

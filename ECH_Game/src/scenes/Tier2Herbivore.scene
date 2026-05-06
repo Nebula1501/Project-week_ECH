@@ -63,6 +63,11 @@
                     "prefabId": "efc88fc7-f695-48d6-a7ff-3d938a8ec9ce",
                     "id": "41edd52e-e116-4bee-b8dd-703cc7cea51c",
                     "label": "attackResolution"
+                },
+                {
+                    "prefabId": "14bffe05-cf76-4c58-a8e6-5d738cd2c172",
+                    "id": "e1486356-3f6b-46a4-b8b9-f29096b5dfec",
+                    "label": "behaviourCombat"
                 }
             ]
         }

@@ -35,6 +35,7 @@ export default class Tier2CarnivoreController extends ScriptNode {
 		const eatCorpse = go._behaviourEatCorpse;
 		const chase = go._behaviourChase;
 		const flee = go._behaviourFlee;
+		const combat = go._behaviourCombat;
 
 		if (!stateDecider || !stateManager) {
 			console.warn('Tier2CarnivoreController: missing StateDecider or StateManager');
@@ -50,13 +51,19 @@ export default class Tier2CarnivoreController extends ScriptNode {
 		stateManager.registerState('eatCorpse', eatCorpse);
 		stateManager.registerState('chase', chase);
 		stateManager.registerState('flee', flee);
+		stateManager.registerState('combat', combat);
 
 		// Priority list
-		// 1. Flee from T1 Carnivore
-		// 2. Eat corpse
-		// 3. Chase prey
-		// 4. Patrol
+		// 1. Combat
+		// 2. Flee from T1 Carnivore
+		// 3. Eat corpse
+		// 4. Chase prey
+		// 5. Patrol
 		stateDecider.priorities = [
+			{
+				state: 'combat',
+				condition: (tags, detected, go = this.gameObject) => go._stateManager?.currentState === 'combat'
+			},
 			{
 				state: 'flee',
 				condition: (tags) => tags.includes('t1carn')

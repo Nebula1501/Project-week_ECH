@@ -66,6 +66,11 @@
                     "prefabId": "944447a7-8a02-47c5-8173-90836cbd261d",
                     "id": "150012a2-33fa-4b7a-ab7f-5b54d4fb56a0",
                     "label": "behaviourPatrol"
+                },
+                {
+                    "prefabId": "14bffe05-cf76-4c58-a8e6-5d738cd2c172",
+                    "id": "43997cc3-9036-4f32-9dab-57174cf72a6e",
+                    "label": "behaviourCombat"
                 }
             ]
         }

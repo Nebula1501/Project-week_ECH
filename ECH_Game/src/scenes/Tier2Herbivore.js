@@ -11,6 +11,7 @@ import BehaviourOpportunity from "./BehaviourOpportunity.js";
 import BehaviourFlee from "./BehaviourFlee.js";
 import Tier2HerbivoreController from "./Tier2HerbivoreController.js";
 import AttackResolution from "./AttackResolution.js";
+import BehaviourCombat from "./BehaviourCombat.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -47,6 +48,9 @@ export default class Tier2Herbivore extends Phaser.Physics.Arcade.Image {
 
 		// attackResolution
 		new AttackResolution(this);
+
+		// behaviourCombat
+		new BehaviourCombat(this);
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.

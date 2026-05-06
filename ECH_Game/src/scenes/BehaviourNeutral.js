@@ -38,7 +38,6 @@ export default class BehaviourNeutral extends ScriptNode {
 	}
 
 	onActivate() {
-		console.log('onActivate called - resetting state');
 		this.active = true;
 		this.pausing = false;
 		this.pauseTimer = 0;
@@ -54,7 +53,6 @@ export default class BehaviourNeutral extends ScriptNode {
 	}
 
 	update() {
-		console.log('Neutral check - stateManager currentState:', this.gameObject._stateManager?.currentState, 'active:', this.active);
 		const isCurrentState = this.gameObject._stateManager?.currentState === 'neutral';
 
 		if (!isCurrentState) return;
@@ -63,8 +61,6 @@ export default class BehaviourNeutral extends ScriptNode {
 			this.onActivate();
 			return;
 		}
-
-		console.log('Neutral moving - returning:', this.gameObject.getData('returning'), 'distFromHome:', Phaser.Math.Distance.Between(this.gameObject.x, this.gameObject.y, this.homePosition.x, this.homePosition.y), 'body exists:', !!this.gameObject.body, 'body enabled:', this.gameObject.body?.enable);
 
 		this.directionChangeTimer += this.scene.game.loop.delta;
 
@@ -109,7 +105,6 @@ export default class BehaviourNeutral extends ScriptNode {
 			this.gameObject.setData('returning', true);
 			return;
 		} else {
-			console.log('In loiter block - pausing:', this.pausing, 'dirTimer:', this.directionChangeTimer, 'direction:', this.currentDirection.x, this.currentDirection.y);
 			// Loiter — check if blocked by world bounds before applying velocity
 			const body = this.gameObject.body;
 			const blockedX = body.blocked.left || body.blocked.right;
@@ -140,7 +135,6 @@ export default class BehaviourNeutral extends ScriptNode {
 				this.currentDirection.x * this.moveSpeed,
 				this.currentDirection.y * this.moveSpeed
 			);
-			console.log('Velocity set to:', this.currentDirection.x * this.moveSpeed, this.currentDirection.y * this.moveSpeed, 'actual body velocity:', this.gameObject.body.velocity.x, this.gameObject.body.velocity.y);
 		}
 	}
 

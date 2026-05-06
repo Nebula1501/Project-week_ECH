@@ -12,6 +12,7 @@ import BehaviourFlee from "./BehaviourFlee.js";
 import AttackResolution from "./AttackResolution.js";
 import Tier2CarnivoreController from "./Tier2CarnivoreController.js";
 import BehaviourPatrol from "./BehaviourPatrol.js";
+import BehaviourCombat from "./BehaviourCombat.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -49,6 +50,9 @@ export default class Tier2Carnivore extends Phaser.Physics.Arcade.Image {
 
 		// behaviourPatrol
 		new BehaviourPatrol(this);
+
+		// behaviourCombat
+		new BehaviourCombat(this);
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.

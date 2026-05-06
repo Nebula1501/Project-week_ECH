@@ -43,8 +43,9 @@ export default class Tier2HerbivoreController extends ScriptNode {
 		const neutral = go._behaviourNeutral;
 		const opportunity = go._behaviourOpportunity;
 		const flee = go._behaviourFlee;
+		const combat = go._behaviourCombat;
 
-		console.log('Scripts:', { detectionRadius, stateDecider, stateManager, neutral, opportunity, flee });
+		console.log('Scripts:', { detectionRadius, stateDecider, stateManager, neutral, opportunity, flee, combat });
 
 		if (!stateDecider || !stateManager) {
 			console.warn('Tier2HerbivoreController: missing StateDecider or StateManager');
@@ -55,9 +56,14 @@ export default class Tier2HerbivoreController extends ScriptNode {
 		stateManager.registerState('neutral', neutral);
 		stateManager.registerState('opportunity', opportunity);
 		stateManager.registerState('flee', flee);
+		stateManager.registerState('combat', combat);
 
 		// Set priority list on StateDecider
 		stateDecider.priorities = [
+			{
+				state: 'combat',
+				condition: (tags, detected, go = this.gameObject) => go._stateManager?.currentState === 'combat'
+			},
 			{
 				state: 'flee',
 				condition: (tags) => tags.some(t => ['player', 't2carn', 't1carn', 't1herb', 'mimic'].includes(t))

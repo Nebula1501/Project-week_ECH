@@ -34,8 +34,6 @@ export default class StateManager extends ScriptNode {
 	switchState(stateName) {
 		if (this.currentState === stateName) return;
 
-		console.log('StateManager: switching from', this.currentState, 'to', stateName);
-
 		// Deactivate current behaviour node
 		if (this.currentState && this.states[this.currentState]) {
 			this.states[this.currentState].onDeactivate();
@@ -48,7 +46,6 @@ export default class StateManager extends ScriptNode {
 			this.states[stateName].onActivate();
 		} else {
 			console.warn('StateManager: no behaviour node registered for state:', stateName);
-			console.trace('switchState stack trace');
 		}
 	}
 
