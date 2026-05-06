@@ -48,14 +48,25 @@
         },
         {
             "prefabId": "021213fb-3ad5-4574-b5b2-daf8fa6c4ebd",
-            "id": "08c21f59-5ead-4603-9166-76d243891e78",
+            "id": "b27e08d3-c66f-4125-9927-0ba8a92c1303",
             "unlock": [
                 "x",
                 "y"
             ],
             "label": "fruit",
-            "x": 773,
-            "y": 578
+            "x": 459,
+            "y": 536
+        },
+        {
+            "prefabId": "e6d767ff-fa7a-4a39-b8c4-0075be7b60c9",
+            "id": "41d7f951-519e-436a-bc1e-b16434b072ae",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "obstacle",
+            "x": 1032,
+            "y": 556
         }
     ],
     "plainObjects": [

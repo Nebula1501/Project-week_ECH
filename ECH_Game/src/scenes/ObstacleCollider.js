@@ -7,7 +7,7 @@ import ScriptNode from "../../phaserjs_editor_scripts_base/ScriptNode.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
-export default class FruitPickup extends ScriptNode {
+export default class ObstacleCollider extends ScriptNode {
 
 	constructor(parent) {
 		super(parent);
@@ -25,21 +25,9 @@ export default class FruitPickup extends ScriptNode {
 			if (!player) return;
 
 			const playerBody = player.getAt(0);
-			const fruit = this.gameObject;
+			const obstacle = this.gameObject;
 
-			this.scene.physics.add.overlap(playerBody, fruit, () => {
-				if (fruit.getData('isHeld')) return;
-				const inv = this.scene.playerInventory;
-				if (inv && !inv.isFull()) {
-					inv.addItem('food');
-					fruit.destroy();
-				}
-			});
-
-			const obstacles = this.scene.children.list.filter(child => child.constructor.name === 'Obstacle');
-			if (obstacles.length > 0) {
-				this.scene.physics.add.collider(fruit, obstacles);
-			}
+			this.scene.physics.add.collider(playerBody, obstacle);
 		});
 	}
 

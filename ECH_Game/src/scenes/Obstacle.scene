@@ -23,7 +23,14 @@
             "body.pushable": false,
             "body.immovable": true,
             "body.width": 208,
-            "body.height": 240
+            "body.height": 240,
+            "list": [
+                {
+                    "prefabId": "f47ef2f3-2f81-4d15-a3c9-59e7ea7237d5",
+                    "id": "055bbc68-7f49-48b2-bce4-300fd434f08c",
+                    "label": "obstacleCollider"
+                }
+            ]
         }
     ],
     "plainObjects": [],

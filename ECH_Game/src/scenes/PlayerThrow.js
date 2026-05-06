@@ -21,7 +21,7 @@ export default class PlayerThrow extends ScriptNode {
 	/* START-USER-CODE */
 
 	awake() {
-		this.throwSpeed = 400;
+		this.throwSpeed = 800;
 		this.spaceKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 		this.heldFruit = null;
 	}
@@ -55,6 +55,7 @@ export default class PlayerThrow extends ScriptNode {
 		const pos = this.getWorldPosition();
 		const fruit = new Fruit(this.scene, pos.x, pos.y);
 		this.scene.add.existing(fruit);
+		fruit.body.enable = false;
 		fruit.setData('isHeld', true);
 		this.heldFruit = fruit;
 		console.log('Fruit held');
@@ -73,7 +74,7 @@ export default class PlayerThrow extends ScriptNode {
 
 		const dir = this.gameObject.getData('lastDirection') ?? { x: 1, y: 0 };
 
-		this.scene.physics.add.existing(this.heldFruit, false);
+		this.heldFruit.body.enable = true;
 
 		const thrownFruit = this.heldFruit;
 		this.heldFruit = null;
@@ -81,6 +82,11 @@ export default class PlayerThrow extends ScriptNode {
 
 		thrownFruit.body.setVelocity(dir.x * this.throwSpeed, dir.y * this.throwSpeed);
 		thrownFruit.body.setDrag(500, 500);
+
+		const obstacles = this.scene.children.list.filter(child => child.constructor.name === 'Obstacle');
+		if (obstacles.length > 0) {
+			this.scene.physics.add.collider(thrownFruit, obstacles);
+		}
 
 		const player = this.gameObject;
 		this.scene.time.delayedCall(400, () => {

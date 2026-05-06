@@ -6,6 +6,7 @@
 import DioramaBounds from "./DioramaBounds.js";
 import Player from "./Player.js";
 import Fruit from "./Fruit.js";
+import Obstacle from "./Obstacle.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -83,8 +84,12 @@ export default class Test01 extends Phaser.Scene {
 		this.add.existing(player);
 
 		// fruit
-		const fruit = new Fruit(this, 773, 578);
+		const fruit = new Fruit(this, 459, 536);
 		this.add.existing(fruit);
+
+		// obstacle
+		const obstacle = new Obstacle(this, 1032, 556);
+		this.add.existing(obstacle);
 
 		this.diorama = diorama;
 

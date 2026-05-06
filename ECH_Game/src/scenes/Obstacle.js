@@ -3,6 +3,7 @@
 
 /* START OF COMPILED CODE */
 
+import ObstacleCollider from "./ObstacleCollider.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -15,6 +16,9 @@ export default class Obstacle extends Phaser.Physics.Arcade.Image {
 		this.body.pushable = false;
 		this.body.immovable = true;
 		this.body.setSize(208, 240, false);
+
+		// obstacleCollider
+		new ObstacleCollider(this);
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.
