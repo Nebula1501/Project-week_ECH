@@ -55,7 +55,7 @@ export default class PlayerThrow extends ScriptNode {
 		if (this.heldFruit) return;
 
 		const currentItem = inventory.getCurrentItem();
-		const itemType = inventory.items[0] ?? 'food';
+		const itemType = inventory.getCurrentItem() ?? 'food';
 		const pos = this.getWorldPosition();
 
 		let heldObject;
@@ -87,13 +87,33 @@ export default class PlayerThrow extends ScriptNode {
 		const dir = this.gameObject.getData('lastDirection') ?? { x: 1, y: 0 };
 
 		this.heldFruit.body.enable = true;
+		this.heldFruit.body.immovable = false;
 
 		const thrownFruit = this.heldFruit;
 		this.heldFruit = null;
 		thrownFruit.setData('isHeld', false);
+		thrownFruit.setData('pickupDisabled', true);
 
 		thrownFruit.body.setVelocity(dir.x * this.throwSpeed, dir.y * this.throwSpeed);
 		thrownFruit.body.setDrag(500, 500);
+
+		const landingCheck = this.scene.time.addEvent({
+			delay: 100,
+			loop: true,
+			callback: () => {
+				if (!thrownFruit || !thrownFruit.active) {
+					landingCheck.remove();
+					return;
+				}
+				if (thrownFruit.body.speed < 10) {
+					thrownFruit.body.immovable = true;
+					thrownFruit.body.setVelocity(0, 0);
+					thrownFruit.setData('pickupDisabled', false);
+					landingCheck.remove();
+					console.log('Object landed');
+				}
+			}
+		});
 
 		const obstacles = this.scene.children.list.filter(child => child.constructor.name === 'Obstacle');
 		if (obstacles.length > 0) {

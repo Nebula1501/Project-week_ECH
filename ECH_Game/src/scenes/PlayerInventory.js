@@ -39,7 +39,7 @@ export default class PlayerInventory extends ScriptNode {
 	removeItem() {
 		if (this.items.length === 0) return null;
 		const item = this.items.splice(this.selectedIndex, 1)[0];
-		this.selectedIndex = Math.min(this.selectedIndex, this.items.length - 1);
+		this.selectedIndex = Math.max(0, Math.min(this.selectedIndex, this.items.length - 1));
 		return item;
 	}
 

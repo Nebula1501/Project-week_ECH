@@ -31,6 +31,7 @@ export default class CorpsePickup extends ScriptNode {
 			corpse.setData('isHeld', false);
 
 			this.scene.physics.add.overlap(playerBody, corpse, () => {
+				if (corpse.getData('pickupDisabled')) return;
 				if (corpse.getData('isHeld')) return;
 				const inv = this.scene.playerInventory;
 				if (inv && !inv.isFull()) {
