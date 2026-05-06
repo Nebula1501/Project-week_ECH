@@ -67,6 +67,17 @@
             "label": "obstacle",
             "x": 1032,
             "y": 556
+        },
+        {
+            "prefabId": "85d792b1-b364-40c7-a71c-ad1779d2ab9f",
+            "id": "8bfb0c65-05ac-4245-8707-c00ee78b4325",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "corpse",
+            "x": 700,
+            "y": 536
         }
     ],
     "plainObjects": [

@@ -6,6 +6,7 @@
 import ScriptNode from "../../phaserjs_editor_scripts_base/ScriptNode.js";
 /* START-USER-IMPORTS */
 import Fruit from "./Fruit.js";
+import Corpse from "./Corpse.js";
 /* END-USER-IMPORTS */
 
 export default class PlayerThrow extends ScriptNode {
@@ -24,6 +25,7 @@ export default class PlayerThrow extends ScriptNode {
 		this.throwSpeed = 800;
 		this.spaceKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 		this.heldFruit = null;
+		this.heldItemType = null;
 	}
 
 	update() {
@@ -52,13 +54,23 @@ export default class PlayerThrow extends ScriptNode {
 		if (!inventory || inventory.items.length === 0) return;
 		if (this.heldFruit) return;
 
+		const currentItem = inventory.getCurrentItem();
+		const itemType = inventory.items[0] ?? 'food';
 		const pos = this.getWorldPosition();
-		const fruit = new Fruit(this.scene, pos.x, pos.y);
-		this.scene.add.existing(fruit);
-		fruit.body.enable = false;
-		fruit.setData('isHeld', true);
-		this.heldFruit = fruit;
-		console.log('Fruit held');
+
+		let heldObject;
+		if (itemType === 'corpse') {
+			heldObject = new Corpse(this.scene, pos.x, pos.y);
+		} else {
+			heldObject = new Fruit(this.scene, pos.x, pos.y);
+		}
+
+		this.scene.add.existing(heldObject);
+		heldObject.body.enable = false;
+		heldObject.setData('isHeld', true);
+		this.heldFruit = heldObject;
+		this.heldItemType = itemType;
+		console.log('Held:', itemType);
 	}
 
 	updateHeldFruitPosition() {
@@ -89,12 +101,15 @@ export default class PlayerThrow extends ScriptNode {
 		}
 
 		const player = this.gameObject;
+		const thrownItemType = this.heldItemType ?? 'food';
+		this.heldItemType = null;
+
 		this.scene.time.delayedCall(400, () => {
 			if (!thrownFruit || !thrownFruit.active) return;
 			this.scene.physics.add.overlap(player, thrownFruit, () => {
 				const inv = this.scene.playerInventory;
 				if (inv && !inv.isFull()) {
-					inv.addItem('food');
+					inv.addItem(thrownItemType);
 					thrownFruit.destroy();
 				}
 			});

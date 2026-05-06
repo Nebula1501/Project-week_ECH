@@ -21,7 +21,7 @@ export default class PlayerInventory extends ScriptNode {
 
 	awake() {
 		this.items = [];
-		this.maxCapacity = 3;
+		this.maxCapacity = 1;
 		this.selectedIndex = 0;
 		this.scene.playerInventory = this;
 	}
