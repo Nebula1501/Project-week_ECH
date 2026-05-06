@@ -1,5 +1,5 @@
 {
-    "id": "43c928bc-40c0-42ec-9852-e711ca71d559",
+    "id": "f9d7dd37-62d2-4c57-a7cb-13840fd7b4fa",
     "sceneType": "PREFAB",
     "settings": {
         "exportClass": true,
@@ -14,63 +14,60 @@
     "displayList": [
         {
             "type": "ArcadeImage",
-            "id": "c2022567-468c-49db-811c-90ff37b11fd8",
+            "id": "48e07d50-b039-41fd-8373-0f17f577b6ae",
             "label": "arcadeimage_1",
             "texture": {
-                "key": "sprite_player"
+                "key": "guapen"
             },
-            "body.width": 155,
-            "body.height": 132,
+            "scaleX": 0.75,
+            "scaleY": 0.75,
+            "body.width": 208,
+            "body.height": 240,
             "list": [
                 {
                     "prefabId": "6e76b45a-4e5e-449a-badc-049a24688d28",
-                    "id": "189bd2a7-2141-4833-8f0a-728f3db7c7a2",
+                    "id": "b69afa7e-2d9b-47b5-9416-271aaa9704dc",
                     "label": "detectionRadius"
                 },
                 {
                     "prefabId": "982cf0de-d787-4f56-be4a-5a740c89f4a4",
-                    "id": "20d9685a-63d5-4acf-9e65-a6391a4eab90",
+                    "id": "8c9fe16e-f919-40dd-8d53-8fbddda5be18",
                     "label": "stateDecider"
                 },
                 {
                     "prefabId": "0e1b6fea-3737-4234-aa29-776f969ea081",
-                    "id": "7ef30a85-8179-41cf-825d-3983918494c0",
+                    "id": "f0b4a082-04f5-4a0b-8cd0-205dd3879936",
                     "label": "stateManager"
                 },
                 {
-                    "prefabId": "b038f93e-79b7-4ee9-bc9f-f05e9e929881",
-                    "id": "345657db-18ec-4031-8480-8802705ae390",
-                    "label": "behaviourEatCorpse"
+                    "prefabId": "8ea57601-9691-4bcc-8565-31c61b3ff9f2",
+                    "id": "b072126b-f4fd-4373-90cf-3deaf9e0d678",
+                    "label": "behaviourNeutral"
+                },
+                {
+                    "prefabId": "d77386d6-b0f1-48b1-90d6-b1653ef4a5d6",
+                    "id": "290077ac-8899-4938-a4d4-4c4bec5a9bb7",
+                    "label": "behaviourOpportunity"
                 },
                 {
                     "prefabId": "84879bb9-faa5-49bc-bbcb-df4b356a153e",
-                    "id": "89ed4eee-148b-4b22-bb30-4290a12ce150",
+                    "id": "0004750e-6a14-438e-8167-115589208c0a",
                     "label": "behaviourChase"
                 },
                 {
-                    "prefabId": "005b2dd5-f4e8-45bc-ba04-0bbfcd940d31",
-                    "id": "7110ae1d-559a-41b1-85b3-23be714773c8",
-                    "label": "behaviourFlee"
+                    "prefabId": "14bffe05-cf76-4c58-a8e6-5d738cd2c172",
+                    "id": "3f38838c-a56d-4017-9975-4fba9368c990",
+                    "label": "behaviourCombat"
                 },
                 {
                     "prefabId": "efc88fc7-f695-48d6-a7ff-3d938a8ec9ce",
-                    "id": "cfb0c77a-b9bb-4216-96b3-ff352d71df2c",
+                    "id": "2def5a6f-e2f7-4481-89e1-860f97e5a46c",
                     "label": "attackResolution"
                 },
                 {
-                    "prefabId": "12cdbf44-fc81-4fe8-b435-def2cd3e41ac",
-                    "id": "6765d21c-f35f-4b45-a9d9-6b2cf878a3b9",
-                    "label": "tier2CarnivoreController"
-                },
-                {
-                    "prefabId": "944447a7-8a02-47c5-8173-90836cbd261d",
-                    "id": "150012a2-33fa-4b7a-ab7f-5b54d4fb56a0",
-                    "label": "behaviourPatrol"
-                },
-                {
-                    "prefabId": "14bffe05-cf76-4c58-a8e6-5d738cd2c172",
-                    "id": "43997cc3-9036-4f32-9dab-57174cf72a6e",
-                    "label": "behaviourCombat"
+                    "prefabId": "4c407ad1-b283-4fb6-84fd-ff2f1ee027fb",
+                    "id": "e853c99f-551a-4b90-8e09-de7dc6b372c3",
+                    "label": "tier1HerbivoreController"
                 }
             ]
         }
