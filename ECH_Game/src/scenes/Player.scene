@@ -1,0 +1,52 @@
+{
+    "id": "9c7cf13b-abf4-41b7-85bc-f51ba62d864e",
+    "sceneType": "PREFAB",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "importFileExtension": true,
+        "preloadMethodName": "",
+        "preloadPackFiles": [],
+        "createMethodName": "",
+        "borderWidth": 1920,
+        "borderHeight": 1080
+    },
+    "displayList": [
+        {
+            "type": "ArcadeImage",
+            "id": "ddb837cb-1cae-4b11-98b7-5c426c78cd05",
+            "label": "arcadeimage_1",
+            "texture": {
+                "key": "sprite_player01"
+            },
+            "scaleX": 0.25,
+            "scaleY": 0.25,
+            "body.width": 300,
+            "body.height": 580,
+            "list": [
+                {
+                    "prefabId": "74eeb0bf-d730-4994-9c23-47497b7fdd45",
+                    "id": "b14dc93d-d31f-4b3d-8790-7034fba3f494",
+                    "label": "playerInventory"
+                },
+                {
+                    "prefabId": "17c7826c-8df4-451d-9bb7-4c4f236a7b39",
+                    "id": "cf480134-c6c3-4a3b-b9a4-c6cd6eff56d8",
+                    "label": "playerMovement"
+                },
+                {
+                    "prefabId": "e86d69b3-8655-4ffd-ba94-5ed1144283c7",
+                    "id": "034c64ca-fcb3-4349-b8c9-84e19d1964f6",
+                    "label": "playerThrow"
+                }
+            ]
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    }
+}

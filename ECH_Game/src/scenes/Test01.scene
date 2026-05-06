@@ -1,0 +1,119 @@
+{
+    "id": "cff07dcb-1de8-4afb-b397-724eea8d4f97",
+    "sceneType": "SCENE",
+    "settings": {
+        "snapWidth": 64,
+        "snapHeight": 64,
+        "exportClass": true,
+        "autoImport": true,
+        "importFileExtension": true,
+        "preloadPackFiles": [],
+        "createMethodName": "editorCreate",
+        "sceneKey": "Test01",
+        "borderWidth": 1920,
+        "borderHeight": 1080
+    },
+    "displayList": [
+        {
+            "type": "EditableTilemapLayer",
+            "id": "94bf4508-4498-4af7-bc07-228e5126bcf8",
+            "label": "ground",
+            "y": 256,
+            "list": [
+                {
+                    "prefabId": "0d37f89e-78f1-4633-841a-6709e1d925c4",
+                    "id": "de1e95ca-53c5-4a97-a1a6-8632ec3c4900",
+                    "label": "dioramaBounds"
+                }
+            ],
+            "tilemapId": "c3f61193-9e33-4d94-96cf-0d34cfe35154"
+        },
+        {
+            "type": "EditableTilemapLayer",
+            "id": "1bfb80ea-1c5d-4147-b893-fbc70f3ec040",
+            "label": "Front Edge",
+            "y": 256,
+            "tilemapId": "c3f61193-9e33-4d94-96cf-0d34cfe35154"
+        },
+        {
+            "prefabId": "021213fb-3ad5-4574-b5b2-daf8fa6c4ebd",
+            "id": "b27e08d3-c66f-4125-9927-0ba8a92c1303",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "fruit",
+            "x": 552,
+            "y": 536
+        },
+        {
+            "prefabId": "ea7300ee-a28f-4982-8644-7a4ad49964b4",
+            "id": "47e9fd5c-1145-47e7-9c45-8275ad81e81e",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "tier2Herbivore",
+            "x": 1123,
+            "y": 544
+        },
+        {
+            "prefabId": "9c7cf13b-abf4-41b7-85bc-f51ba62d864e",
+            "id": "609463ff-8763-41fd-88f8-39bb9f394385",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "player",
+            "x": 274,
+            "y": 637
+        }
+    ],
+    "plainObjects": [
+        {
+            "id": "c3f61193-9e33-4d94-96cf-0d34cfe35154",
+            "type": "EditableTilemap",
+            "label": "diorama",
+            "width": 30,
+            "height": 10,
+            "tileWidth": 64,
+            "tileHeight": 64,
+            "tilesets": [
+                {
+                    "name": "tileset_diorama",
+                    "imageKey": "tileset_diorama",
+                    "tileWidth": 64,
+                    "tileHeight": 64,
+                    "tileMargin": 0,
+                    "tileSpacing": 0
+                }
+            ],
+            "paintLayerId": "94bf4508-4498-4af7-bc07-228e5126bcf8",
+            "paintTileset": "tileset_diorama",
+            "layers": [
+                {
+                    "name": "ground",
+                    "data": "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,9,9,1,0,0,0,0,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,0,0,0,0,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,0,0,0,0,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,5,5,5,5,5,5,5,5,5,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,9,9,9,5,5,5,5,5,5,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]",
+                    "width": 30,
+                    "height": 10,
+                    "tileWidth": 64,
+                    "tileHeight": 64
+                },
+                {
+                    "name": "Front Edge",
+                    "data": "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,0,0,0]",
+                    "width": 30,
+                    "height": 10,
+                    "tileWidth": 64,
+                    "tileHeight": 64
+                }
+            ]
+        }
+    ],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    }
+}
