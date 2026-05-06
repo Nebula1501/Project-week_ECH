@@ -24,7 +24,7 @@ export default class ObstacleCollider extends ScriptNode {
 			const player = this.scene.children.list.find(child => child.constructor.name === 'Player');
 			if (!player) return;
 
-			const playerBody = player.getAt(0);
+			const playerBody = player;
 			const obstacle = this.gameObject;
 
 			this.scene.physics.add.collider(playerBody, obstacle);

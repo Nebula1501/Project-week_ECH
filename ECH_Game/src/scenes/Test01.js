@@ -4,10 +4,9 @@
 /* START OF COMPILED CODE */
 
 import DioramaBounds from "./DioramaBounds.js";
-import Player from "./Player.js";
 import Fruit from "./Fruit.js";
-import Obstacle from "./Obstacle.js";
-import Corpse from "./Corpse.js";
+import Tier2Herbivore from "./Tier2Herbivore.js";
+import Player from "./Player.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -80,21 +79,17 @@ export default class Test01 extends Phaser.Scene {
 		// Front Edge
 		diorama.createLayer("Front Edge", ["tileset_diorama"], 0, 256);
 
-		// player
-		const player = new Player(this, 276, 700);
-		this.add.existing(player);
-
 		// fruit
-		const fruit = new Fruit(this, 459, 536);
+		const fruit = new Fruit(this, 552, 536);
 		this.add.existing(fruit);
 
-		// obstacle
-		const obstacle = new Obstacle(this, 1032, 556);
-		this.add.existing(obstacle);
+		// tier2Herbivore
+		const tier2Herbivore = new Tier2Herbivore(this, 1123, 544);
+		this.add.existing(tier2Herbivore);
 
-		// corpse
-		const corpse = new Corpse(this, 700, 536);
-		this.add.existing(corpse);
+		// player
+		const player = new Player(this, 274, 637);
+		this.add.existing(player);
 
 		this.diorama = diorama;
 

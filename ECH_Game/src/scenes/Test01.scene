@@ -36,17 +36,6 @@
             "tilemapId": "c3f61193-9e33-4d94-96cf-0d34cfe35154"
         },
         {
-            "prefabId": "9c7cf13b-abf4-41b7-85bc-f51ba62d864e",
-            "id": "1bd5c9ef-098f-4cad-beff-8f6daa5accd6",
-            "unlock": [
-                "x",
-                "y"
-            ],
-            "label": "player",
-            "x": 276,
-            "y": 700
-        },
-        {
             "prefabId": "021213fb-3ad5-4574-b5b2-daf8fa6c4ebd",
             "id": "b27e08d3-c66f-4125-9927-0ba8a92c1303",
             "unlock": [
@@ -54,30 +43,30 @@
                 "y"
             ],
             "label": "fruit",
-            "x": 459,
+            "x": 552,
             "y": 536
         },
         {
-            "prefabId": "e6d767ff-fa7a-4a39-b8c4-0075be7b60c9",
-            "id": "41d7f951-519e-436a-bc1e-b16434b072ae",
+            "prefabId": "ea7300ee-a28f-4982-8644-7a4ad49964b4",
+            "id": "47e9fd5c-1145-47e7-9c45-8275ad81e81e",
             "unlock": [
                 "x",
                 "y"
             ],
-            "label": "obstacle",
-            "x": 1032,
-            "y": 556
+            "label": "tier2Herbivore",
+            "x": 1123,
+            "y": 544
         },
         {
-            "prefabId": "85d792b1-b364-40c7-a71c-ad1779d2ab9f",
-            "id": "8bfb0c65-05ac-4245-8707-c00ee78b4325",
+            "prefabId": "9c7cf13b-abf4-41b7-85bc-f51ba62d864e",
+            "id": "609463ff-8763-41fd-88f8-39bb9f394385",
             "unlock": [
                 "x",
                 "y"
             ],
-            "label": "corpse",
-            "x": 700,
-            "y": 536
+            "label": "player",
+            "x": 274,
+            "y": 637
         }
     ],
     "plainObjects": [

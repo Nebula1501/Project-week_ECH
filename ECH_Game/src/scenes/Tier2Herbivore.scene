@@ -1,0 +1,70 @@
+{
+    "id": "ea7300ee-a28f-4982-8644-7a4ad49964b4",
+    "sceneType": "PREFAB",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "importFileExtension": true,
+        "preloadMethodName": "",
+        "preloadPackFiles": [],
+        "createMethodName": "",
+        "borderWidth": 1920,
+        "borderHeight": 1080
+    },
+    "displayList": [
+        {
+            "type": "ArcadeImage",
+            "id": "b71b6f62-8b1d-485d-b56c-8a4d8c597ce4",
+            "label": "arcadeimage_1",
+            "texture": {
+                "key": "guapen"
+            },
+            "body.width": 208,
+            "body.height": 240,
+            "list": [
+                {
+                    "prefabId": "6e76b45a-4e5e-449a-badc-049a24688d28",
+                    "id": "964d0a50-301d-448b-a945-018765213261",
+                    "label": "detectionRadius"
+                },
+                {
+                    "prefabId": "982cf0de-d787-4f56-be4a-5a740c89f4a4",
+                    "id": "b1b09d9b-ec2b-45c8-8b16-9445e996ce69",
+                    "label": "stateDecider"
+                },
+                {
+                    "prefabId": "0e1b6fea-3737-4234-aa29-776f969ea081",
+                    "id": "ffc87a85-7b97-4afa-83fc-10c14a3fb970",
+                    "label": "stateManager"
+                },
+                {
+                    "prefabId": "8ea57601-9691-4bcc-8565-31c61b3ff9f2",
+                    "id": "614ef5ff-618b-4ebe-8856-11a9d392b033",
+                    "label": "behaviourNeutral"
+                },
+                {
+                    "prefabId": "d77386d6-b0f1-48b1-90d6-b1653ef4a5d6",
+                    "id": "fa1137fd-3bb8-43b6-822c-e30fe83850eb",
+                    "label": "behaviourOpportunity"
+                },
+                {
+                    "prefabId": "005b2dd5-f4e8-45bc-ba04-0bbfcd940d31",
+                    "id": "08097ab0-2661-4ccd-825d-1e86c6a7e631",
+                    "label": "behaviourFlee"
+                },
+                {
+                    "prefabId": "7e6af28a-3d32-48d6-b136-f0ff46762899",
+                    "id": "4618de6e-9dfc-46f2-8b4c-e16d4b5fcd19",
+                    "label": "tier2HerbivoreController"
+                }
+            ]
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor - Scene Editor",
+        "url": "https://phaser.io/editor",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    }
+}

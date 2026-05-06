@@ -43,10 +43,7 @@ export default class PlayerThrow extends ScriptNode {
 	}
 
 	getWorldPosition() {
-		const go = this.gameObject;
-		const worldX = go.parentContainer ? go.parentContainer.x + go.x : go.x;
-		const worldY = go.parentContainer ? go.parentContainer.y + go.y : go.y;
-		return { x: worldX, y: worldY };
+		return { x: this.gameObject.x, y: this.gameObject.y };
 	}
 
 	spawnHeldFruit() {

@@ -3,33 +3,31 @@
 
 /* START OF COMPILED CODE */
 
-import PlayerMovement from "./PlayerMovement.js";
 import PlayerInventory from "./PlayerInventory.js";
+import PlayerMovement from "./PlayerMovement.js";
 import PlayerThrow from "./PlayerThrow.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
-export default class Player extends Phaser.GameObjects.Container {
+export default class Player extends Phaser.Physics.Arcade.Image {
 
-	constructor(scene, x, y) {
-		super(scene, x ?? 0, y ?? 0);
+	constructor(scene, x, y, texture, frame) {
+		super(scene, x ?? 0, y ?? 0, texture || "sprite_player", frame);
 
-		// arcadeimage_1
-		const arcadeimage_1 = scene.physics.add.image(0, 0, "sprite_player");
-		arcadeimage_1.body.setSize(155, 132, false);
-		this.add(arcadeimage_1);
-
-		// playerMovement
-		new PlayerMovement(arcadeimage_1);
+		scene.physics.add.existing(this, false);
+		this.body.setSize(155, 132, false);
 
 		// playerInventory
-		new PlayerInventory(arcadeimage_1);
+		new PlayerInventory(this);
+
+		// playerMovement
+		new PlayerMovement(this);
 
 		// playerThrow
-		new PlayerThrow(arcadeimage_1);
+		new PlayerThrow(this);
 
 		/* START-USER-CTR-CODE */
-		// Write your code here.
+		this.setData('type', 'player');
 		/* END-USER-CTR-CODE */
 	}
 

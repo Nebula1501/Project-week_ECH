@@ -24,7 +24,7 @@ export default class FruitPickup extends ScriptNode {
 			const player = this.scene.children.list.find(child => child.constructor.name === 'Player');
 			if (!player) return;
 
-			const playerBody = player.getAt(0);
+			const playerBody = player;
 			const fruit = this.gameObject;
 
 			this.scene.physics.add.overlap(playerBody, fruit, () => {

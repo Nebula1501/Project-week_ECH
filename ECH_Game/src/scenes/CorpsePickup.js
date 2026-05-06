@@ -24,7 +24,7 @@ export default class CorpsePickup extends ScriptNode {
 			const player = this.scene.children.list.find(child => child.constructor.name === 'Player');
 			if (!player) return;
 
-			const playerBody = player.getAt(0);
+			const playerBody = player;
 			const corpse = this.gameObject;
 
 			corpse.setData('type', 'corpse');
