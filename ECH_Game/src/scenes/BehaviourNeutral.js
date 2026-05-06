@@ -27,11 +27,19 @@ export default class BehaviourNeutral extends ScriptNode {
 		this.homePosition = { x: this.gameObject.x, y: this.gameObject.y };
 		this.currentDirection = new Phaser.Math.Vector2(0, 0);
 		this.active = false;
+		this.pauseDuration = 1200;
+		this.pauseTimer = 0;
+		this.pausing = false;
+		this.returnPauseDuration = 1000;
+		this.returnPauseTimer = 0;
+		this.returnPausing = false;
 		this.gameObject._behaviourNeutral = this;
 	}
 
 	onActivate() {
 		this.active = true;
+		this.returnPausing = false;
+		this.returnPauseTimer = 0;
 		this.pickNewDirection();
 	}
 
@@ -50,22 +58,68 @@ export default class BehaviourNeutral extends ScriptNode {
 			this.homePosition.x, this.homePosition.y
 		);
 
-		if (distFromHome > this.loiterRadius) {
-			// Return to home radius
-			const angle = Phaser.Math.Angle.Between(
-				this.gameObject.x, this.gameObject.y,
-				this.homePosition.x, this.homePosition.y
-			);
-			this.gameObject.body.setVelocity(
-				Math.cos(angle) * this.moveSpeed,
-				Math.sin(angle) * this.moveSpeed
-			);
+		const returning = this.gameObject.getData('returning') ?? false;
+
+		if (returning) {
+			if (distFromHome < 20) {
+				this.gameObject.setData('returning', false);
+				this.returnPausing = false;
+				this.returnPauseTimer = 0;
+				this.pickNewDirection();
+			} else {
+				if (!this.returnPausing) {
+					this.returnPausing = true;
+					this.returnPauseTimer = 0;
+				}
+
+				this.returnPauseTimer += this.scene.game.loop.delta;
+
+				if (this.returnPauseTimer < this.returnPauseDuration) {
+					this.gameObject.body.setVelocity(0, 0);
+					return;
+				}
+
+				const angle = Phaser.Math.Angle.Between(
+					this.gameObject.x, this.gameObject.y,
+					this.homePosition.x, this.homePosition.y
+				);
+				this.gameObject.body.setVelocity(
+					Math.cos(angle) * this.moveSpeed,
+					Math.sin(angle) * this.moveSpeed
+				);
+				this.directionChangeTimer = 0;
+				return;
+			}
+		} else if (distFromHome > this.loiterRadius) {
+			this.gameObject.setData('returning', true);
+			return;
 		} else {
-			// Loiter within radius
+			// Loiter — check if blocked by world bounds before applying velocity
+			const body = this.gameObject.body;
+			const blockedX = body.blocked.left || body.blocked.right;
+			const blockedY = body.blocked.up || body.blocked.down;
+
+			if (blockedX) this.currentDirection.x *= -1;
+			if (blockedY) this.currentDirection.y *= -1;
+
+			if (this.pausing) {
+				this.gameObject.body.setVelocity(0, 0);
+				this.pauseTimer += this.scene.game.loop.delta;
+				if (this.pauseTimer >= this.pauseDuration) {
+					this.pausing = false;
+					this.pauseTimer = 0;
+					this.pickNewDirection();
+				}
+				return;
+			}
+
 			if (this.directionChangeTimer >= this.directionChangeInterval) {
 				this.directionChangeTimer = 0;
-				this.pickNewDirection();
+				this.pausing = true;
+				this.pauseTimer = 0;
+				return;
 			}
+
 			this.gameObject.body.setVelocity(
 				this.currentDirection.x * this.moveSpeed,
 				this.currentDirection.y * this.moveSpeed

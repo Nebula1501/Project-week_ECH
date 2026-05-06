@@ -31,6 +31,12 @@ export default class StateDecider extends ScriptNode {
 	evaluate(detected) {
 		const tags = detected.map(d => d.tag);
 
+		// Don't interrupt flee until it completes
+		if (this.gameObject._stateManager?.currentState === 'flee') {
+			const fleeBehaviour = this.gameObject._behaviourFlee;
+			if (fleeBehaviour && !fleeBehaviour.fleeComplete) return;
+		}
+
 		// Find highest priority condition that is satisfied
 		for (const rule of this.priorities) {
 			if (rule.condition(tags, detected)) {

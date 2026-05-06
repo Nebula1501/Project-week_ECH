@@ -30,7 +30,7 @@ const config = {
         default: 'arcade',
         arcade: {
             // Disable the physics debug overlay
-            debug: false,
+            debug: true,
         },
     },
 

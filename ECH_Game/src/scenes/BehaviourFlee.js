@@ -24,11 +24,16 @@ export default class BehaviourFlee extends ScriptNode {
 		this.boundaryMargin = 32;
 		this.active = false;
 		this.threatPosition = { x: 0, y: 0 };
+		this.fleeDuration = 2000;
+		this.fleeTimer = 0;
+		this.fleeComplete = false;
 		this.gameObject._behaviourFlee = this;
 	}
 
 	onActivate() {
 		this.active = true;
+		this.fleeTimer = 0;
+		this.fleeComplete = false;
 		this.updateThreatPosition();
 		this.flee();
 	}
@@ -72,6 +77,19 @@ export default class BehaviourFlee extends ScriptNode {
 
 	update() {
 		if (!this.active) return;
+
+		this.fleeTimer += this.scene.game.loop.delta;
+
+		if (this.fleeTimer >= this.fleeDuration) {
+			if (!this.fleeComplete) {
+				this.fleeComplete = true;
+				this.gameObject.body.setVelocity(0, 0);
+				this.gameObject._stateManager.currentState = null;
+				this.gameObject._stateManager.switchState('neutral');
+			}
+			return;
+		}
+
 		this.updateThreatPosition();
 		this.flee();
 	}
