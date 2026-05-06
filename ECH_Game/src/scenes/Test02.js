@@ -7,8 +7,10 @@ import DioramaBounds from "./DioramaBounds.js";
 import Player from "./Player.js";
 import Fruit from "./Fruit.js";
 import Obstacle from "./Obstacle.js";
-import Tier2Herbivore from "./Tier2Herbivore.js";
 import Tier2Carnivore from "./Tier2Carnivore.js";
+import Tier1Herbivore from "./Tier1Herbivore.js";
+import Tier2Herbivore from "./Tier2Herbivore.js";
+import Tier1Carnivore from "./Tier1Carnivore.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -82,13 +84,21 @@ export default class Test02 extends Phaser.Scene {
 		const obstacle = new Obstacle(this, 916, 194);
 		this.add.existing(obstacle);
 
+		// tier2Carnivore
+		const tier2Carnivore = new Tier2Carnivore(this, 1275, 250);
+		this.add.existing(tier2Carnivore);
+
+		// tier1Herbivore
+		const tier1Herbivore = new Tier1Herbivore(this, 1192, 730);
+		this.add.existing(tier1Herbivore);
+
 		// tier2Herbivore
-		const tier2Herbivore = new Tier2Herbivore(this, 1266, 541);
+		const tier2Herbivore = new Tier2Herbivore(this, 1648, 535);
 		this.add.existing(tier2Herbivore);
 
-		// tier2Carnivore
-		const tier2Carnivore = new Tier2Carnivore(this, 1543, 271);
-		this.add.existing(tier2Carnivore);
+		// tier1Carnivore
+		const tier1Carnivore = new Tier1Carnivore(this, 1052, 453);
+		this.add.existing(tier1Carnivore);
 
 		this.editabletilemap = editabletilemap;
 
