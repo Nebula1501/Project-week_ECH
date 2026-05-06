@@ -24,6 +24,12 @@ export default class Tier2HerbivoreController extends ScriptNode {
 		this.gameObject.setData('type', 't2herb');
 
 		this.scene.events.once('create', () => {
+			if (this.gameObject._attackResolution) {
+				this.gameObject._attackResolution.powerValue = 2;
+			}
+		});
+
+		this.scene.events.once('create', () => {
 			this.setupStateMachine();
 		});
 	}
@@ -64,6 +70,13 @@ export default class Tier2HerbivoreController extends ScriptNode {
 
 		// Start in neutral state
 		stateManager.switchState('neutral');
+
+		const obstacles = this.scene.children.list.filter(child => child.constructor.name === 'Obstacle');
+		if (obstacles.length > 0) {
+			this.scene.physics.add.collider(this.gameObject, obstacles);
+		}
+
+		go.setData('defaultState', 'neutral');
 
 		console.log('Tier2Herbivore state machine ready');
 	}

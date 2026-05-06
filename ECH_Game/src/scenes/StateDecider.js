@@ -45,8 +45,9 @@ export default class StateDecider extends ScriptNode {
 			}
 		}
 
-		// Default to neutral if no rule matched
-		this.setState('neutral');
+		// Default to dynamic state if no rule matched
+		const defaultState = this.gameObject.getData('defaultState') ?? 'neutral';
+		this.setState(defaultState);
 	}
 
 	setState(stateName) {

@@ -7,7 +7,7 @@ import ScriptNode from "../../phaserjs_editor_scripts_base/ScriptNode.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
-export default class BehaviourOpportunity extends ScriptNode {
+export default class BehaviourEatCorpse extends ScriptNode {
 
 	constructor(parent) {
 		super(parent);
@@ -17,8 +17,6 @@ export default class BehaviourOpportunity extends ScriptNode {
 		/* END-USER-CTR-CODE */
 	}
 
-	/* START-USER-CODE */
-
 	awake() {
 		this.moveSpeed = 80;
 		this.eatDuration = 2000;
@@ -26,7 +24,7 @@ export default class BehaviourOpportunity extends ScriptNode {
 		this.eating = false;
 		this.eatTimer = 0;
 		this.active = false;
-		this.gameObject._behaviourOpportunity = this;
+		this.gameObject._behaviourEatCorpse = this;
 	}
 
 	onActivate() {
@@ -45,8 +43,8 @@ export default class BehaviourOpportunity extends ScriptNode {
 
 	findTarget() {
 		const detected = this.gameObject._detectionRadius?.detected ?? [];
-		const foodEntity = detected.find(d => d.tag === 'food');
-		this.target = foodEntity ? foodEntity.entity : null;
+		const corpseEntity = detected.find(d => d.tag === 'corpse');
+		this.target = corpseEntity ? corpseEntity.entity : null;
 	}
 
 	update() {
@@ -74,7 +72,6 @@ export default class BehaviourOpportunity extends ScriptNode {
 				this.target.destroy();
 				this.target = null;
 				this.eating = false;
-				// Notify state decider to re-evaluate
 				if (this.gameObject._stateDecider) {
 					this.gameObject._stateDecider.evaluate(
 						this.gameObject._detectionRadius?.detected ?? []
@@ -105,8 +102,6 @@ export default class BehaviourOpportunity extends ScriptNode {
 			);
 		}
 	}
-
-	/* END-USER-CODE */
 }
 
 /* END OF COMPILED CODE */

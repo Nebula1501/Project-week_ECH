@@ -52,6 +52,8 @@ export default class BehaviourFlee extends ScriptNode {
 	}
 
 	flee() {
+		if (!this.gameObject || !this.gameObject.active || !this.gameObject.body) return;
+
 		const angle = Phaser.Math.Angle.Between(
 			this.threatPosition.x, this.threatPosition.y,
 			this.gameObject.x, this.gameObject.y
@@ -76,7 +78,7 @@ export default class BehaviourFlee extends ScriptNode {
 	}
 
 	update() {
-		if (!this.active) return;
+		if (!this.active || !this.gameObject || !this.gameObject.active || !this.gameObject.body) return;
 
 		this.fleeTimer += this.scene.game.loop.delta;
 
@@ -85,7 +87,8 @@ export default class BehaviourFlee extends ScriptNode {
 				this.fleeComplete = true;
 				this.gameObject.body.setVelocity(0, 0);
 				this.gameObject._stateManager.currentState = null;
-				this.gameObject._stateManager.switchState('neutral');
+				const defaultState = this.gameObject.getData('defaultState') ?? 'neutral';
+				this.gameObject._stateManager.switchState(defaultState);
 			}
 			return;
 		}

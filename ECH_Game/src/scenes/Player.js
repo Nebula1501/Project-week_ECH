@@ -12,10 +12,12 @@ import PlayerThrow from "./PlayerThrow.js";
 export default class Player extends Phaser.Physics.Arcade.Image {
 
 	constructor(scene, x, y, texture, frame) {
-		super(scene, x ?? 0, y ?? 0, texture || "sprite_player", frame);
+		super(scene, x ?? 0, y ?? 0, texture || "sprite_player01", frame);
 
+		this.scaleX = 0.25;
+		this.scaleY = 0.25;
 		scene.physics.add.existing(this, false);
-		this.body.setSize(155, 132, false);
+		this.body.setSize(300, 580, false);
 
 		// playerInventory
 		new PlayerInventory(this);

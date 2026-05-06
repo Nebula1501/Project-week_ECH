@@ -6,23 +6,22 @@
 import DetectionRadius from "./DetectionRadius.js";
 import StateDecider from "./StateDecider.js";
 import StateManager from "./StateManager.js";
-import BehaviourNeutral from "./BehaviourNeutral.js";
-import BehaviourOpportunity from "./BehaviourOpportunity.js";
+import BehaviourEatCorpse from "./BehaviourEatCorpse.js";
+import BehaviourChase from "./BehaviourChase.js";
 import BehaviourFlee from "./BehaviourFlee.js";
-import Tier2HerbivoreController from "./Tier2HerbivoreController.js";
 import AttackResolution from "./AttackResolution.js";
+import Tier2CarnivoreController from "./Tier2CarnivoreController.js";
+import BehaviourPatrol from "./BehaviourPatrol.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
-export default class Tier2Herbivore extends Phaser.Physics.Arcade.Image {
+export default class Tier2Carnivore extends Phaser.Physics.Arcade.Image {
 
 	constructor(scene, x, y, texture, frame) {
-		super(scene, x ?? 0, y ?? 0, texture || "sprite_tier2-herbivore", frame);
+		super(scene, x ?? 0, y ?? 0, texture || "guapen", frame);
 
-		this.scaleX = 0.25;
-		this.scaleY = 0.25;
 		scene.physics.add.existing(this, false);
-		this.body.setSize(500, 900, false);
+		this.body.setSize(208, 240, false);
 
 		// detectionRadius
 		new DetectionRadius(this);
@@ -33,20 +32,23 @@ export default class Tier2Herbivore extends Phaser.Physics.Arcade.Image {
 		// stateManager
 		new StateManager(this);
 
-		// behaviourNeutral
-		new BehaviourNeutral(this);
+		// behaviourEatCorpse
+		new BehaviourEatCorpse(this);
 
-		// behaviourOpportunity
-		new BehaviourOpportunity(this);
+		// behaviourChase
+		new BehaviourChase(this);
 
 		// behaviourFlee
 		new BehaviourFlee(this);
 
-		// tier2HerbivoreController
-		new Tier2HerbivoreController(this);
-
 		// attackResolution
 		new AttackResolution(this);
+
+		// tier2CarnivoreController
+		new Tier2CarnivoreController(this);
+
+		// behaviourPatrol
+		new BehaviourPatrol(this);
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.

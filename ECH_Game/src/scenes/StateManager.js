@@ -48,6 +48,7 @@ export default class StateManager extends ScriptNode {
 			this.states[stateName].onActivate();
 		} else {
 			console.warn('StateManager: no behaviour node registered for state:', stateName);
+			console.trace('switchState stack trace');
 		}
 	}
 

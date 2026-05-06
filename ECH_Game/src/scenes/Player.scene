@@ -17,10 +17,12 @@
             "id": "ddb837cb-1cae-4b11-98b7-5c426c78cd05",
             "label": "arcadeimage_1",
             "texture": {
-                "key": "sprite_player"
+                "key": "sprite_player01"
             },
-            "body.width": 155,
-            "body.height": 132,
+            "scaleX": 0.25,
+            "scaleY": 0.25,
+            "body.width": 300,
+            "body.height": 580,
             "list": [
                 {
                     "prefabId": "74eeb0bf-d730-4994-9c23-47497b7fdd45",

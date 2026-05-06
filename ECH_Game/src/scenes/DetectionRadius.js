@@ -20,7 +20,7 @@ export default class DetectionRadius extends ScriptNode {
 	/* START-USER-CODE */
 
 	awake() {
-		this.radius = 150;
+		this.radius = 300;
 		this.detected = [];
 		this.previousTags = '';
 
