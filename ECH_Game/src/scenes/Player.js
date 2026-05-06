@@ -4,6 +4,8 @@
 /* START OF COMPILED CODE */
 
 import PlayerMovement from "./PlayerMovement.js";
+import PlayerInventory from "./PlayerInventory.js";
+import PlayerThrow from "./PlayerThrow.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -19,6 +21,12 @@ export default class Player extends Phaser.GameObjects.Container {
 
 		// playerMovement
 		new PlayerMovement(arcadeimage_1);
+
+		// playerInventory
+		new PlayerInventory(arcadeimage_1);
+
+		// playerThrow
+		new PlayerThrow(arcadeimage_1);
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.

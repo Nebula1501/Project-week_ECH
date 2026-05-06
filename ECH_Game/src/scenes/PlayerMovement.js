@@ -29,6 +29,7 @@ export default class PlayerMovement extends ScriptNode {
 		});
 		this.speed = 200;
 		this.gameObject.body.setCollideWorldBounds(true);
+		this.lastDirection = new Phaser.Math.Vector2(1, 0); // default facing right
 	}
 
 	update() {
@@ -40,14 +41,22 @@ export default class PlayerMovement extends ScriptNode {
 
 		if (cursors.left.isDown || wasd.left.isDown) {
 			body.setVelocityX(-this.speed);
+			this.lastDirection.set(-1, 0);
+			this.gameObject.setData('lastDirection', { x: -1, y: 0 });
 		} else if (cursors.right.isDown || wasd.right.isDown) {
 			body.setVelocityX(this.speed);
+			this.lastDirection.set(1, 0);
+			this.gameObject.setData('lastDirection', { x: 1, y: 0 });
 		}
 
 		if (cursors.up.isDown || wasd.up.isDown) {
 			body.setVelocityY(-this.speed);
+			this.lastDirection.set(0, -1);
+			this.gameObject.setData('lastDirection', { x: 0, y: -1 });
 		} else if (cursors.down.isDown || wasd.down.isDown) {
 			body.setVelocityY(this.speed);
+			this.lastDirection.set(0, 1);
+			this.gameObject.setData('lastDirection', { x: 0, y: 1 });
 		}
 	}
 

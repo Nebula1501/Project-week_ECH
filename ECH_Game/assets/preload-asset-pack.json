@@ -7,6 +7,11 @@
                 "key": "guapen"
             },
             {
+                "url": "assets/sprites/items/fruit/sprite_apple.png",
+                "type": "image",
+                "key": "sprite_fruit"
+            },
+            {
                 "url": "assets/sprites/player/sprite_player.png",
                 "type": "image",
                 "key": "sprite_player"

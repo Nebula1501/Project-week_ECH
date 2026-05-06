@@ -31,6 +31,16 @@
                             "prefabId": "17c7826c-8df4-451d-9bb7-4c4f236a7b39",
                             "id": "03db42d5-e2f6-46b9-9364-07431b533f3c",
                             "label": "playerMovement"
+                        },
+                        {
+                            "prefabId": "74eeb0bf-d730-4994-9c23-47497b7fdd45",
+                            "id": "289ec447-d4ad-442a-bb05-9328927c7a7c",
+                            "label": "playerInventory"
+                        },
+                        {
+                            "prefabId": "e86d69b3-8655-4ffd-ba94-5ed1144283c7",
+                            "id": "e5615f4f-ea20-4092-a813-69bb16ffc47a",
+                            "label": "playerThrow"
                         }
                     ]
                 }
