@@ -20,17 +20,6 @@
             "tilemapId": "0011afad-b347-4087-9230-2fc2b8778dbd"
         },
         {
-            "prefabId": "9c7cf13b-abf4-41b7-85bc-f51ba62d864e",
-            "id": "73aa5925-94e3-4422-aa22-ddbfb64ac60e",
-            "unlock": [
-                "x",
-                "y"
-            ],
-            "label": "player",
-            "x": 218,
-            "y": 569
-        },
-        {
             "prefabId": "021213fb-3ad5-4574-b5b2-daf8fa6c4ebd",
             "id": "15850faa-306d-4c2c-b040-426954c29d18",
             "unlock": [
@@ -50,28 +39,6 @@
             ],
             "label": "tier2Herbivore",
             "x": 1648,
-            "y": 535
-        },
-        {
-            "prefabId": "e5cd7b92-5f16-4e73-a6d5-1879e2c73070",
-            "id": "4cedbc4c-fa46-468c-b73c-be919582f283",
-            "unlock": [
-                "x",
-                "y"
-            ],
-            "label": "mimic",
-            "x": 806,
-            "y": 499
-        },
-        {
-            "prefabId": "4a7454c5-4cfa-4e5d-a28a-ad4c3f7ea205",
-            "id": "fe710661-851a-4aee-930e-aabafa090801",
-            "unlock": [
-                "x",
-                "y"
-            ],
-            "label": "t1carnivore",
-            "x": 1400,
             "y": 535
         },
         {
@@ -104,6 +71,28 @@
                     "label": "cameraController"
                 }
             ]
+        },
+        {
+            "prefabId": "9c7cf13b-abf4-41b7-85bc-f51ba62d864e",
+            "id": "73aa5925-94e3-4422-aa22-ddbfb64ac60e",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "player",
+            "x": 218,
+            "y": 569
+        },
+        {
+            "prefabId": "f9d7dd37-62d2-4c57-a7cb-13840fd7b4fa",
+            "id": "8ff8b181-40bc-4652-af62-e2ad66bb3df2",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "tier1Herbivore",
+            "x": 1314,
+            "y": 517
         }
     ],
     "plainObjects": [

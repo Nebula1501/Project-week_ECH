@@ -16,7 +16,9 @@
             "type": "ArcadeSprite",
             "id": "ddb837cb-1cae-4b11-98b7-5c426c78cd05",
             "label": "arcadeimage_1",
-            "texture": {},
+            "texture": {
+                "key": "sprite_player_01"
+            },
             "scaleX": 0.25,
             "scaleY": 0.25,
             "animationPlayMethod": 1,
@@ -39,6 +41,11 @@
                     "prefabId": "e86d69b3-8655-4ffd-ba94-5ed1144283c7",
                     "id": "034c64ca-fcb3-4349-b8c9-84e19d1964f6",
                     "label": "playerThrow"
+                },
+                {
+                    "prefabId": "28d8a426-af96-449f-b21e-91183add6fd9",
+                    "id": "1fbec9c2-3d7e-4b58-8d7b-8f179bf7c816",
+                    "label": "squashStretch"
                 }
             ]
         }

@@ -3,14 +3,13 @@
 
 /* START OF COMPILED CODE */
 
-import Player from "./Player.js";
 import Fruit from "./Fruit.js";
 import Tier2Herbivore from "./Tier2Herbivore.js";
-import Mimic from "./Mimic.js";
-import Tier1Carnivore from "./Tier1Carnivore.js";
 import Obstacle from "./Obstacle.js";
 import HideOnAwake from "./HideOnAwake.js";
 import CameraController from "./CameraController.js";
+import Player from "./Player.js";
+import Tier1Herbivore from "./Tier1Herbivore.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -69,10 +68,6 @@ export default class Test02 extends Phaser.Scene {
 		// Ground
 		editabletilemap.createLayer("Ground", ["tilesheet_ground01"], 0, 74);
 
-		// player
-		const player = new Player(this, 218, 569);
-		this.add.existing(player);
-
 		// fruit
 		const fruit = new Fruit(this, 491, 463);
 		this.add.existing(fruit);
@@ -80,14 +75,6 @@ export default class Test02 extends Phaser.Scene {
 		// tier2Herbivore
 		const tier2Herbivore = new Tier2Herbivore(this, 1648, 535);
 		this.add.existing(tier2Herbivore);
-
-		// mimic
-		const mimic = new Mimic(this, 806, 499);
-		this.add.existing(mimic);
-
-		// t1carnivore
-		const t1carnivore = new Tier1Carnivore(this, 1400, 535);
-		this.add.existing(t1carnivore);
 
 		// obstacle
 		const obstacle = new Obstacle(this, -7, -168);
@@ -101,6 +88,14 @@ export default class Test02 extends Phaser.Scene {
 
 		// cameraController
 		new CameraController(obstacle);
+
+		// player
+		const player = new Player(this, 218, 569);
+		this.add.existing(player);
+
+		// tier1Herbivore
+		const tier1Herbivore = new Tier1Herbivore(this, 1314, 517);
+		this.add.existing(tier1Herbivore);
 
 		this.editabletilemap = editabletilemap;
 
