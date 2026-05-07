@@ -67,6 +67,17 @@
             "label": "player",
             "x": 274,
             "y": 637
+        },
+        {
+            "prefabId": "e5cd7b92-5f16-4e73-a6d5-1879e2c73070",
+            "id": "23cda5f4-a02a-472d-8bc8-e15add776570",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "mimic",
+            "x": 800,
+            "y": 536
         }
     ],
     "plainObjects": [

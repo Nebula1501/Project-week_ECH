@@ -49,39 +49,6 @@
             "y": 463
         },
         {
-            "prefabId": "e6d767ff-fa7a-4a39-b8c4-0075be7b60c9",
-            "id": "fdb04560-2d93-4c7e-ab62-510de24be08d",
-            "unlock": [
-                "x",
-                "y"
-            ],
-            "label": "obstacle",
-            "x": 916,
-            "y": 194
-        },
-        {
-            "prefabId": "43c928bc-40c0-42ec-9852-e711ca71d559",
-            "id": "308b06aa-a0f8-4bf7-aadb-f99397a7a51f",
-            "unlock": [
-                "x",
-                "y"
-            ],
-            "label": "tier2Carnivore",
-            "x": 1275,
-            "y": 250
-        },
-        {
-            "prefabId": "f9d7dd37-62d2-4c57-a7cb-13840fd7b4fa",
-            "id": "5a5a66d6-c046-4e7b-b35b-60473f9743ee",
-            "unlock": [
-                "x",
-                "y"
-            ],
-            "label": "tier1Herbivore",
-            "x": 1192,
-            "y": 730
-        },
-        {
             "prefabId": "ea7300ee-a28f-4982-8644-7a4ad49964b4",
             "id": "26ab3ef9-7a34-4582-ad01-6300fe30c248",
             "unlock": [
@@ -93,15 +60,26 @@
             "y": 535
         },
         {
-            "prefabId": "4a7454c5-4cfa-4e5d-a28a-ad4c3f7ea205",
-            "id": "98a15538-c107-44e9-9dd8-b7b0bc9b8afd",
+            "prefabId": "e5cd7b92-5f16-4e73-a6d5-1879e2c73070",
+            "id": "4cedbc4c-fa46-468c-b73c-be919582f283",
             "unlock": [
                 "x",
                 "y"
             ],
-            "label": "tier1Carnivore",
-            "x": 1052,
-            "y": 453
+            "label": "mimic",
+            "x": 806,
+            "y": 499
+        },
+        {
+            "prefabId": "4a7454c5-4cfa-4e5d-a28a-ad4c3f7ea205",
+            "id": "fe710661-851a-4aee-930e-aabafa090801",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "t1carnivore",
+            "x": 1400,
+            "y": 535
         }
     ],
     "plainObjects": [

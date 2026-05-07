@@ -7,6 +7,7 @@ import DioramaBounds from "./DioramaBounds.js";
 import Fruit from "./Fruit.js";
 import Tier2Herbivore from "./Tier2Herbivore.js";
 import Player from "./Player.js";
+import Mimic from "./Mimic.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -90,6 +91,10 @@ export default class Test01 extends Phaser.Scene {
 		// player
 		const player = new Player(this, 274, 637);
 		this.add.existing(player);
+
+		// mimic
+		const mimic = new Mimic(this, 800, 536);
+		this.add.existing(mimic);
 
 		this.diorama = diorama;
 
