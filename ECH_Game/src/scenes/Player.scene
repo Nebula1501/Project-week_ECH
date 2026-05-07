@@ -13,14 +13,15 @@
     },
     "displayList": [
         {
-            "type": "ArcadeImage",
+            "type": "ArcadeSprite",
             "id": "ddb837cb-1cae-4b11-98b7-5c426c78cd05",
             "label": "arcadeimage_1",
-            "texture": {
-                "key": "sprite_player01"
-            },
+            "texture": {},
             "scaleX": 0.25,
             "scaleY": 0.25,
+            "animationPlayMethod": 1,
+            "animationKey": "player_idle",
+            "animationPreview": true,
             "body.width": 300,
             "body.height": 580,
             "list": [

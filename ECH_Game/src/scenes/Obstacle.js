@@ -12,6 +12,7 @@ export default class Obstacle extends Phaser.Physics.Arcade.Image {
 	constructor(scene, x, y, texture, frame) {
 		super(scene, x ?? 0, y ?? 0, texture || "guapen", frame);
 
+		this.setOrigin(0, 0);
 		scene.physics.add.existing(this, true);
 		this.body.pushable = false;
 		this.body.immovable = true;

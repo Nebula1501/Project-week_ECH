@@ -19,6 +19,8 @@
             "texture": {
                 "key": "guapen"
             },
+            "originX": 0,
+            "originY": 0,
             "body.physicsType": 1,
             "body.pushable": false,
             "body.immovable": true,

@@ -27,13 +27,6 @@ export default class DioramaBounds extends ScriptNode {
 		this.bottom = layer.y + (tilemap.height * tilemap.tileHeight);
 		this.right = layer.x + (tilemap.width * tilemap.tileWidth);
 		this.scene.dioramaBounds = this;
-
-		this.scene.physics.world.setBounds(
-			this.left,
-			this.top,
-			this.right - this.left,
-			this.bottom - this.top
-		);
 	}
 
 	getBounds() {

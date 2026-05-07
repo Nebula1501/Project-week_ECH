@@ -3,12 +3,14 @@
 
 /* START OF COMPILED CODE */
 
-import DioramaBounds from "./DioramaBounds.js";
 import Player from "./Player.js";
 import Fruit from "./Fruit.js";
 import Tier2Herbivore from "./Tier2Herbivore.js";
 import Mimic from "./Mimic.js";
 import Tier1Carnivore from "./Tier1Carnivore.js";
+import Obstacle from "./Obstacle.js";
+import HideOnAwake from "./HideOnAwake.js";
+import CameraController from "./CameraController.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -65,10 +67,7 @@ export default class Test02 extends Phaser.Scene {
 		editabletilemap.addTilesetImage("tilesheet_ground01");
 
 		// Ground
-		const ground = editabletilemap.createLayer("Ground", ["tilesheet_ground01"], 0, 74);
-
-		// dioramaBounds
-		new DioramaBounds(ground);
+		editabletilemap.createLayer("Ground", ["tilesheet_ground01"], 0, 74);
 
 		// player
 		const player = new Player(this, 218, 569);
@@ -90,6 +89,19 @@ export default class Test02 extends Phaser.Scene {
 		const t1carnivore = new Tier1Carnivore(this, 1400, 535);
 		this.add.existing(t1carnivore);
 
+		// obstacle
+		const obstacle = new Obstacle(this, -7, -168);
+		this.add.existing(obstacle);
+		obstacle.scaleX = 10;
+		obstacle.scaleY = 1;
+		obstacle.body.setSize(2080, 240, false);
+
+		// hideOnAwake
+		new HideOnAwake(obstacle);
+
+		// cameraController
+		new CameraController(obstacle);
+
 		this.editabletilemap = editabletilemap;
 
 		this.events.emit("scene-awake");
@@ -100,10 +112,7 @@ export default class Test02 extends Phaser.Scene {
 
 	/* START-USER-CODE */
 
-	// Write your code here
-
 	create() {
-
 		this.editorCreate();
 	}
 
