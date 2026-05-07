@@ -10,13 +10,13 @@ import BehaviourEatCorpse from "./BehaviourEatCorpse.js";
 import BehaviourChase from "./BehaviourChase.js";
 import BehaviourFlee from "./BehaviourFlee.js";
 import AttackResolution from "./AttackResolution.js";
-import Tier2CarnivoreController from "./Tier2CarnivoreController.js";
 import BehaviourPatrol from "./BehaviourPatrol.js";
 import BehaviourCombat from "./BehaviourCombat.js";
+import Tier2CarnivoreRoamingController from "./Tier2CarnivoreRoamingController.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
-export default class Tier2Carnivore extends Phaser.Physics.Arcade.Image {
+export default class Tier2CarnivoreRoaming extends Phaser.Physics.Arcade.Image {
 
 	constructor(scene, x, y, texture, frame) {
 		super(scene, x ?? 0, y ?? 0, texture || "sprite_carnivore1", frame);
@@ -47,14 +47,14 @@ export default class Tier2Carnivore extends Phaser.Physics.Arcade.Image {
 		// attackResolution
 		new AttackResolution(this);
 
-		// tier2CarnivoreController
-		new Tier2CarnivoreController(this);
-
 		// behaviourPatrol
 		new BehaviourPatrol(this);
 
 		// behaviourCombat
 		new BehaviourCombat(this);
+
+		// tier2CarnivoreRoamingController
+		new Tier2CarnivoreRoamingController(this);
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.

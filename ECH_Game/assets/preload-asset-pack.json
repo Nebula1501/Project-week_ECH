@@ -12,9 +12,24 @@
                 "url": "assets/animations/player/player_idle.json"
             },
             {
+                "url": "assets/sprites/creatures/tier2-carnivore/sprite_carnivore1.png",
+                "type": "image",
+                "key": "sprite_carnivore1"
+            },
+            {
+                "url": "assets/sprites/creatures/tier1-carnivore/sprite_carnivore2.png",
+                "type": "image",
+                "key": "sprite_carnivore2"
+            },
+            {
                 "url": "assets/sprites/items/fruit/sprite_apple.png",
                 "type": "image",
                 "key": "sprite_fruit"
+            },
+            {
+                "url": "assets/sprites/creatures/tier1-herbivore/sprite_herb2.png",
+                "type": "image",
+                "key": "sprite_herb2"
             },
             {
                 "type": "spritesheet",

@@ -31,17 +31,6 @@
             "y": 463
         },
         {
-            "prefabId": "ea7300ee-a28f-4982-8644-7a4ad49964b4",
-            "id": "26ab3ef9-7a34-4582-ad01-6300fe30c248",
-            "unlock": [
-                "x",
-                "y"
-            ],
-            "label": "tier2Herbivore",
-            "x": 1648,
-            "y": 535
-        },
-        {
             "prefabId": "e6d767ff-fa7a-4a39-b8c4-0075be7b60c9",
             "id": "e35d3c09-a062-4b62-b3fd-f69f8373e309",
             "unlock": [
@@ -84,15 +73,15 @@
             "y": 569
         },
         {
-            "prefabId": "f9d7dd37-62d2-4c57-a7cb-13840fd7b4fa",
-            "id": "8ff8b181-40bc-4652-af62-e2ad66bb3df2",
+            "prefabId": "5184276d-b88d-40d5-be88-c820b1414621",
+            "id": "753bbd4c-e29e-4e36-8ed5-86e80ed98e48",
             "unlock": [
                 "x",
                 "y"
             ],
-            "label": "tier1Herbivore",
-            "x": 1314,
-            "y": 517
+            "label": "tier2HerbivoreRoaming",
+            "x": 1114,
+            "y": 487
         }
     ],
     "plainObjects": [

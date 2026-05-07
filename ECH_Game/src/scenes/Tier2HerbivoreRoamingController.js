@@ -1,0 +1,96 @@
+
+// You can write more code here
+
+/* START OF COMPILED CODE */
+
+import ScriptNode from "../../phaserjs_editor_scripts_base/ScriptNode.js";
+/* START-USER-IMPORTS */
+/* END-USER-IMPORTS */
+
+export default class Tier2HerbivoreRoamingController extends ScriptNode {
+
+	constructor(parent) {
+		super(parent);
+
+		/* START-USER-CTR-CODE */
+		// Write your code here.
+		/* END-USER-CTR-CODE */
+	}
+
+	/* START-USER-CODE */
+
+	awake() {
+		// Tag this creature for detection system
+		this.gameObject.setData('type', 't2herb');
+
+		this.scene.events.once('create', () => {
+			if (this.gameObject._attackResolution) {
+				this.gameObject._attackResolution.powerValue = 2;
+			}
+		});
+
+		this.scene.events.once('create', () => {
+			this.setupStateMachine();
+		});
+	}
+
+	setupStateMachine() {
+		const go = this.gameObject;
+
+		const detectionRadius = go._detectionRadius;
+		const stateDecider = go._stateDecider;
+		const stateManager = go._stateManager;
+		const neutral = go._behaviourNeutral;
+		const opportunity = go._behaviourOpportunity;
+		const flee = go._behaviourFlee;
+		const combat = go._behaviourCombat;
+
+		console.log('Scripts:', { detectionRadius, stateDecider, stateManager, neutral, opportunity, flee, combat });
+
+		if (!stateDecider || !stateManager) {
+			console.warn('Tier2HerbivoreController: missing StateDecider or StateManager');
+			return;
+		}
+
+		// Register behaviour nodes with StateManager
+		stateManager.registerState('neutral', neutral);
+		stateManager.registerState('opportunity', opportunity);
+		stateManager.registerState('flee', flee);
+		stateManager.registerState('combat', combat);
+
+		// Set priority list on StateDecider
+		stateDecider.priorities = [
+			{
+				state: 'combat',
+				condition: (tags, detected, go = this.gameObject) => go._stateManager?.currentState === 'combat'
+			},
+			{
+				state: 'flee',
+				condition: (tags) => tags.some(t => ['player', 't2carn', 't1carn', 't1herb', 'mimic'].includes(t))
+			},
+			{
+				state: 'opportunity',
+				condition: (tags) => tags.includes('food')
+			}
+		];
+
+		// Start in neutral state
+		stateManager.switchState('neutral');
+		if (neutral) neutral.roaming = true;
+
+		const obstacles = this.scene.children.list.filter(child => child.constructor.name === 'Obstacle');
+		if (obstacles.length > 0) {
+			this.scene.physics.add.collider(this.gameObject, obstacles);
+		}
+
+		go.setData('defaultState', 'neutral');
+
+		console.log('Tier2Herbivore Roaming state machine ready');
+	}
+
+	/* END-USER-CODE */
+}
+
+/* END OF COMPILED CODE */
+
+// You can write more code here

@@ -4,12 +4,11 @@
 /* START OF COMPILED CODE */
 
 import Fruit from "./Fruit.js";
-import Tier2Herbivore from "./Tier2Herbivore.js";
 import Obstacle from "./Obstacle.js";
 import HideOnAwake from "./HideOnAwake.js";
 import CameraController from "./CameraController.js";
 import Player from "./Player.js";
-import Tier1Herbivore from "./Tier1Herbivore.js";
+import Tier2HerbivoreRoaming from "./Tier2HerbivoreRoaming.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -72,10 +71,6 @@ export default class Test02 extends Phaser.Scene {
 		const fruit = new Fruit(this, 491, 463);
 		this.add.existing(fruit);
 
-		// tier2Herbivore
-		const tier2Herbivore = new Tier2Herbivore(this, 1648, 535);
-		this.add.existing(tier2Herbivore);
-
 		// obstacle
 		const obstacle = new Obstacle(this, -7, -168);
 		this.add.existing(obstacle);
@@ -93,9 +88,9 @@ export default class Test02 extends Phaser.Scene {
 		const player = new Player(this, 218, 569);
 		this.add.existing(player);
 
-		// tier1Herbivore
-		const tier1Herbivore = new Tier1Herbivore(this, 1314, 517);
-		this.add.existing(tier1Herbivore);
+		// tier2HerbivoreRoaming
+		const tier2HerbivoreRoaming = new Tier2HerbivoreRoaming(this, 1114, 487);
+		this.add.existing(tier2HerbivoreRoaming);
 
 		this.editabletilemap = editabletilemap;
 
