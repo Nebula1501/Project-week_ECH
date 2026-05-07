@@ -28,11 +28,15 @@ export default class PlayerMovement extends ScriptNode {
 			right: Phaser.Input.Keyboard.KeyCodes.D
 		});
 		this.speed = 200;
-		this.gameObject.body.setCollideWorldBounds(true);
 		this.lastDirection = new Phaser.Math.Vector2(1, 0); // default facing right
+		this.scene.events.once('create', () => {
+			this.gameObject.play('player_idle');
+		});
 	}
 
 	update() {
+		if (!this.gameObject || !this.gameObject.body) return;
+
 		const body = this.gameObject.body;
 		const cursors = this.cursors;
 		const wasd = this.wasd;

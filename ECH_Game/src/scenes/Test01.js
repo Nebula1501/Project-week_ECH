@@ -3,10 +3,12 @@
 
 /* START OF COMPILED CODE */
 
-import DioramaBounds from "./DioramaBounds.js";
 import Fruit from "./Fruit.js";
 import Tier2Herbivore from "./Tier2Herbivore.js";
 import Player from "./Player.js";
+import Mimic from "./Mimic.js";
+import Obstacle from "./Obstacle.js";
+import HideOnAwake from "./HideOnAwake.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -71,10 +73,7 @@ export default class Test01 extends Phaser.Scene {
 		diorama.addTilesetImage("tileset_diorama");
 
 		// ground
-		const ground = diorama.createLayer("ground", ["tileset_diorama"], 0, 256);
-
-		// dioramaBounds
-		new DioramaBounds(ground);
+		diorama.createLayer("ground", ["tileset_diorama"], 0, 256);
 
 		// Front Edge
 		diorama.createLayer("Front Edge", ["tileset_diorama"], 0, 256);
@@ -90,6 +89,19 @@ export default class Test01 extends Phaser.Scene {
 		// player
 		const player = new Player(this, 274, 637);
 		this.add.existing(player);
+
+		// mimic
+		const mimic = new Mimic(this, 800, 536);
+		this.add.existing(mimic);
+
+		// obstacle
+		const obstacle = new Obstacle(this, 871, 195);
+		this.add.existing(obstacle);
+		obstacle.scaleX = 8.85;
+		obstacle.scaleY = 1;
+
+		// hideOnAwake
+		new HideOnAwake(obstacle);
 
 		this.diorama = diorama;
 

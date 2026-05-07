@@ -3,7 +3,8 @@
     "allow": [
       "Bash(New-Item -Path \"C:\\\\Users\\\\shady\\\\OneDrive\\\\Documents\\\\GitHub\\\\Project-week_ECH\\\\ECH_Game\\\\src\\\\scenes\\\\CorpsePickup.js\" -ItemType File -Force)",
       "Bash(Out-Null)",
-      "Bash(Write-Output \"created\")"
+      "Bash(Write-Output \"created\")",
+      "Bash(Test-Path *)"
     ]
   }
 }

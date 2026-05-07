@@ -74,6 +74,14 @@ export default class Preload extends Phaser.Scene {
 	}
 
 	create() {
+	    this.editorCreate();
+
+	    this.anims.create({
+	        key: 'player_idle',
+	        frames: this.anims.generateFrameNumbers('sprite_player', { start: 0, end: 2 }),
+	        frameRate: 6,
+	        repeat: -1
+	    });
 
 		this.scene.start("Level");
 	}

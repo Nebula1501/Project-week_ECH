@@ -79,6 +79,7 @@ export default class AttackResolution extends ScriptNode {
 			} else if (myPower > theirPower) {
 				otherResolution.die();
 				this.resolving = false;
+				this.gameObject.emit('attackWin');
 				const defaultState = this.gameObject.getData('defaultState') ?? 'neutral';
 				this.gameObject._stateManager?.switchState(defaultState);
 			} else {

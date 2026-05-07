@@ -7,19 +7,31 @@
                 "key": "guapen"
             },
             {
+                "type": "animation",
+                "key": "player_idle_anims",
+                "url": "assets/animations/player/player_idle.json"
+            },
+            {
                 "url": "assets/sprites/items/fruit/sprite_apple.png",
                 "type": "image",
                 "key": "sprite_fruit"
             },
             {
-                "url": "assets/sprites/player/sprite_player.png",
-                "type": "image",
-                "key": "sprite_player"
+                "type": "spritesheet",
+                "key": "sprite_player",
+                "url": "assets/sprites/player/spritesheet_player01_idle.png",
+                "normalMap": "",
+                "frameConfig": {
+                    "frameWidth": 300,
+                    "frameHeight": 580,
+                    "startFrame": 0,
+                    "endFrame": 2
+                }
             },
             {
                 "url": "assets/sprites/player/sprite_player01.png",
                 "type": "image",
-                "key": "sprite_player01"
+                "key": "sprite_player_01"
             },
             {
                 "url": "assets/sprites/creatures/tier2-herbivore/Enemy_Low_1.png",

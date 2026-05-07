@@ -3,14 +3,13 @@
 
 /* START OF COMPILED CODE */
 
-import DioramaBounds from "./DioramaBounds.js";
-import Player from "./Player.js";
 import Fruit from "./Fruit.js";
-import Obstacle from "./Obstacle.js";
-import Tier2Carnivore from "./Tier2Carnivore.js";
-import Tier1Herbivore from "./Tier1Herbivore.js";
 import Tier2Herbivore from "./Tier2Herbivore.js";
-import Tier1Carnivore from "./Tier1Carnivore.js";
+import Obstacle from "./Obstacle.js";
+import HideOnAwake from "./HideOnAwake.js";
+import CameraController from "./CameraController.js";
+import Player from "./Player.js";
+import Tier1Herbivore from "./Tier1Herbivore.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -67,38 +66,36 @@ export default class Test02 extends Phaser.Scene {
 		editabletilemap.addTilesetImage("tilesheet_ground01");
 
 		// Ground
-		const ground = editabletilemap.createLayer("Ground", ["tilesheet_ground01"], 0, 74);
-
-		// dioramaBounds
-		new DioramaBounds(ground);
-
-		// player
-		const player = new Player(this, 218, 569);
-		this.add.existing(player);
+		editabletilemap.createLayer("Ground", ["tilesheet_ground01"], 0, 74);
 
 		// fruit
 		const fruit = new Fruit(this, 491, 463);
 		this.add.existing(fruit);
 
-		// obstacle
-		const obstacle = new Obstacle(this, 916, 194);
-		this.add.existing(obstacle);
-
-		// tier2Carnivore
-		const tier2Carnivore = new Tier2Carnivore(this, 1275, 250);
-		this.add.existing(tier2Carnivore);
-
-		// tier1Herbivore
-		const tier1Herbivore = new Tier1Herbivore(this, 1192, 730);
-		this.add.existing(tier1Herbivore);
-
 		// tier2Herbivore
 		const tier2Herbivore = new Tier2Herbivore(this, 1648, 535);
 		this.add.existing(tier2Herbivore);
 
-		// tier1Carnivore
-		const tier1Carnivore = new Tier1Carnivore(this, 1052, 453);
-		this.add.existing(tier1Carnivore);
+		// obstacle
+		const obstacle = new Obstacle(this, -7, -168);
+		this.add.existing(obstacle);
+		obstacle.scaleX = 10;
+		obstacle.scaleY = 1;
+		obstacle.body.setSize(2080, 240, false);
+
+		// hideOnAwake
+		new HideOnAwake(obstacle);
+
+		// cameraController
+		new CameraController(obstacle);
+
+		// player
+		const player = new Player(this, 218, 569);
+		this.add.existing(player);
+
+		// tier1Herbivore
+		const tier1Herbivore = new Tier1Herbivore(this, 1314, 517);
+		this.add.existing(tier1Herbivore);
 
 		this.editabletilemap = editabletilemap;
 
@@ -110,10 +107,7 @@ export default class Test02 extends Phaser.Scene {
 
 	/* START-USER-CODE */
 
-	// Write your code here
-
 	create() {
-
 		this.editorCreate();
 	}
 
