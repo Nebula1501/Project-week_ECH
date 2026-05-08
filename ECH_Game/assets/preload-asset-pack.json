@@ -9,7 +9,17 @@
             {
                 "url": "assets/animations/player/player_idle.json",
                 "type": "animation",
-                "key": "player_idle_anims"
+                "key": "player_idle"
+            },
+            {
+                "url": "assets/animations/player/player_pickup.json",
+                "type": "animation",
+                "key": "player_pickup"
+            },
+            {
+                "url": "assets/animations/player/player_walk.json",
+                "type": "animation",
+                "key": "player_walk"
             },
             {
                 "url": "assets/sprites/creatures/tier2-carnivore/sprite_carnivore1.png",
@@ -53,6 +63,45 @@
                 },
                 "type": "spritesheet",
                 "key": "spritesheet_player01_idle"
+            },
+            {
+                "url": "assets/sprites/player/spritesheet_player01_pickup.png",
+                "frameConfig": {
+                    "frameWidth": 500,
+                    "frameHeight": 680,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_player01_pickup"
+            },
+            {
+                "url": "assets/sprites/player/spritesheet_player01_throw.png",
+                "frameConfig": {
+                    "frameWidth": 500,
+                    "frameHeight": 680,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_player01_throw"
+            },
+            {
+                "url": "assets/sprites/player/spritesheet_player01_walk.png",
+                "frameConfig": {
+                    "frameWidth": 300,
+                    "frameHeight": 580,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_player01_walk"
             },
             {
                 "url": "assets/tilemaps/tilesets/tileset_diorama.png",
