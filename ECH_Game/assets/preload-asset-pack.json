@@ -7,9 +7,9 @@
                 "key": "guapen"
             },
             {
+                "url": "assets/animations/player/player_idle.json",
                 "type": "animation",
-                "key": "player_idle_anims",
-                "url": "assets/animations/player/player_idle.json"
+                "key": "player_idle_anims"
             },
             {
                 "url": "assets/sprites/creatures/tier2-carnivore/sprite_carnivore1.png",
@@ -32,18 +32,6 @@
                 "key": "sprite_herb2"
             },
             {
-                "type": "spritesheet",
-                "key": "sprite_player",
-                "url": "assets/sprites/player/spritesheet_player01_idle.png",
-                "normalMap": "",
-                "frameConfig": {
-                    "frameWidth": 300,
-                    "frameHeight": 580,
-                    "startFrame": 0,
-                    "endFrame": 2
-                }
-            },
-            {
                 "url": "assets/sprites/player/sprite_player01.png",
                 "type": "image",
                 "key": "sprite_player_01"
@@ -52,6 +40,19 @@
                 "url": "assets/sprites/creatures/tier2-herbivore/Enemy_Low_1.png",
                 "type": "image",
                 "key": "sprite_tier2-herbivore"
+            },
+            {
+                "url": "assets/sprites/player/spritesheet_player01_idle1.png",
+                "frameConfig": {
+                    "frameWidth": 300,
+                    "frameHeight": 580,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_player01_idle"
             },
             {
                 "url": "assets/tilemaps/tilesets/tileset_diorama.png",
@@ -65,6 +66,32 @@
                 },
                 "type": "spritesheet",
                 "key": "tileset_diorama"
+            },
+            {
+                "url": "assets/tilemaps/tilesets/tileset_ground_grass_dark.png",
+                "frameConfig": {
+                    "frameWidth": 64,
+                    "frameHeight": 64,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "tileset_ground_grass_dark"
+            },
+            {
+                "url": "assets/tilemaps/tilesets/tileset_ground_grass_light.png",
+                "frameConfig": {
+                    "frameWidth": 64,
+                    "frameHeight": 64,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "tileset_ground_grass_light"
             },
             {
                 "url": "assets/tilemaps/tilesets/tilesheet_ground01.png",

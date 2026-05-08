@@ -19,8 +19,8 @@
             "texture": {
                 "key": "sprite_player_01"
             },
-            "scaleX": 0.25,
-            "scaleY": 0.25,
+            "scaleX": 0.2,
+            "scaleY": 0.2,
             "animationPlayMethod": 1,
             "animationKey": "player_idle",
             "animationPreview": true,

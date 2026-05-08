@@ -22,8 +22,8 @@ export default class Tier2HerbivoreRoaming extends Phaser.Physics.Arcade.Image {
 	constructor(scene, x, y, texture, frame) {
 		super(scene, x ?? 0, y ?? 0, texture || "sprite_tier2-herbivore", frame);
 
-		this.scaleX = 0.25;
-		this.scaleY = 0.25;
+		this.scaleX = 0.2;
+		this.scaleY = 0.2;
 		scene.physics.add.existing(this, false);
 		this.body.setSize(500, 900, false);
 

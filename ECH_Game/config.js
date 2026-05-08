@@ -14,7 +14,7 @@ const config = {
     height: 1080,
 
     // Background colour rendered behind all scenes (pure black)
-    backgroundColor: 0x6F7271,
+    backgroundColor: 0xD6C7FB,
 
     // Scale manager: FIT scales the canvas down to fit the browser window while preserving aspect ratio and centering it
     scale: {

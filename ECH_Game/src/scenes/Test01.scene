@@ -15,18 +15,76 @@
     },
     "displayList": [
         {
-            "type": "EditableTilemapLayer",
-            "id": "94bf4508-4498-4af7-bc07-228e5126bcf8",
-            "label": "ground",
-            "y": 256,
-            "tilemapId": "c3f61193-9e33-4d94-96cf-0d34cfe35154"
+            "type": "Layer",
+            "id": "2761b118-11fc-41e4-96f9-7adfebf05955",
+            "label": "layer_1",
+            "list": [
+                {
+                    "type": "EditableTilemapLayer",
+                    "id": "94bf4508-4498-4af7-bc07-228e5126bcf8",
+                    "label": "ground",
+                    "y": 256,
+                    "tilemapId": "c3f61193-9e33-4d94-96cf-0d34cfe35154"
+                },
+                {
+                    "type": "EditableTilemapLayer",
+                    "id": "1bfb80ea-1c5d-4147-b893-fbc70f3ec040",
+                    "label": "Front Edge",
+                    "y": 256,
+                    "tilemapId": "c3f61193-9e33-4d94-96cf-0d34cfe35154"
+                }
+            ]
         },
         {
-            "type": "EditableTilemapLayer",
-            "id": "1bfb80ea-1c5d-4147-b893-fbc70f3ec040",
-            "label": "Front Edge",
-            "y": 256,
-            "tilemapId": "c3f61193-9e33-4d94-96cf-0d34cfe35154"
+            "type": "Layer",
+            "id": "e5a4e6a0-75bd-4bf2-924f-e29fab1aa292",
+            "label": "layer_2",
+            "list": [
+                {
+                    "prefabId": "e6d767ff-fa7a-4a39-b8c4-0075be7b60c9",
+                    "id": "46112000-04c4-49ac-a433-444a97f09f81",
+                    "unlock": [
+                        "x",
+                        "y",
+                        "scaleX",
+                        "scaleY"
+                    ],
+                    "label": "obstacle",
+                    "x": 66,
+                    "y": 79,
+                    "scaleX": 8.85,
+                    "scaleY": 1,
+                    "list": [
+                        {
+                            "prefabId": "18c8b3f2-e174-41b7-8d51-4f40f50c416d",
+                            "id": "e29ea4c2-a619-4c1e-be43-3b5ad1fdda94",
+                            "label": "hideOnAwake"
+                        }
+                    ]
+                },
+                {
+                    "prefabId": "e6d767ff-fa7a-4a39-b8c4-0075be7b60c9",
+                    "id": "8254a749-55be-4823-a1c5-e149ba392360",
+                    "unlock": [
+                        "x",
+                        "y",
+                        "scaleX",
+                        "scaleY"
+                    ],
+                    "label": "obstacle_1",
+                    "x": 66,
+                    "y": 79,
+                    "scaleX": 8.85,
+                    "scaleY": 1,
+                    "list": [
+                        {
+                            "prefabId": "18c8b3f2-e174-41b7-8d51-4f40f50c416d",
+                            "id": "9c58a7d1-84d3-4bfc-bcff-6035c273233b",
+                            "label": "hideOnAwake_1"
+                        }
+                    ]
+                }
+            ]
         },
         {
             "prefabId": "021213fb-3ad5-4574-b5b2-daf8fa6c4ebd",
@@ -71,28 +129,6 @@
             "label": "mimic",
             "x": 800,
             "y": 536
-        },
-        {
-            "prefabId": "e6d767ff-fa7a-4a39-b8c4-0075be7b60c9",
-            "id": "46112000-04c4-49ac-a433-444a97f09f81",
-            "unlock": [
-                "x",
-                "y",
-                "scaleX",
-                "scaleY"
-            ],
-            "label": "obstacle",
-            "x": 871,
-            "y": 195,
-            "scaleX": 8.85,
-            "scaleY": 1,
-            "list": [
-                {
-                    "prefabId": "18c8b3f2-e174-41b7-8d51-4f40f50c416d",
-                    "id": "e29ea4c2-a619-4c1e-be43-3b5ad1fdda94",
-                    "label": "hideOnAwake"
-                }
-            ]
         }
     ],
     "plainObjects": [

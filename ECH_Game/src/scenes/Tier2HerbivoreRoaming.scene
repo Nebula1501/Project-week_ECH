@@ -19,8 +19,8 @@
             "texture": {
                 "key": "sprite_tier2-herbivore"
             },
-            "scaleX": 0.25,
-            "scaleY": 0.25,
+            "scaleX": 0.2,
+            "scaleY": 0.2,
             "body.width": 500,
             "body.height": 900,
             "list": [
