@@ -18,15 +18,15 @@ import SquashStretch from "./SquashStretch.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
-export default class Tier2CarnivoreRoaming extends Phaser.Physics.Arcade.Image {
+export default class Tier2CarnivoreRoaming extends Phaser.Physics.Arcade.Sprite {
 
 	constructor(scene, x, y, texture, frame) {
-		super(scene, x ?? 0, y ?? 0, texture || "sprite_carnivore1", frame);
+		super(scene, x ?? 0, y ?? 0, texture || "spritesheet_car01_idle1", frame ?? 0);
 
 		this.scaleX = 0.2;
 		this.scaleY = 0.2;
 		scene.physics.add.existing(this, false);
-		this.body.setSize(920, 800, false);
+		this.body.setSize(730, 700, false);
 
 		// detectionRadius
 		new DetectionRadius(this);

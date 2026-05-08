@@ -34,7 +34,9 @@ export default class BehaviourStalk extends ScriptNode {
 	onDeactivate() {
 		this.active = false;
 		this.patienceTimer = 0;
-		this.gameObject.body.setVelocity(0, 0);
+		if (this.gameObject && this.gameObject.body) {
+			this.gameObject.body.setVelocity(0, 0);
+		}
 	}
 
 	update() {

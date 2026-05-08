@@ -13,16 +13,17 @@
     },
     "displayList": [
         {
-            "type": "ArcadeImage",
+            "type": "ArcadeSprite",
             "id": "e1389245-89b2-463e-b768-b26217c0f533",
             "label": "arcadeimage_1",
             "texture": {
-                "key": "sprite_carnivore1"
+                "key": "spritesheet_car01_idle1",
+                "frame": 0
             },
             "scaleX": 0.2,
             "scaleY": 0.2,
-            "body.width": 920,
-            "body.height": 800,
+            "body.width": 730,
+            "body.height": 700,
             "list": [
                 {
                     "prefabId": "6e76b45a-4e5e-449a-badc-049a24688d28",

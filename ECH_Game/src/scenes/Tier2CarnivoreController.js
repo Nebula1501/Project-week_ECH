@@ -22,6 +22,7 @@ export default class Tier2CarnivoreController extends ScriptNode {
 		this.gameObject._attackResolution && (this.gameObject._attackResolution.powerValue = 3);
 
 		this.scene.events.once('create', () => {
+			this.gameObject.play('tier2carn__idle', true);
 			this.setupStateMachine();
 		});
 	}
@@ -149,6 +150,32 @@ export default class Tier2CarnivoreController extends ScriptNode {
 		go.setData('defaultState', 'patrol');
 		stateManager.switchState('patrol');
 		console.log('Tier2Carnivore state machine ready');
+	}
+
+	update() {
+		if (!this.gameObject || !this.gameObject.body) return;
+
+		const body = this.gameObject.body;
+
+		// Handle sprite flipping
+		if (body.velocity.x < 0) {
+			this.gameObject.flipX = true; // Face left
+		} else if (body.velocity.x > 0) {
+			this.gameObject.flipX = false; // Face right
+		}
+
+		// Check if actively eating a corpse
+		const isEating = this.gameObject._stateManager?.currentState === 'eatCorpse' && 
+		                 this.gameObject._behaviourEatCorpse?.eating;
+
+		// Handle animation switching
+		if (isEating) {
+			this.gameObject.play('tier2carn_eat', true);
+		} else if (body.velocity.x !== 0 || body.velocity.y !== 0) {
+			this.gameObject.play('tier2carn_walk', true);
+		} else {
+			this.gameObject.play('tier2carn__idle', true);
+		}
 	}
 }
 
