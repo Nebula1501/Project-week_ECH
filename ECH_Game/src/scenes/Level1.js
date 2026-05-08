@@ -263,7 +263,7 @@ export default class Level1 extends Phaser.Scene {
 		this.add.existing(tier2HerbivoreRoaming);
 
 		// player
-		const player = new Player(this, 5434, 2874);
+		const player = new Player(this, 5375, 2890);
 		this.add.existing(player);
 
 		this.editabletilemap = editabletilemap;

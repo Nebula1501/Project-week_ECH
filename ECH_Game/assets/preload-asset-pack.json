@@ -17,6 +17,11 @@
                 "key": "player_pickup"
             },
             {
+                "url": "assets/animations/player/player_throw.json",
+                "type": "animation",
+                "key": "player_throw"
+            },
+            {
                 "url": "assets/animations/player/player_walk.json",
                 "type": "animation",
                 "key": "player_walk"

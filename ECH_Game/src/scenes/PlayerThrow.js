@@ -133,6 +133,17 @@ export default class PlayerThrow extends ScriptNode {
 		});
 
 		console.log('Fruit released in direction', dir);
+
+		// Trigger throw animation safely
+		if (this.gameObject.anims && this.scene.anims.exists('player_throw')) {
+			// Force repeat: 0 to ensure it plays exactly once
+			this.gameObject.play({ key: 'player_throw', repeat: 0 });
+			this.gameObject.setData('isPickingUp', true); // Reuse our lock flag so movement doesn't interrupt it
+			this.gameObject.off('animationcomplete-player_throw');
+			this.gameObject.once('animationcomplete-player_throw', () => {
+				this.gameObject.setData('isPickingUp', false);
+			});
+		}
 	}
 
 	/* END-USER-CODE */
