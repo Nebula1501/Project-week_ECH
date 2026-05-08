@@ -567,8 +567,19 @@
                 "y"
             ],
             "label": "player",
-            "x": 5375,
-            "y": 2890
+            "x": 590,
+            "y": 555
+        },
+        {
+            "prefabId": "021213fb-3ad5-4574-b5b2-daf8fa6c4ebd",
+            "id": "7571437c-264e-42b7-b169-b63c2ad3c4ff",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "fruit",
+            "x": 787,
+            "y": 521
         }
     ],
     "plainObjects": [

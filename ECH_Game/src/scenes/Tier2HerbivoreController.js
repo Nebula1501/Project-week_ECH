@@ -30,6 +30,7 @@ export default class Tier2HerbivoreController extends ScriptNode {
 		});
 
 		this.scene.events.once('create', () => {
+			this.gameObject.play('tier2herb_idle', true);
 			this.setupStateMachine();
 		});
 	}
@@ -147,6 +148,54 @@ export default class Tier2HerbivoreController extends ScriptNode {
 		stateManager.switchState('neutral');
 
 		console.log('Tier2Herbivore state machine ready');
+	}
+
+	update() {
+		if (!this.gameObject || !this.gameObject.body) return;
+
+		const body = this.gameObject.body;
+
+		// Startled logic
+		const detected = this.gameObject._detectionRadius?.detected ?? [];
+		const currentDetectedCount = detected.length;
+		if (this._lastDetectedCount === undefined) this._lastDetectedCount = 0;
+
+		if (currentDetectedCount > this._lastDetectedCount) {
+			this.gameObject.setData('isStartled', true);
+			if (this.gameObject.anims && this.scene.anims.exists('tier2herb__startled')) {
+				this.gameObject.play({ key: 'tier2herb__startled', repeat: 0 });
+				this.gameObject.off('animationcomplete-tier2herb__startled');
+				this.gameObject.once('animationcomplete-tier2herb__startled', () => {
+					this.gameObject.setData('isStartled', false);
+				});
+			} else {
+				this.gameObject.setData('isStartled', false);
+			}
+		}
+		this._lastDetectedCount = currentDetectedCount;
+
+		// Handle sprite flipping
+		if (body.velocity.x < 0) {
+			this.gameObject.flipX = true; // Face left
+		} else if (body.velocity.x > 0) {
+			this.gameObject.flipX = false; // Face right
+		}
+
+		// Check if actively eating in the opportunity state
+		const isEating = this.gameObject._stateManager?.currentState === 'opportunity' && 
+		                 this.gameObject._behaviourOpportunity?.eating;
+		const isStartled = this.gameObject.getData('isStartled');
+
+		// Handle animation switching
+		if (isStartled) {
+			// Do not interrupt startled animation
+		} else if (isEating) {
+			this.gameObject.play('tier2herb_eat', true);
+		} else if (body.velocity.x !== 0 || body.velocity.y !== 0) {
+			this.gameObject.play('tier2herb_walk', true);
+		} else {
+			this.gameObject.play('tier2herb_idle', true);
+		}
 	}
 
 	/* END-USER-CODE */

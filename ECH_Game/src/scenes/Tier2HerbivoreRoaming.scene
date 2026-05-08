@@ -13,16 +13,17 @@
     },
     "displayList": [
         {
-            "type": "ArcadeImage",
+            "type": "ArcadeSprite",
             "id": "9cd2d50e-356b-4bc4-bebf-92a394ca2cd7",
             "label": "arcadeimage_1",
             "texture": {
-                "key": "sprite_tier2-herbivore"
+                "key": "spritesheet_herb01_idle1",
+                "frame": 0
             },
             "scaleX": 0.2,
             "scaleY": 0.2,
-            "body.width": 500,
-            "body.height": 900,
+            "body.width": 420,
+            "body.height": 680,
             "list": [
                 {
                     "prefabId": "6e76b45a-4e5e-449a-badc-049a24688d28",
