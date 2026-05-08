@@ -23,8 +23,8 @@ export default class Tier2Carnivore extends Phaser.Physics.Arcade.Image {
 	constructor(scene, x, y, texture, frame) {
 		super(scene, x ?? 0, y ?? 0, texture || "sprite_carnivore1", frame);
 
-		this.scaleX = 0.1;
-		this.scaleY = 0.1;
+		this.scaleX = 0.2;
+		this.scaleY = 0.2;
 		scene.physics.add.existing(this, false);
 		this.body.setSize(920, 800, false);
 

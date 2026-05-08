@@ -19,8 +19,8 @@
             "texture": {
                 "key": "sprite_carnivore1"
             },
-            "scaleX": 0.5,
-            "scaleY": 0.5,
+            "scaleX": 0.2,
+            "scaleY": 0.2,
             "body.width": 920,
             "body.height": 800,
             "list": [
