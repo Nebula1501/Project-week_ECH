@@ -73,6 +73,11 @@
                     "prefabId": "28d8a426-af96-449f-b21e-91183add6fd9",
                     "id": "1c5a081e-2a40-40cb-946f-0ec41b873c7e",
                     "label": "squashStretch"
+                },
+                {
+                    "prefabId": "2d637e1c-d2c6-44b2-960b-522f09738667",
+                    "id": "f0e121b8-926b-4899-af2a-e5773e41380d",
+                    "label": "detectionGlow"
                 }
             ]
         }

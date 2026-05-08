@@ -21,8 +21,8 @@
             },
             "scaleX": 0.5,
             "scaleY": 0.5,
-            "body.width": 208,
-            "body.height": 240,
+            "body.width": 920,
+            "body.height": 800,
             "list": [
                 {
                     "prefabId": "6e76b45a-4e5e-449a-badc-049a24688d28",
@@ -73,6 +73,16 @@
                     "prefabId": "57002d24-a3c3-47ea-8fc7-f3907bea8145",
                     "id": "d5485621-7219-441b-b4e4-42087ccfdffe",
                     "label": "tier2CarnivoreRoamingController"
+                },
+                {
+                    "prefabId": "2d637e1c-d2c6-44b2-960b-522f09738667",
+                    "id": "2e7e3239-0217-4835-9528-6b8dcce9120f",
+                    "label": "detectionGlow"
+                },
+                {
+                    "prefabId": "28d8a426-af96-449f-b21e-91183add6fd9",
+                    "id": "0ccc0af8-1e6e-4f13-ad7c-f32b9aa296b8",
+                    "label": "squashStretch"
                 }
             ]
         }

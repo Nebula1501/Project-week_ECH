@@ -13,6 +13,8 @@ import AttackResolution from "./AttackResolution.js";
 import Tier2CarnivoreController from "./Tier2CarnivoreController.js";
 import BehaviourPatrol from "./BehaviourPatrol.js";
 import BehaviourCombat from "./BehaviourCombat.js";
+import DetectionGlow from "./DetectionGlow.js";
+import SquashStretch from "./SquashStretch.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -24,7 +26,7 @@ export default class Tier2Carnivore extends Phaser.Physics.Arcade.Image {
 		this.scaleX = 0.5;
 		this.scaleY = 0.5;
 		scene.physics.add.existing(this, false);
-		this.body.setSize(208, 240, false);
+		this.body.setSize(920, 800, false);
 
 		// detectionRadius
 		new DetectionRadius(this);
@@ -55,6 +57,12 @@ export default class Tier2Carnivore extends Phaser.Physics.Arcade.Image {
 
 		// behaviourCombat
 		new BehaviourCombat(this);
+
+		// detectionGlow
+		new DetectionGlow(this);
+
+		// squashStretch
+		new SquashStretch(this);
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.

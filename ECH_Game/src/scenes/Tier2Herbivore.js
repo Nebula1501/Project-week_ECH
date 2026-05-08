@@ -13,6 +13,7 @@ import Tier2HerbivoreController from "./Tier2HerbivoreController.js";
 import AttackResolution from "./AttackResolution.js";
 import BehaviourCombat from "./BehaviourCombat.js";
 import SquashStretch from "./SquashStretch.js";
+import DetectionGlow from "./DetectionGlow.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -55,6 +56,9 @@ export default class Tier2Herbivore extends Phaser.Physics.Arcade.Image {
 
 		// squashStretch
 		new SquashStretch(this);
+
+		// detectionGlow
+		new DetectionGlow(this);
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.

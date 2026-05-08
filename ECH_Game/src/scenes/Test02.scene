@@ -73,15 +73,15 @@
             "y": 569
         },
         {
-            "prefabId": "5184276d-b88d-40d5-be88-c820b1414621",
-            "id": "753bbd4c-e29e-4e36-8ed5-86e80ed98e48",
+            "prefabId": "ea7300ee-a28f-4982-8644-7a4ad49964b4",
+            "id": "14770305-8c56-4128-a7ab-ce5f425eea82",
             "unlock": [
                 "x",
                 "y"
             ],
-            "label": "tier2HerbivoreRoaming",
-            "x": 1114,
-            "y": 487
+            "label": "tier2Herbivore",
+            "x": 1484,
+            "y": 336
         }
     ],
     "plainObjects": [

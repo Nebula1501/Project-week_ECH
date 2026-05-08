@@ -8,7 +8,7 @@ import Obstacle from "./Obstacle.js";
 import HideOnAwake from "./HideOnAwake.js";
 import CameraController from "./CameraController.js";
 import Player from "./Player.js";
-import Tier2HerbivoreRoaming from "./Tier2HerbivoreRoaming.js";
+import Tier2Herbivore from "./Tier2Herbivore.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -88,9 +88,9 @@ export default class Test02 extends Phaser.Scene {
 		const player = new Player(this, 218, 569);
 		this.add.existing(player);
 
-		// tier2HerbivoreRoaming
-		const tier2HerbivoreRoaming = new Tier2HerbivoreRoaming(this, 1114, 487);
-		this.add.existing(tier2HerbivoreRoaming);
+		// tier2Herbivore
+		const tier2Herbivore = new Tier2Herbivore(this, 1484, 336);
+		this.add.existing(tier2Herbivore);
 
 		this.editabletilemap = editabletilemap;
 

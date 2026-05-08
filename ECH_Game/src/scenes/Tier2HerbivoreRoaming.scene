@@ -73,6 +73,11 @@
                     "prefabId": "a1ea7624-54dd-4682-b4bc-f156e0693222",
                     "id": "191cb5df-e72e-4785-8489-2d2e5eef8ac2",
                     "label": "tier2HerbivoreRoamingController"
+                },
+                {
+                    "prefabId": "2d637e1c-d2c6-44b2-960b-522f09738667",
+                    "id": "bb6f28ab-3a1a-442a-8598-ef2feec51785",
+                    "label": "detectionGlow"
                 }
             ]
         }

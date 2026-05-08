@@ -17,10 +17,12 @@
             "id": "85832b51-70a7-4d3b-800f-e63acc0dc50c",
             "label": "arcadeimage_1",
             "texture": {
-                "key": "guapen"
+                "key": "sprite_carnivore2"
             },
-            "body.width": 208,
-            "body.height": 240,
+            "scaleX": 0.5,
+            "scaleY": 0.5,
+            "body.width": 1406,
+            "body.height": 554,
             "list": [
                 {
                     "prefabId": "6e76b45a-4e5e-449a-badc-049a24688d28",
@@ -66,6 +68,16 @@
                     "prefabId": "173f40f5-b385-42fa-99bb-4cc82c184218",
                     "id": "b6c3487c-e2ba-482c-a12f-875fa823a77f",
                     "label": "tier1CarnivoreController"
+                },
+                {
+                    "prefabId": "2d637e1c-d2c6-44b2-960b-522f09738667",
+                    "id": "d980fc0b-4df5-4232-ae6d-9811921be13e",
+                    "label": "detectionGlow"
+                },
+                {
+                    "prefabId": "28d8a426-af96-449f-b21e-91183add6fd9",
+                    "id": "3e96229e-8240-4a64-badd-d1686dbe3776",
+                    "label": "squashStretch"
                 }
             ]
         }

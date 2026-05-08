@@ -21,8 +21,8 @@
             },
             "scaleX": 0.5,
             "scaleY": 0.5,
-            "body.width": 208,
-            "body.height": 240,
+            "body.width": 920,
+            "body.height": 800,
             "list": [
                 {
                     "prefabId": "6e76b45a-4e5e-449a-badc-049a24688d28",
@@ -73,6 +73,16 @@
                     "prefabId": "14bffe05-cf76-4c58-a8e6-5d738cd2c172",
                     "id": "43997cc3-9036-4f32-9dab-57174cf72a6e",
                     "label": "behaviourCombat"
+                },
+                {
+                    "prefabId": "2d637e1c-d2c6-44b2-960b-522f09738667",
+                    "id": "aaed256f-fe7e-4b87-afca-4f7f33ae1ff8",
+                    "label": "detectionGlow"
+                },
+                {
+                    "prefabId": "28d8a426-af96-449f-b21e-91183add6fd9",
+                    "id": "d66ac9d9-457b-49a1-8446-38c72c4e9f7c",
+                    "label": "squashStretch"
                 }
             ]
         }
