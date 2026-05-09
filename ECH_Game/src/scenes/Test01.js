@@ -3,12 +3,12 @@
 
 /* START OF COMPILED CODE */
 
+import Obstacle from "./Obstacle.js";
+import HideOnAwake from "./HideOnAwake.js";
 import Fruit from "./Fruit.js";
 import Tier2Herbivore from "./Tier2Herbivore.js";
 import Player from "./Player.js";
 import Mimic from "./Mimic.js";
-import Obstacle from "./Obstacle.js";
-import HideOnAwake from "./HideOnAwake.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -72,11 +72,37 @@ export default class Test01 extends Phaser.Scene {
 		const diorama = this.add.tilemap("diorama_c3f61193-9e33-4d94-96cf-0d34cfe35154");
 		diorama.addTilesetImage("tileset_diorama");
 
+		// layer_1
+		const layer_1 = this.add.layer();
+
 		// ground
-		diorama.createLayer("ground", ["tileset_diorama"], 0, 256);
+		const ground = diorama.createLayer("ground", ["tileset_diorama"], 0, 256);
+		layer_1.add(ground);
 
 		// Front Edge
-		diorama.createLayer("Front Edge", ["tileset_diorama"], 0, 256);
+		const front_Edge = diorama.createLayer("Front Edge", ["tileset_diorama"], 0, 256);
+		layer_1.add(front_Edge);
+
+		// layer_2
+		const layer_2 = this.add.layer();
+
+		// obstacle
+		const obstacle = new Obstacle(this, 66, 79);
+		obstacle.scaleX = 8.85;
+		obstacle.scaleY = 1;
+		layer_2.add(obstacle);
+
+		// hideOnAwake
+		new HideOnAwake(obstacle);
+
+		// obstacle_1
+		const obstacle_1 = new Obstacle(this, 66, 79);
+		obstacle_1.scaleX = 8.85;
+		obstacle_1.scaleY = 1;
+		layer_2.add(obstacle_1);
+
+		// hideOnAwake_1
+		new HideOnAwake(obstacle_1);
 
 		// fruit
 		const fruit = new Fruit(this, 552, 536);
@@ -93,15 +119,6 @@ export default class Test01 extends Phaser.Scene {
 		// mimic
 		const mimic = new Mimic(this, 800, 536);
 		this.add.existing(mimic);
-
-		// obstacle
-		const obstacle = new Obstacle(this, 871, 195);
-		this.add.existing(obstacle);
-		obstacle.scaleX = 8.85;
-		obstacle.scaleY = 1;
-
-		// hideOnAwake
-		new HideOnAwake(obstacle);
 
 		this.diorama = diorama;
 

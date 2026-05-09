@@ -40,7 +40,9 @@ export default class BehaviourFlee extends ScriptNode {
 
 	onDeactivate() {
 		this.active = false;
-		this.gameObject.body.setVelocity(0, 0);
+		if (this.gameObject && this.gameObject.body) {
+			this.gameObject.body.setVelocity(0, 0);
+		}
 	}
 
 	updateThreatPosition() {

@@ -26,6 +26,7 @@ export default class PlayerThrow extends ScriptNode {
 		this.spaceKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 		this.heldFruit = null;
 		this.heldItemType = null;
+		this.gameObject._playerThrow = this;
 	}
 
 	update() {
@@ -83,56 +84,87 @@ export default class PlayerThrow extends ScriptNode {
 
 		const dir = this.gameObject.getData('lastDirection') ?? { x: 1, y: 0 };
 
-		this.heldFruit.body.enable = true;
-		this.heldFruit.body.immovable = false;
-
 		const thrownFruit = this.heldFruit;
 		this.heldFruit = null;
-		thrownFruit.setData('isHeld', false);
 		thrownFruit.setData('pickupDisabled', true);
 
-		thrownFruit.body.setVelocity(dir.x * this.throwSpeed, dir.y * this.throwSpeed);
-		thrownFruit.body.setDrag(500, 500);
+		const startX = thrownFruit.x;
+		const startY = thrownFruit.y;
+		const worldBounds = this.scene.physics.world.bounds;
+		const throwDistance = 380;
+		const duration = 650;
 
-		const landingCheck = this.scene.time.addEvent({
-			delay: 100,
-			loop: true,
+		const landX = Phaser.Math.Clamp(
+			startX + dir.x * throwDistance,
+			worldBounds.left + 20,
+			worldBounds.right - 20
+		);
+		const landY = Phaser.Math.Clamp(
+			startY + dir.y * throwDistance,
+			worldBounds.top + 20,
+			worldBounds.bottom - 20
+		);
+		// Reduce arc for vertical throws so it doesn't fight the direction
+		const arcHeight = 180 * Math.abs(dir.x);
+
+		thrownFruit.body.enable = false;
+
+		let elapsed = 0;
+		const flyTicker = this.scene.time.addEvent({
+			delay: 16,
+			repeat: Math.ceil(duration / 16),
 			callback: () => {
-				if (!thrownFruit || !thrownFruit.active) {
-					landingCheck.remove();
-					return;
-				}
-				if (thrownFruit.body.speed < 10) {
-					thrownFruit.body.immovable = true;
+				elapsed += 16;
+				const t = Math.min(elapsed / duration, 1);
+				thrownFruit.x = startX + (landX - startX) * t;
+				thrownFruit.y = startY + (landY - startY) * t - arcHeight * Math.sin(Math.PI * t);
+
+				if (t >= 1) {
+					thrownFruit.x = landX;
+					thrownFruit.y = landY;
+					thrownFruit.body.enable = true;
+					thrownFruit.body.reset(landX, landY);
+					thrownFruit.body.setAllowGravity(false);
 					thrownFruit.body.setVelocity(0, 0);
+					thrownFruit.body.immovable = true;
+					thrownFruit.setData('isHeld', false);
 					thrownFruit.setData('pickupDisabled', false);
-					landingCheck.remove();
 					console.log('Object landed');
+
+					const obstacles = this.scene.children.list.filter(
+						child => child.constructor.name === 'Obstacle'
+					);
+					if (obstacles.length > 0) {
+						this.scene.physics.add.collider(thrownFruit, obstacles);
+					}
+
+					this.scene.time.delayedCall(400, () => {
+						const player = this.gameObject;
+						this.scene.physics.add.overlap(thrownFruit, player, () => {
+							if (!thrownFruit.getData('isHeld') &&
+								!thrownFruit.getData('pickupDisabled')) {
+								const type = thrownFruit.getData('type') ?? this.heldItemType;
+								this.scene.playerInventory.addItem(type);
+								thrownFruit.destroy();
+							}
+						});
+					});
 				}
 			}
 		});
 
-		const obstacles = this.scene.children.list.filter(child => child.constructor.name === 'Obstacle');
-		if (obstacles.length > 0) {
-			this.scene.physics.add.collider(thrownFruit, obstacles);
-		}
-
-		const player = this.gameObject;
-		const thrownItemType = this.heldItemType ?? 'food';
-		this.heldItemType = null;
-
-		this.scene.time.delayedCall(400, () => {
-			if (!thrownFruit || !thrownFruit.active) return;
-			this.scene.physics.add.overlap(player, thrownFruit, () => {
-				const inv = this.scene.playerInventory;
-				if (inv && !inv.isFull()) {
-					inv.addItem(thrownItemType);
-					thrownFruit.destroy();
-				}
-			});
-		});
-
 		console.log('Fruit released in direction', dir);
+
+		// Trigger throw animation safely
+		if (this.gameObject.anims && this.scene.anims.exists('player_throw')) {
+			// Force repeat: 0 to ensure it plays exactly once
+			this.gameObject.play({ key: 'player_throw', repeat: 0 });
+			this.gameObject.setData('isPickingUp', true); // Reuse our lock flag so movement doesn't interrupt it
+			this.gameObject.off('animationcomplete-player_throw');
+			this.gameObject.once('animationcomplete-player_throw', () => {
+				this.gameObject.setData('isPickingUp', false);
+			});
+		}
 	}
 
 	/* END-USER-CODE */

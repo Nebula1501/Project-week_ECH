@@ -33,9 +33,13 @@ export default class BehaviourPatrol extends ScriptNode {
 		this.returnPausing = false;
 		this.gameObject.setData('returning', false);
 		this.gameObject._behaviourPatrol = this;
+		this.roaming = false;
 	}
 
 	onActivate() {
+		if (this.roaming) {
+			this.homePosition = { x: this.gameObject.x, y: this.gameObject.y };
+		}
 		this.active = true;
 		this.pausing = false;
 		this.pauseTimer = 0;
@@ -47,7 +51,9 @@ export default class BehaviourPatrol extends ScriptNode {
 
 	onDeactivate() {
 		this.active = false;
-		this.gameObject.body.setVelocity(0, 0);
+		if (this.gameObject && this.gameObject.body) {
+			this.gameObject.body.setVelocity(0, 0);
+		}
 	}
 
 	update() {

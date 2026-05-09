@@ -19,6 +19,8 @@
             "texture": {
                 "key": "guapen"
             },
+            "scaleX": 0.3,
+            "scaleY": 0.3,
             "ArcadeComponent.active": true,
             "body.allowGravity": false,
             "body.width": 208,

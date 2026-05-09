@@ -5,25 +5,43 @@
             "type": "frame",
             "frames": [
                 {
-                    "key": "sprite_player",
+                    "key": "spritesheet_player01_idle",
                     "frame": 0,
                     "duration": 0,
                     "keyframe": false
                 },
                 {
-                    "key": "sprite_player",
+                    "key": "spritesheet_player01_idle",
                     "frame": 1,
                     "duration": 0,
                     "keyframe": false
                 },
                 {
-                    "key": "sprite_player",
+                    "key": "spritesheet_player01_idle",
                     "frame": 2,
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "spritesheet_player01_idle",
+                    "frame": 3,
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "spritesheet_player01_idle",
+                    "frame": 4,
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "spritesheet_player01_idle",
+                    "frame": 5,
                     "duration": 0,
                     "keyframe": false
                 }
             ],
-            "frameRate": 3,
+            "frameRate": 2,
             "skipMissedFrames": true,
             "repeat": -1,
             "randomFrame": false

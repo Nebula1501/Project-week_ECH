@@ -19,8 +19,8 @@
             "texture": {
                 "key": "sprite_player_01"
             },
-            "scaleX": 0.25,
-            "scaleY": 0.25,
+            "scaleX": 0.2,
+            "scaleY": 0.2,
             "animationPlayMethod": 1,
             "animationKey": "player_idle",
             "animationPreview": true,
@@ -46,6 +46,11 @@
                     "prefabId": "28d8a426-af96-449f-b21e-91183add6fd9",
                     "id": "1fbec9c2-3d7e-4b58-8d7b-8f179bf7c816",
                     "label": "squashStretch"
+                },
+                {
+                    "prefabId": "a8e0b486-9684-4c8c-9792-559e58e128f4",
+                    "id": "199e3f7b-0627-4d1b-b54c-91b9dbf4f655",
+                    "label": "throwArcIndicator"
                 }
             ]
         }

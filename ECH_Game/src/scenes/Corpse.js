@@ -12,6 +12,8 @@ export default class Corpse extends Phaser.GameObjects.Image {
 	constructor(scene, x, y, texture, frame) {
 		super(scene, x ?? 0, y ?? 0, texture || "guapen", frame);
 
+		this.scaleX = 0.3;
+		this.scaleY = 0.3;
 		scene.physics.add.existing(this, false);
 		this.body.allowGravity = false;
 		this.body.setSize(208, 240, false);

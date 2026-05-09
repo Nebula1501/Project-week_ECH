@@ -7,6 +7,7 @@ import PlayerInventory from "./PlayerInventory.js";
 import PlayerMovement from "./PlayerMovement.js";
 import PlayerThrow from "./PlayerThrow.js";
 import SquashStretch from "./SquashStretch.js";
+import ThrowArcIndicator from "./ThrowArcIndicator.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -15,8 +16,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 	constructor(scene, x, y, texture, frame) {
 		super(scene, x ?? 0, y ?? 0, texture || "sprite_player_01", frame);
 
-		this.scaleX = 0.25;
-		this.scaleY = 0.25;
+		this.scaleX = 0.2;
+		this.scaleY = 0.2;
 		scene.physics.add.existing(this, false);
 		this.body.setSize(300, 580, false);
 		this.play("player_idle");
@@ -32,6 +33,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
 		// squashStretch
 		new SquashStretch(this);
+
+		// throwArcIndicator
+		new ThrowArcIndicator(this);
 
 		/* START-USER-CTR-CODE */
 		this.setData('type', 'player');

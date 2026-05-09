@@ -31,17 +31,6 @@
             "y": 463
         },
         {
-            "prefabId": "ea7300ee-a28f-4982-8644-7a4ad49964b4",
-            "id": "26ab3ef9-7a34-4582-ad01-6300fe30c248",
-            "unlock": [
-                "x",
-                "y"
-            ],
-            "label": "tier2Herbivore",
-            "x": 1648,
-            "y": 535
-        },
-        {
             "prefabId": "e6d767ff-fa7a-4a39-b8c4-0075be7b60c9",
             "id": "e35d3c09-a062-4b62-b3fd-f69f8373e309",
             "unlock": [
@@ -84,15 +73,26 @@
             "y": 569
         },
         {
-            "prefabId": "f9d7dd37-62d2-4c57-a7cb-13840fd7b4fa",
-            "id": "8ff8b181-40bc-4652-af62-e2ad66bb3df2",
+            "prefabId": "ea7300ee-a28f-4982-8644-7a4ad49964b4",
+            "id": "14770305-8c56-4128-a7ab-ce5f425eea82",
             "unlock": [
                 "x",
                 "y"
             ],
-            "label": "tier1Herbivore",
-            "x": 1314,
-            "y": 517
+            "label": "tier2Herbivore",
+            "x": 1484,
+            "y": 336
+        },
+        {
+            "prefabId": "85d792b1-b364-40c7-a71c-ad1779d2ab9f",
+            "id": "23ef2a07-2c9a-433e-8d4b-89f0735ce9c9",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "corpse",
+            "x": 705,
+            "y": 649
         }
     ],
     "plainObjects": [

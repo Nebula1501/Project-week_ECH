@@ -43,7 +43,20 @@ export default class SquashStretch extends ScriptNode {
 	update() {
 		if (!this.gameObject || !this.gameObject.body) return;
 
-		const velocity = this.gameObject.body.velocity;
+		const body = this.gameObject.body;
+		const velocity = body.velocity;
+
+		// --- ANTI-CLIPPING FIX ---
+		// If pushing against a static wall, lock scale to base scale so the hitbox
+		// doesn't shrink. Shrinking while against a wall causes it to clip through!
+		if (body.blocked.left || body.blocked.right || body.blocked.up || body.blocked.down) {
+			this.stopMovementTween();
+			this.stopImpactTween();
+			this.resetScale();
+			this.lastVelocity.copy(velocity);
+			return;
+		}
+
 		const speed = velocity.length();
 		const lastSpeed = this.lastVelocity.length();
 		const speedDelta = Math.abs(speed - lastSpeed);

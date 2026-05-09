@@ -33,6 +33,21 @@ export default class PlayerInventory extends ScriptNode {
 		}
 		this.items.push(itemType);
 		console.log('Item added:', itemType, '| Inventory:', this.items);
+
+		// Trigger pickup animation safely
+		if (this.gameObject.anims && this.scene.anims.exists('player_pickup')) {
+			this.gameObject.play('player_pickup');
+			this.gameObject.setData('isPickingUp', true);
+			this.gameObject.off('animationcomplete-player_pickup'); // Clear previous listeners if picking up rapidly
+			this.gameObject.once('animationcomplete-player_pickup', () => {
+				this.gameObject.setData('isPickingUp', false);
+			});
+		} else {
+			const loadedAnims = Array.from(this.scene.anims.anims.keys()).join(', ');
+			console.warn('Pickup animation missing!');
+			console.warn(`Phaser currently only knows about these animations: [${loadedAnims}]`);
+		}
+
 		return true;
 	}
 

@@ -7,9 +7,34 @@
                 "key": "guapen"
             },
             {
+                "url": "assets/animations/player/player_idle.json",
                 "type": "animation",
-                "key": "player_idle_anims",
-                "url": "assets/animations/player/player_idle.json"
+                "key": "player_idle"
+            },
+            {
+                "url": "assets/animations/player/player_pickup.json",
+                "type": "animation",
+                "key": "player_pickup"
+            },
+            {
+                "url": "assets/animations/player/player_throw.json",
+                "type": "animation",
+                "key": "player_throw"
+            },
+            {
+                "url": "assets/animations/player/player_walk.json",
+                "type": "animation",
+                "key": "player_walk"
+            },
+            {
+                "url": "assets/sprites/creatures/tier2-carnivore/sprite_carnivore1.png",
+                "type": "image",
+                "key": "sprite_carnivore1"
+            },
+            {
+                "url": "assets/sprites/creatures/tier1-carnivore/sprite_carnivore2.png",
+                "type": "image",
+                "key": "sprite_carnivore2"
             },
             {
                 "url": "assets/sprites/items/fruit/sprite_apple.png",
@@ -17,16 +42,9 @@
                 "key": "sprite_fruit"
             },
             {
-                "type": "spritesheet",
-                "key": "sprite_player",
-                "url": "assets/sprites/player/spritesheet_player01_idle.png",
-                "normalMap": "",
-                "frameConfig": {
-                    "frameWidth": 300,
-                    "frameHeight": 580,
-                    "startFrame": 0,
-                    "endFrame": 2
-                }
+                "url": "assets/sprites/creatures/tier1-herbivore/sprite_herb2.png",
+                "type": "image",
+                "key": "sprite_herb2"
             },
             {
                 "url": "assets/sprites/player/sprite_player01.png",
@@ -37,6 +55,220 @@
                 "url": "assets/sprites/creatures/tier2-herbivore/Enemy_Low_1.png",
                 "type": "image",
                 "key": "sprite_tier2-herbivore"
+            },
+            {
+                "url": "assets/sprites/creatures/tier2-carnivore/spritesheet_car01_eat.png",
+                "frameConfig": {
+                    "frameWidth": 730,
+                    "frameHeight": 700,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_car01_eat"
+            },
+            {
+                "url": "assets/sprites/creatures/tier2-carnivore/spritesheet_car01_idle1.png",
+                "frameConfig": {
+                    "frameWidth": 730,
+                    "frameHeight": 700,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_car01_idle1"
+            },
+            {
+                "url": "assets/sprites/creatures/tier2-carnivore/spritesheet_car01_walk.png",
+                "frameConfig": {
+                    "frameWidth": 730,
+                    "frameHeight": 700,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_car01_walk"
+            },
+            {
+                "url": "assets/sprites/creatures/tier2-carnivore/spritesheet_car01_walkend.png",
+                "frameConfig": {
+                    "frameWidth": 730,
+                    "frameHeight": 700,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_car01_walkend"
+            },
+            {
+                "url": "assets/sprites/creatures/tier2-carnivore/spritesheet_car01_walkstart.png",
+                "frameConfig": {
+                    "frameWidth": 730,
+                    "frameHeight": 700,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_car01_walkstart"
+            },
+            {
+                "url": "assets/sprites/creatures/tier2-herbivore/spritesheet_herb01_eat.png",
+                "frameConfig": {
+                    "frameWidth": 420,
+                    "frameHeight": 680,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_herb01_eat"
+            },
+            {
+                "url": "assets/sprites/creatures/tier2-herbivore/spritesheet_herb01_idle1.png",
+                "frameConfig": {
+                    "frameWidth": 420,
+                    "frameHeight": 680,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_herb01_idle1"
+            },
+            {
+                "url": "assets/sprites/creatures/tier2-herbivore/spritesheet_herb01_startled.png",
+                "frameConfig": {
+                    "frameWidth": 420,
+                    "frameHeight": 720,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_herb01_startled"
+            },
+            {
+                "url": "assets/sprites/creatures/tier2-herbivore/spritesheet_herb01_walk.png",
+                "frameConfig": {
+                    "frameWidth": 420,
+                    "frameHeight": 680,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_herb01_walk"
+            },
+            {
+                "url": "assets/sprites/player/spritesheet_player01_idle1.png",
+                "frameConfig": {
+                    "frameWidth": 300,
+                    "frameHeight": 580,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_player01_idle"
+            },
+            {
+                "url": "assets/sprites/player/spritesheet_player01_pickup.png",
+                "frameConfig": {
+                    "frameWidth": 500,
+                    "frameHeight": 680,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_player01_pickup"
+            },
+            {
+                "url": "assets/sprites/player/spritesheet_player01_throw.png",
+                "frameConfig": {
+                    "frameWidth": 500,
+                    "frameHeight": 680,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_player01_throw"
+            },
+            {
+                "url": "assets/sprites/player/spritesheet_player01_walk.png",
+                "frameConfig": {
+                    "frameWidth": 300,
+                    "frameHeight": 580,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_player01_walk"
+            },
+            {
+                "url": "assets/animations/creatures/tier2carn_eat.json",
+                "type": "animation",
+                "key": "tier2carn_eat"
+            },
+            {
+                "url": "assets/animations/creatures/tier2carn_idle.json",
+                "type": "animation",
+                "key": "tier2carn_idle"
+            },
+            {
+                "url": "assets/animations/creatures/tier2carn_walk.json",
+                "type": "animation",
+                "key": "tier2carn_walk"
+            },
+            {
+                "url": "assets/animations/creatures/tier2carn_walkend.json",
+                "type": "animation",
+                "key": "tier2carn_walkend"
+            },
+            {
+                "url": "assets/animations/creatures/tier2carn_walkstart.json",
+                "type": "animation",
+                "key": "tier2carn_walkstart"
+            },
+            {
+                "url": "assets/animations/creatures/tier2herb_eat.json",
+                "type": "animation",
+                "key": "tier2herb_eat"
+            },
+            {
+                "url": "assets/animations/creatures/tier2herb_idle.json",
+                "type": "animation",
+                "key": "tier2herb_idle"
+            },
+            {
+                "url": "assets/animations/creatures/tier2herb_startled.json",
+                "type": "animation",
+                "key": "tier2herb_startled"
+            },
+            {
+                "url": "assets/animations/creatures/tier2herb_walk.json",
+                "type": "animation",
+                "key": "tier2herb_walk"
             },
             {
                 "url": "assets/tilemaps/tilesets/tileset_diorama.png",
@@ -50,6 +282,32 @@
                 },
                 "type": "spritesheet",
                 "key": "tileset_diorama"
+            },
+            {
+                "url": "assets/tilemaps/tilesets/tileset_ground_grass_dark.png",
+                "frameConfig": {
+                    "frameWidth": 64,
+                    "frameHeight": 64,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "tileset_ground_grass_dark"
+            },
+            {
+                "url": "assets/tilemaps/tilesets/tileset_ground_grass_light.png",
+                "frameConfig": {
+                    "frameWidth": 64,
+                    "frameHeight": 64,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "tileset_ground_grass_light"
             },
             {
                 "url": "assets/tilemaps/tilesets/tilesheet_ground01.png",

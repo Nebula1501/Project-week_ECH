@@ -38,7 +38,9 @@ export default class BehaviourEatCorpse extends ScriptNode {
 		this.active = false;
 		this.target = null;
 		this.eating = false;
-		this.gameObject.body.setVelocity(0, 0);
+		if (this.gameObject && this.gameObject.body) {
+			this.gameObject.body.setVelocity(0, 0);
+		}
 	}
 
 	findTarget() {

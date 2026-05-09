@@ -17,12 +17,12 @@
             "id": "48e07d50-b039-41fd-8373-0f17f577b6ae",
             "label": "arcadeimage_1",
             "texture": {
-                "key": "guapen"
+                "key": "sprite_herb2"
             },
-            "scaleX": 0.75,
-            "scaleY": 0.75,
-            "body.width": 208,
-            "body.height": 240,
+            "scaleX": 0.5,
+            "scaleY": 0.5,
+            "body.width": 750,
+            "body.height": 650,
             "list": [
                 {
                     "prefabId": "6e76b45a-4e5e-449a-badc-049a24688d28",
@@ -68,6 +68,16 @@
                     "prefabId": "4c407ad1-b283-4fb6-84fd-ff2f1ee027fb",
                     "id": "e853c99f-551a-4b90-8e09-de7dc6b372c3",
                     "label": "tier1HerbivoreController"
+                },
+                {
+                    "prefabId": "2d637e1c-d2c6-44b2-960b-522f09738667",
+                    "id": "e6546181-85cd-4010-b294-a7a4a122058b",
+                    "label": "detectionGlow"
+                },
+                {
+                    "prefabId": "28d8a426-af96-449f-b21e-91183add6fd9",
+                    "id": "2e2ac63d-cff3-4d87-86e8-f90b8ea0dd3e",
+                    "label": "squashStretch"
                 }
             ]
         }

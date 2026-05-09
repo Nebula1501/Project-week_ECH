@@ -12,18 +12,20 @@ import BehaviourChase from "./BehaviourChase.js";
 import BehaviourCombat from "./BehaviourCombat.js";
 import AttackResolution from "./AttackResolution.js";
 import Tier1HerbivoreController from "./Tier1HerbivoreController.js";
+import DetectionGlow from "./DetectionGlow.js";
+import SquashStretch from "./SquashStretch.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
 export default class Tier1Herbivore extends Phaser.Physics.Arcade.Image {
 
 	constructor(scene, x, y, texture, frame) {
-		super(scene, x ?? 0, y ?? 0, texture || "guapen", frame);
+		super(scene, x ?? 0, y ?? 0, texture || "sprite_herb2", frame);
 
-		this.scaleX = 0.75;
-		this.scaleY = 0.75;
+		this.scaleX = 0.5;
+		this.scaleY = 0.5;
 		scene.physics.add.existing(this, false);
-		this.body.setSize(208, 240, false);
+		this.body.setSize(750, 650, false);
 
 		// detectionRadius
 		new DetectionRadius(this);
@@ -51,6 +53,12 @@ export default class Tier1Herbivore extends Phaser.Physics.Arcade.Image {
 
 		// tier1HerbivoreController
 		new Tier1HerbivoreController(this);
+
+		// detectionGlow
+		new DetectionGlow(this);
+
+		// squashStretch
+		new SquashStretch(this);
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.

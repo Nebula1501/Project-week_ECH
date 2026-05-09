@@ -13,18 +13,19 @@ import Tier2HerbivoreController from "./Tier2HerbivoreController.js";
 import AttackResolution from "./AttackResolution.js";
 import BehaviourCombat from "./BehaviourCombat.js";
 import SquashStretch from "./SquashStretch.js";
+import DetectionGlow from "./DetectionGlow.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
-export default class Tier2Herbivore extends Phaser.Physics.Arcade.Image {
+export default class Tier2Herbivore extends Phaser.Physics.Arcade.Sprite {
 
 	constructor(scene, x, y, texture, frame) {
-		super(scene, x ?? 0, y ?? 0, texture || "sprite_tier2-herbivore", frame);
+		super(scene, x ?? 0, y ?? 0, texture || "spritesheet_herb01_idle1", frame ?? 0);
 
 		this.scaleX = 0.25;
 		this.scaleY = 0.25;
 		scene.physics.add.existing(this, false);
-		this.body.setSize(500, 900, false);
+		this.body.setSize(420, 680, false);
 
 		// detectionRadius
 		new DetectionRadius(this);
@@ -55,6 +56,9 @@ export default class Tier2Herbivore extends Phaser.Physics.Arcade.Image {
 
 		// squashStretch
 		new SquashStretch(this);
+
+		// detectionGlow
+		new DetectionGlow(this);
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.

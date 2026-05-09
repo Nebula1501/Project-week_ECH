@@ -47,10 +47,12 @@ export default class PlayerMovement extends ScriptNode {
 			body.setVelocityX(-this.speed);
 			this.lastDirection.set(-1, 0);
 			this.gameObject.setData('lastDirection', { x: -1, y: 0 });
+			this.gameObject.flipX = true; // Face left
 		} else if (cursors.right.isDown || wasd.right.isDown) {
 			body.setVelocityX(this.speed);
 			this.lastDirection.set(1, 0);
 			this.gameObject.setData('lastDirection', { x: 1, y: 0 });
+			this.gameObject.flipX = false; // Face right
 		}
 
 		if (cursors.up.isDown || wasd.up.isDown) {
@@ -61,6 +63,15 @@ export default class PlayerMovement extends ScriptNode {
 			body.setVelocityY(this.speed);
 			this.lastDirection.set(0, 1);
 			this.gameObject.setData('lastDirection', { x: 0, y: 1 });
+		}
+
+		// Handle Animation switching
+		if (this.gameObject.getData('isPickingUp')) {
+			// Do not interrupt the pickup animation
+		} else if (body.velocity.x !== 0 || body.velocity.y !== 0) {
+			this.gameObject.play('player_walk', true);
+		} else {
+			this.gameObject.play('player_idle', true);
 		}
 	}
 

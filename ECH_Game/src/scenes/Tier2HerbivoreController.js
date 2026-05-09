@@ -30,6 +30,7 @@ export default class Tier2HerbivoreController extends ScriptNode {
 		});
 
 		this.scene.events.once('create', () => {
+			this.gameObject.play('tier2herb_idle', true);
 			this.setupStateMachine();
 		});
 	}
@@ -37,7 +38,43 @@ export default class Tier2HerbivoreController extends ScriptNode {
 	setupStateMachine() {
 		const go = this.gameObject;
 
-		const detectionRadius = go._detectionRadius;
+		// =============================================
+		// CREATURE TUNING VALUES — edit these freely
+		// =============================================
+
+		// Detection radius — how far this creature can sense other entities (px)
+		const detectionRadius = 150;
+
+		// Movement speeds (px per second)
+		const neutralSpeed = 60;        // loiter/patrol movement speed
+		const fleeSpeed = 160;          // flee movement speed
+		const chaseSpeed = 120;         // chase movement speed (set per carnivore/aggressive herb)
+		const eatMoveSpeed = 80;        // speed while moving toward food/corpse
+
+		// Loiter behaviour
+		const loiterRadius = 150;               // how far from home position creature will wander (px)
+		const directionChangeInterval = 2000;   // how often creature picks a new loiter direction (ms)
+		const loiterPauseDuration = 1200;       // pause duration between direction changes (ms)
+		const returnPauseDuration = 1000;       // pause before returning to home position (ms)
+
+		// Flee behaviour
+		const fleeDuration = 2000;      // how long creature flees before re-evaluating (ms)
+
+		// Eating behaviour
+		const eatDuration = 2000;       // how long eating animation lasts before food/corpse is destroyed (ms)
+
+		// Combat
+		const powerValue = 2;           // power value for combat resolution — higher wins
+		                                // Power scale: T1Carn=5, T1Herb=4, T2Carn=3, T2Herb=2, Mimic base=1
+
+		// Chase targets — which entity types this creature will chase
+		// Available tags: 'player', 't2herb', 't1herb', 't2carn', 't1carn', 'mimic'
+		const chaseTargets = [];        // empty for herbivores, fill for carnivores and T1 herb
+
+		// =============================================
+		// STATE MACHINE WIRING — do not edit below
+		// =============================================
+
 		const stateDecider = go._stateDecider;
 		const stateManager = go._stateManager;
 		const neutral = go._behaviourNeutral;
@@ -45,12 +82,37 @@ export default class Tier2HerbivoreController extends ScriptNode {
 		const flee = go._behaviourFlee;
 		const combat = go._behaviourCombat;
 
-		console.log('Scripts:', { detectionRadius, stateDecider, stateManager, neutral, opportunity, flee, combat });
-
 		if (!stateDecider || !stateManager) {
 			console.warn('Tier2HerbivoreController: missing StateDecider or StateManager');
 			return;
 		}
+
+		// Apply detection radius
+		if (go._detectionRadius) go._detectionRadius.radius = detectionRadius;
+
+		// Apply neutral/patrol behaviour values
+		if (neutral) {
+			neutral.moveSpeed = neutralSpeed;
+			neutral.loiterRadius = loiterRadius;
+			neutral.directionChangeInterval = directionChangeInterval;
+			neutral.pauseDuration = loiterPauseDuration;
+			neutral.returnPauseDuration = returnPauseDuration;
+		}
+
+		// Apply flee behaviour values
+		if (flee) {
+			flee.moveSpeed = fleeSpeed;
+			flee.fleeDuration = fleeDuration;
+		}
+
+		// Apply opportunity/eat behaviour values
+		if (opportunity) {
+			opportunity.moveSpeed = eatMoveSpeed;
+			opportunity.eatDuration = eatDuration;
+		}
+
+		// Apply power value for combat resolution
+		if (go._attackResolution) go._attackResolution.powerValue = powerValue;
 
 		// Register behaviour nodes with StateManager
 		stateManager.registerState('neutral', neutral);
@@ -58,7 +120,7 @@ export default class Tier2HerbivoreController extends ScriptNode {
 		stateManager.registerState('flee', flee);
 		stateManager.registerState('combat', combat);
 
-		// Set priority list on StateDecider
+		// Priority list — combat must always be first
 		stateDecider.priorities = [
 			{
 				state: 'combat',
@@ -74,17 +136,66 @@ export default class Tier2HerbivoreController extends ScriptNode {
 			}
 		];
 
-		// Start in neutral state
-		stateManager.switchState('neutral');
-
-		const obstacles = this.scene.children.list.filter(child => child.constructor.name === 'Obstacle');
+		// Register obstacle collision
+		const obstacles = this.scene.children.list.filter(child => 
+			child.constructor.name === 'Obstacle' || child._isInvisibleWall
+		);
 		if (obstacles.length > 0) {
-			this.scene.physics.add.collider(this.gameObject, obstacles);
+			this.scene.physics.add.collider(go, obstacles);
 		}
 
 		go.setData('defaultState', 'neutral');
+		stateManager.switchState('neutral');
 
 		console.log('Tier2Herbivore state machine ready');
+	}
+
+	update() {
+		if (!this.gameObject || !this.gameObject.body) return;
+
+		const body = this.gameObject.body;
+
+		// Startled logic
+		const detected = this.gameObject._detectionRadius?.detected ?? [];
+		const currentDetectedCount = detected.length;
+		if (this._lastDetectedCount === undefined) this._lastDetectedCount = 0;
+
+		if (currentDetectedCount > this._lastDetectedCount) {
+			this.gameObject.setData('isStartled', true);
+			if (this.gameObject.anims && this.scene.anims.exists('tier2herb__startled')) {
+				this.gameObject.play({ key: 'tier2herb__startled', repeat: 0 });
+				this.gameObject.off('animationcomplete-tier2herb__startled');
+				this.gameObject.once('animationcomplete-tier2herb__startled', () => {
+					this.gameObject.setData('isStartled', false);
+				});
+			} else {
+				this.gameObject.setData('isStartled', false);
+			}
+		}
+		this._lastDetectedCount = currentDetectedCount;
+
+		// Handle sprite flipping
+		if (body.velocity.x < 0) {
+			this.gameObject.flipX = true; // Face left
+		} else if (body.velocity.x > 0) {
+			this.gameObject.flipX = false; // Face right
+		}
+
+		// Check if actively eating in the opportunity state
+		const isEating = this.gameObject._stateManager?.currentState === 'opportunity' && 
+		                 this.gameObject._behaviourOpportunity?.eating;
+		const isStartled = this.gameObject.getData('isStartled');
+
+		// Handle animation switching
+		if (isStartled) {
+			// Do not interrupt startled animation
+		} else if (isEating) {
+			this.gameObject.play('tier2herb_eat', true);
+		} else if (body.velocity.x !== 0 || body.velocity.y !== 0) {
+			this.gameObject.play('tier2herb_walk', true);
+		} else {
+			this.gameObject.play('tier2herb_idle', true);
+		}
 	}
 
 	/* END-USER-CODE */
