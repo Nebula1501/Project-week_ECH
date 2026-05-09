@@ -13,6 +13,7 @@ import Tier2CarnivoreRoaming from "./Tier2CarnivoreRoaming.js";
 import Tier2Carnivore from "./Tier2Carnivore.js";
 import Player from "./Player.js";
 import Fruit from "./Fruit.js";
+import Checkpoint from "./Checkpoint.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -264,12 +265,16 @@ export default class Level1 extends Phaser.Scene {
 		this.add.existing(tier2HerbivoreRoaming);
 
 		// player
-		const player = new Player(this, 5483, 2846);
+		const player = new Player(this, 548, 548);
 		this.add.existing(player);
 
 		// fruit
 		const fruit = new Fruit(this, 787, 521);
 		this.add.existing(fruit);
+
+		// checkpoint
+		const checkpoint = new Checkpoint(this, 2922, 1447);
+		this.add.existing(checkpoint);
 
 		this.editabletilemap = editabletilemap;
 

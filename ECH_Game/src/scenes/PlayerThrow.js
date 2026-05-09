@@ -22,7 +22,12 @@ export default class PlayerThrow extends ScriptNode {
 	/* START-USER-CODE */
 
 	awake() {
-		this.throwSpeed = 800;
+		// =============================================
+		// PLAYER THROW TUNING VALUES
+		// =============================================
+		this.throwDistance = 380; // Distance the item travels (px)
+		this.throwDuration = 650; // How long the throw arc takes (ms)
+
 		this.spaceKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 		this.heldFruit = null;
 		this.heldItemType = null;
@@ -30,6 +35,9 @@ export default class PlayerThrow extends ScriptNode {
 	}
 
 	update() {
+		if (!this.gameObject || !this.gameObject.body) return;
+		if (this.gameObject.getData('isDead')) return;
+
 		if (Phaser.Input.Keyboard.JustDown(this.spaceKey)) {
 			this.spawnHeldFruit();
 		}
@@ -44,7 +52,8 @@ export default class PlayerThrow extends ScriptNode {
 	}
 
 	getWorldPosition() {
-		return { x: this.gameObject.x, y: this.gameObject.y };
+		// Offset Y so the item is held above the player's head
+		return { x: this.gameObject.x, y: this.gameObject.y - 60 };
 	}
 
 	spawnHeldFruit() {
@@ -90,66 +99,92 @@ export default class PlayerThrow extends ScriptNode {
 
 		const startX = thrownFruit.x;
 		const startY = thrownFruit.y;
-		const worldBounds = this.scene.physics.world.bounds;
-		const throwDistance = 380;
-		const duration = 650;
+		const playerX = this.gameObject.x;
+		const playerY = this.gameObject.y;
+		const throwDistance = this.throwDistance;
+		const duration = this.throwDuration;
 
-		const landX = Phaser.Math.Clamp(
-			startX + dir.x * throwDistance,
-			worldBounds.left + 20,
-			worldBounds.right - 20
-		);
-		const landY = Phaser.Math.Clamp(
-			startY + dir.y * throwDistance,
-			worldBounds.top + 20,
-			worldBounds.bottom - 20
-		);
-		// Reduce arc for vertical throws so it doesn't fight the direction
-		const arcHeight = 180 * Math.abs(dir.x);
+		let landX, landY;
+		const indicator = this.gameObject._throwArcIndicator;
+		
+		if (indicator && indicator._currentLandX !== null) {
+			// Use the smooth lagging indicator position for the actual throw
+			landX = indicator._currentLandX;
+			landY = indicator._currentLandY;
+		} else {
+			// Fallback if indicator is missing
+			landX = playerX + dir.x * throwDistance;
+			landY = playerY + dir.y * throwDistance;
+		}
+		
+		// Fixed arc height for satisfying Z-axis pop in all directions
+		const arcHeight = 150;
 
 		thrownFruit.body.enable = false;
+		
+		// Capture original scale so we can safely squish/stretch it
+		const baseScaleX = thrownFruit.scaleX;
+		const baseScaleY = thrownFruit.scaleY;
 
-		let elapsed = 0;
-		const flyTicker = this.scene.time.addEvent({
-			delay: 16,
-			repeat: Math.ceil(duration / 16),
-			callback: () => {
-				elapsed += 16;
-				const t = Math.min(elapsed / duration, 1);
+		this.scene.tweens.addCounter({
+			from: 0,
+			to: 1,
+			duration: duration,
+			// Custom "Hang Time" Ease: Starts fast, slows down at the peak (t=0.5), ends fast
+			ease: (t) => t + 0.15 * Math.sin(Math.PI * 2 * t),
+			onUpdate: (tween) => {
+				const t = tween.getValue();
 				thrownFruit.x = startX + (landX - startX) * t;
 				thrownFruit.y = startY + (landY - startY) * t - arcHeight * Math.sin(Math.PI * t);
+				
+				// Dynamic flight stretch: fast at start/end, normal at apex (t=0.5)
+				const speedFactor = Math.abs(t - 0.5) * 2; 
+				thrownFruit.scaleX = baseScaleX * (1 + 0.3 * speedFactor);
+				thrownFruit.scaleY = baseScaleY * (1 - 0.3 * speedFactor);
+			},
+			onComplete: () => {
+				thrownFruit.x = landX;
+				thrownFruit.y = landY;
+				thrownFruit.body.enable = true;
+				thrownFruit.body.reset(landX, landY);
+				thrownFruit.body.setAllowGravity(false);
+				thrownFruit.body.setVelocity(0, 0);
+				thrownFruit.body.immovable = true;
+				thrownFruit.setData('isHeld', false);
+				thrownFruit.setData('pickupDisabled', false);
+				console.log('Object landed');
 
-				if (t >= 1) {
-					thrownFruit.x = landX;
-					thrownFruit.y = landY;
-					thrownFruit.body.enable = true;
-					thrownFruit.body.reset(landX, landY);
-					thrownFruit.body.setAllowGravity(false);
-					thrownFruit.body.setVelocity(0, 0);
-					thrownFruit.body.immovable = true;
-					thrownFruit.setData('isHeld', false);
-					thrownFruit.setData('pickupDisabled', false);
-					console.log('Object landed');
-
-					const obstacles = this.scene.children.list.filter(
-						child => child.constructor.name === 'Obstacle'
-					);
-					if (obstacles.length > 0) {
-						this.scene.physics.add.collider(thrownFruit, obstacles);
+				// Impact Squash when hitting the ground
+				this.scene.tweens.add({
+					targets: thrownFruit,
+					scaleX: baseScaleX * 1.25,
+					scaleY: baseScaleY * 0.75,
+					duration: 100,
+					yoyo: true,
+					ease: 'Quad.easeOut',
+					onComplete: () => {
+						thrownFruit.setScale(baseScaleX, baseScaleY);
 					}
+				});
 
-					this.scene.time.delayedCall(400, () => {
-						const player = this.gameObject;
-						this.scene.physics.add.overlap(thrownFruit, player, () => {
-							if (!thrownFruit.getData('isHeld') &&
-								!thrownFruit.getData('pickupDisabled')) {
-								const type = thrownFruit.getData('type') ?? this.heldItemType;
-								this.scene.playerInventory.addItem(type);
-								thrownFruit.destroy();
-							}
-						});
-					});
+				const obstacles = this.scene.children.list.filter(
+					child => child.constructor.name === 'Obstacle'
+				);
+				if (obstacles.length > 0) {
+					this.scene.physics.add.collider(thrownFruit, obstacles);
 				}
+
+				this.scene.time.delayedCall(400, () => {
+					const player = this.gameObject;
+					this.scene.physics.add.overlap(thrownFruit, player, () => {
+						if (!thrownFruit.getData('isHeld') &&
+							!thrownFruit.getData('pickupDisabled')) {
+							const type = thrownFruit.getData('type') ?? this.heldItemType;
+							this.scene.playerInventory.addItem(type);
+							thrownFruit.destroy();
+						}
+					});
+				});
 			}
 		});
 

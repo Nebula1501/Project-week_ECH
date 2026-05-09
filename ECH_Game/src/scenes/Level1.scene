@@ -567,8 +567,8 @@
                 "y"
             ],
             "label": "player",
-            "x": 5483,
-            "y": 2846
+            "x": 548,
+            "y": 548
         },
         {
             "prefabId": "021213fb-3ad5-4574-b5b2-daf8fa6c4ebd",
@@ -580,6 +580,17 @@
             "label": "fruit",
             "x": 787,
             "y": 521
+        },
+        {
+            "prefabId": "3a15623d-b191-4ab0-ae05-d9cbe774a5e2",
+            "id": "c45e26a7-beea-4d20-9e3a-5612d5b710b4",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "checkpoint",
+            "x": 2922,
+            "y": 1447
         }
     ],
     "plainObjects": [

@@ -20,6 +20,12 @@ export default class PlayerMovement extends ScriptNode {
 	/* START-USER-CODE */
 
 	awake() {
+		// Snap to checkpoint if one exists globally
+		const checkpoint = this.scene.game.registry.get('activeCheckpoint');
+		if (checkpoint) {
+			this.gameObject.setPosition(checkpoint.x, checkpoint.y);
+		}
+
 		this.cursors = this.scene.input.keyboard.createCursorKeys();
 		this.wasd = this.scene.input.keyboard.addKeys({
 			up: Phaser.Input.Keyboard.KeyCodes.W,
@@ -27,7 +33,12 @@ export default class PlayerMovement extends ScriptNode {
 			left: Phaser.Input.Keyboard.KeyCodes.A,
 			right: Phaser.Input.Keyboard.KeyCodes.D
 		});
-		this.speed = 200;
+
+		// =============================================
+		// PLAYER MOVEMENT TUNING VALUES
+		// =============================================
+		this.speed = 200; // px per second
+
 		this.lastDirection = new Phaser.Math.Vector2(1, 0); // default facing right
 		this.scene.events.once('create', () => {
 			this.gameObject.play('player_idle');
@@ -36,6 +47,7 @@ export default class PlayerMovement extends ScriptNode {
 
 	update() {
 		if (!this.gameObject || !this.gameObject.body) return;
+		if (this.gameObject.getData('isDead')) return;
 
 		const body = this.gameObject.body;
 		const cursors = this.cursors;

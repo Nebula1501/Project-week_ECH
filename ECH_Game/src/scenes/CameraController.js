@@ -48,6 +48,8 @@ export default class CameraController extends ScriptNode {
 	    this.scene.events.once('create', () => {
 	        this.player = this.scene.children.list.find(child => child.constructor.name === 'Player');
 	        if (this.player) {
+	            // Instantly snap camera to player's starting position (prevents panning from 0,0 on checkpoint respawn)
+	            this.scene.cameras.main.centerOn(this.player.x, this.player.y);
 	            this.scene.cameras.main.startFollow(this.player, true, 0.08, 0.08);
 	            this.scene.cameras.main.setZoom(this.zoomLevel);
 	        }

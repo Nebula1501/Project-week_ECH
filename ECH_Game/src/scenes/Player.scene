@@ -51,6 +51,11 @@
                     "prefabId": "a8e0b486-9684-4c8c-9792-559e58e128f4",
                     "id": "199e3f7b-0627-4d1b-b54c-91b9dbf4f655",
                     "label": "throwArcIndicator"
+                },
+                {
+                    "prefabId": "b5d8e730-c5a4-4605-aab5-da20ece317ef",
+                    "id": "4c1a6307-169e-48b8-82cd-8e9c91808c94",
+                    "label": "playerDeath"
                 }
             ]
         }

@@ -2,6 +2,49 @@
     "section1": {
         "files": [
             {
+                "url": "assets/sprites/items/Obstacles/A_Bone.png",
+                "frameConfig": {
+                    "frameWidth": 32,
+                    "frameHeight": 32,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "A_Bone"
+            },
+            {
+                "url": "assets/sprites/items/Obstacles/A_Bone (1).png",
+                "type": "image",
+                "key": "A_Bone (1)"
+            },
+            {
+                "url": "assets/sprites/items/Obstacles/A_Bush.png",
+                "type": "image",
+                "key": "A_Bush"
+            },
+            {
+                "url": "assets/sprites/items/Obstacles/A_Crystal (1).png",
+                "type": "image",
+                "key": "A_Crystal (1)"
+            },
+            {
+                "url": "assets/sprites/items/Obstacles/A_Mushrrom_01.png",
+                "type": "image",
+                "key": "A_Mushrrom_01"
+            },
+            {
+                "url": "assets/sprites/items/Obstacles/A_Rock (1).png",
+                "type": "image",
+                "key": "A_Rock (1)"
+            },
+            {
+                "url": "assets/animations/combat/creature_combat.json",
+                "type": "animation",
+                "key": "creature_combat"
+            },
+            {
                 "url": "assets/guapen.png",
                 "type": "image",
                 "key": "guapen"
@@ -120,6 +163,19 @@
                 },
                 "type": "spritesheet",
                 "key": "spritesheet_car01_walkstart"
+            },
+            {
+                "url": "assets/sprites/spritesheet_fightclouds.png",
+                "frameConfig": {
+                    "frameWidth": 730,
+                    "frameHeight": 700,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_fightclouds_1"
             },
             {
                 "url": "assets/sprites/creatures/tier2-herbivore/spritesheet_herb01_eat.png",
