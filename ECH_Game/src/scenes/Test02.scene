@@ -82,6 +82,17 @@
             "label": "tier2Herbivore",
             "x": 1484,
             "y": 336
+        },
+        {
+            "prefabId": "85d792b1-b364-40c7-a71c-ad1779d2ab9f",
+            "id": "23ef2a07-2c9a-433e-8d4b-89f0735ce9c9",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "corpse",
+            "x": 705,
+            "y": 649
         }
     ],
     "plainObjects": [

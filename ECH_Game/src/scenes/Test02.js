@@ -9,6 +9,7 @@ import HideOnAwake from "./HideOnAwake.js";
 import CameraController from "./CameraController.js";
 import Player from "./Player.js";
 import Tier2Herbivore from "./Tier2Herbivore.js";
+import Corpse from "./Corpse.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -91,6 +92,10 @@ export default class Test02 extends Phaser.Scene {
 		// tier2Herbivore
 		const tier2Herbivore = new Tier2Herbivore(this, 1484, 336);
 		this.add.existing(tier2Herbivore);
+
+		// corpse
+		const corpse = new Corpse(this, 705, 649);
+		this.add.existing(corpse);
 
 		this.editabletilemap = editabletilemap;
 

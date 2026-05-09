@@ -7,6 +7,7 @@ import PlayerInventory from "./PlayerInventory.js";
 import PlayerMovement from "./PlayerMovement.js";
 import PlayerThrow from "./PlayerThrow.js";
 import SquashStretch from "./SquashStretch.js";
+import ThrowArcIndicator from "./ThrowArcIndicator.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -32,6 +33,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
 		// squashStretch
 		new SquashStretch(this);
+
+		// throwArcIndicator
+		new ThrowArcIndicator(this);
 
 		/* START-USER-CTR-CODE */
 		this.setData('type', 'player');
