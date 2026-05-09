@@ -34,11 +34,6 @@ export default class PlayerMovement extends ScriptNode {
 			right: Phaser.Input.Keyboard.KeyCodes.D
 		});
 
-		// =============================================
-		// PLAYER MOVEMENT TUNING VALUES
-		// =============================================
-		this.speed = 200; // px per second
-
 		this.lastDirection = new Phaser.Math.Vector2(1, 0); // default facing right
 		this.scene.events.once('create', () => {
 			this.gameObject.play('player_idle');
@@ -53,26 +48,28 @@ export default class PlayerMovement extends ScriptNode {
 		const cursors = this.cursors;
 		const wasd = this.wasd;
 
+		const speed = this.scene.playerTuning?.movement?.speed ?? 200;
+
 		body.setVelocity(0);
 
 		if (cursors.left.isDown || wasd.left.isDown) {
-			body.setVelocityX(-this.speed);
+			body.setVelocityX(-speed);
 			this.lastDirection.set(-1, 0);
 			this.gameObject.setData('lastDirection', { x: -1, y: 0 });
 			this.gameObject.flipX = true; // Face left
 		} else if (cursors.right.isDown || wasd.right.isDown) {
-			body.setVelocityX(this.speed);
+			body.setVelocityX(speed);
 			this.lastDirection.set(1, 0);
 			this.gameObject.setData('lastDirection', { x: 1, y: 0 });
 			this.gameObject.flipX = false; // Face right
 		}
 
 		if (cursors.up.isDown || wasd.up.isDown) {
-			body.setVelocityY(-this.speed);
+			body.setVelocityY(-speed);
 			this.lastDirection.set(0, -1);
 			this.gameObject.setData('lastDirection', { x: 0, y: -1 });
 		} else if (cursors.down.isDown || wasd.down.isDown) {
-			body.setVelocityY(this.speed);
+			body.setVelocityY(speed);
 			this.lastDirection.set(0, 1);
 			this.gameObject.setData('lastDirection', { x: 0, y: 1 });
 		}

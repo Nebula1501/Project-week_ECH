@@ -132,7 +132,10 @@ export default class BehaviourNeutral extends ScriptNode {
 					this.currentDirection.y *= -1;
 					bounced = true;
 				}
-				if (bounced) this.bounceTimer = 800; // Commit to the bounce to prevent pinballing
+				if (bounced) {
+					const bounceTime = this.scene.creatureTuning?.globals?.bounceTimers?.loiter ?? 800;
+					this.bounceTimer = bounceTime; // Commit to the bounce to prevent pinballing
+				}
 			}
 
 			if (this.pausing) {

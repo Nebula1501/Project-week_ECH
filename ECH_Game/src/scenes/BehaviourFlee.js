@@ -80,7 +80,8 @@ export default class BehaviourFlee extends ScriptNode {
 			}
 
 			if (bounced) {
-				this.bounceTimer = 1200; // Panic ricochet long enough to prevent U-turning back into the wall!
+				const bounceTime = this.scene.creatureTuning?.globals?.bounceTimers?.flee ?? 1200;
+				this.bounceTimer = bounceTime; // Panic ricochet long enough to prevent U-turning back into the wall!
 			} else {
 				const angle = Phaser.Math.Angle.Between(
 					this.threatPosition.x, this.threatPosition.y,

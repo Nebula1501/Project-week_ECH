@@ -98,7 +98,10 @@ export default class BehaviourCharge extends ScriptNode {
 					this.chargeDirection.y *= -1;
 					bounced = true;
 				}
-				if (bounced) this.bounceTimer = 600; // Commit to the bounce to prevent pinballing
+				if (bounced) {
+					const bounceTime = this.scene.creatureTuning?.globals?.bounceTimers?.charge ?? 600;
+					this.bounceTimer = bounceTime; // Commit to the bounce to prevent pinballing
+				}
 			}
 		}
 

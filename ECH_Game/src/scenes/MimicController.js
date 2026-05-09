@@ -31,6 +31,7 @@ export default class MimicController extends ScriptNode {
 
 	setupStateMachine() {
 		const go = this.gameObject;
+		const tuning = this.scene.creatureTuning?.mimic ?? {};
 
 		const mimicStateDecider = go._mimicStateDecider;
 		const stateManager = go._stateManager;
@@ -48,11 +49,11 @@ export default class MimicController extends ScriptNode {
 
 		if (chase) {
 			chase.targetTags = ['player', 't1carn', 't1herb', 't2carn', 't2herb'];
-			chase.moveSpeed = 180;
+			chase.moveSpeed = tuning.chaseSpeed ?? 180;
 		}
 
-		if (stalk) stalk.patienceThreshold = 3000;
-		if (go._attackResolution) go._attackResolution.powerValue = 1;
+		if (stalk) stalk.patienceThreshold = tuning.stalkPatienceThresholds?.[0] ?? 3000;
+		if (go._attackResolution) go._attackResolution.powerValue = tuning.basePower ?? 1;
 		console.log('Mimic ready | power:', go._attackResolution.powerValue);
 
 		const creatureTypes = ['t1carn', 't1herb', 't2carn', 't2herb'];
@@ -97,14 +98,15 @@ export default class MimicController extends ScriptNode {
 
 	onMimicKill() {
 		const go = this.gameObject;
+		const tuning = this.scene.creatureTuning?.mimic ?? {};
 		this._killCount++;
 		console.log(`Mimic kill #${this._killCount}`);
-		const thresholds = [3000, 2000, 1200, 600];
+		const thresholds = tuning.stalkPatienceThresholds ?? [3000, 2000, 1200, 600];
 		const idx = Math.min(this._killCount, thresholds.length - 1);
 		go._behaviourStalk.patienceThreshold = thresholds[idx];
 		console.log(`Patience threshold → ${thresholds[idx]}ms`);
 		if (this._killCount === 1) {
-			go._attackResolution.powerValue = 4;
+			go._attackResolution.powerValue = tuning.empoweredPower ?? 4;
 			go._mimicStateDecider.switchPriorityList();
 			console.log(`Power → 4 | Priority list switched to post-eat`);
 		}

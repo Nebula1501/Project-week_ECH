@@ -20,25 +20,15 @@ export default class CameraController extends ScriptNode {
 	/* START-USER-CODE */
 
 	awake() {
-	    // =============================================
-	    // CAMERA TUNING VALUES — edit these freely
-	    // =============================================
+	    const tuning = this.scene.playerTuning?.camera ?? {};
+	    
+	    this.zoomLevel = tuning.zoomLevel ?? 0.8;
+	    this.lookAheadDistance = tuning.lookAheadDistance ?? 150;
+	    this.lookAheadLerp = tuning.lookAheadLerp ?? 0.05;
+	    this.deepPanDelay = tuning.deepPanDelay ?? 2000;
+	    this.deepPanDistance = tuning.deepPanDistance ?? 500;
+	    this.deepPanLerp = tuning.deepPanLerp ?? 0.015;
 
-	    // Camera Zoom
-	    this.zoomLevel = 0.8;              // Camera zoom level (1 = default, >1 = zoomed in, <1 = zoomed out)
-
-	    // Basic look-ahead (when moving or recently stopped)
-	    this.lookAheadDistance = 150;    // How far the camera pans in the direction of movement (px)
-	    this.lookAheadLerp = 0.05;       // How fast the camera pans normally (0.01 to 1.0)
-
-	    // Deep pan (when stationary for a while)
-	    this.deepPanDelay = 2000;        // How long the player must be stationary to trigger deep pan (ms)
-	    this.deepPanDistance = 500;      // How far the camera pans during deep pan (px)
-	    this.deepPanLerp = 0.015;        // How fast the camera pans during deep pan (slower for a cinematic feel)
-
-	    // =============================================
-	    // INTERNAL STATE — do not edit below
-	    // =============================================
 	    this.lookAheadOffset = { x: 0, y: 0 };
 	    this.lookAheadTarget = { x: 0, y: 0 };
 	    this.idleTimer = 0;

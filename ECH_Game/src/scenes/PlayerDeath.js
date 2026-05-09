@@ -20,11 +20,6 @@ export default class PlayerDeath extends ScriptNode {
 	/* START-USER-CODE */
 
 	awake() {
-		// =============================================
-		// PLAYER DEATH TUNING VALUES
-		// =============================================
-		this.deathTimerThreshold = 500; // ms of continuous overlap required to die
-		
 		this._overlapTimer = 0;
 	}
 
@@ -49,8 +44,10 @@ export default class PlayerDeath extends ScriptNode {
 		}
 
 		if (isOverlapping) {
+			const threshold = this.scene.playerTuning?.health?.deathTimerThreshold ?? 500;
+			
 			this._overlapTimer += this.scene.game.loop.delta;
-			if (this._overlapTimer >= this.deathTimerThreshold) {
+			if (this._overlapTimer >= threshold) {
 				this.die(killer);
 			}
 		} else {

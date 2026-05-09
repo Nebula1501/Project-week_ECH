@@ -56,6 +56,11 @@
                     "prefabId": "b5d8e730-c5a4-4605-aab5-da20ece317ef",
                     "id": "4c1a6307-169e-48b8-82cd-8e9c91808c94",
                     "label": "playerDeath"
+                },
+                {
+                    "prefabId": "44dbd259-57a9-4965-b83f-3cdde754b17b",
+                    "id": "19bb92b7-3c98-47a5-8c54-66651d141812",
+                    "label": "playerTuning"
                 }
             ]
         }

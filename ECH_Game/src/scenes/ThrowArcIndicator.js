@@ -48,7 +48,7 @@ export default class ThrowArcIndicator extends ScriptNode {
 
 		this.gfx.clear();
 
-		const throwDistance = playerThrow.throwDistance ?? 380;
+		const throwDistance = this.scene.playerTuning?.throw?.distance ?? 380;
 
 		const targetLandX = startX + dir.x * throwDistance;
 		const targetLandY = playerY + dir.y * throwDistance; // Calculate landing from the player's feet, not their head
@@ -66,7 +66,7 @@ export default class ThrowArcIndicator extends ScriptNode {
 		const landY = this._currentLandY;
 		
 		// Fixed arc height for satisfying Z-axis pop
-		const arcHeight = 150;
+		const arcHeight = this.scene.playerTuning?.throw?.arcHeight ?? 150;
 		const steps = 32;
 
 		// Draw drop shadow

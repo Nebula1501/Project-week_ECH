@@ -30,6 +30,7 @@ export default class Tier1HerbivoreRoamingController extends ScriptNode {
 
 	setupStateMachine() {
 		const go = this.gameObject;
+		const tuning = this.scene.creatureTuning?.tier1Herbivore ?? {};
 
 		const stateDecider = go._stateDecider;
 		const stateManager = go._stateManager;
@@ -43,12 +44,30 @@ export default class Tier1HerbivoreRoamingController extends ScriptNode {
 			return;
 		}
 
+		// Apply detection radius
+		if (go._detectionRadius) go._detectionRadius.radius = tuning.detectionRadius ?? 200;
+
+		// Apply neutral/patrol behaviour values
+		if (neutral) {
+			neutral.moveSpeed = tuning.neutralSpeed ?? 60;
+			neutral.loiterRadius = tuning.loiterRadius ?? 150;
+			neutral.directionChangeInterval = tuning.directionChangeInterval ?? 2000;
+			neutral.pauseDuration = tuning.loiterPauseDuration ?? 1200;
+			neutral.returnPauseDuration = tuning.returnPauseDuration ?? 1000;
+		}
+
+		// Apply opportunity/eat behaviour values
+		if (opportunity) {
+			opportunity.moveSpeed = tuning.eatMoveSpeed ?? 80;
+			opportunity.eatDuration = tuning.eatDuration ?? 2000;
+		}
+
 		// Configure chase to target everything including player and carnivores
 		if (chase) chase.targetTags = ['player', 't2herb', 't2carn', 't1carn', 'mimic'];
-		if (chase) chase.moveSpeed = 140;
+		if (chase) chase.moveSpeed = tuning.chaseSpeed ?? 140;
 
 		// Set power value
-		if (go._attackResolution) go._attackResolution.powerValue = 4;
+		if (go._attackResolution) go._attackResolution.powerValue = tuning.combatPower ?? 4;
 
 		// Register behaviour nodes
 		stateManager.registerState('neutral', neutral);

@@ -22,12 +22,6 @@ export default class PlayerThrow extends ScriptNode {
 	/* START-USER-CODE */
 
 	awake() {
-		// =============================================
-		// PLAYER THROW TUNING VALUES
-		// =============================================
-		this.throwDistance = 380; // Distance the item travels (px)
-		this.throwDuration = 650; // How long the throw arc takes (ms)
-
 		this.spaceKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 		this.heldFruit = null;
 		this.heldItemType = null;
@@ -101,8 +95,8 @@ export default class PlayerThrow extends ScriptNode {
 		const startY = thrownFruit.y;
 		const playerX = this.gameObject.x;
 		const playerY = this.gameObject.y;
-		const throwDistance = this.throwDistance;
-		const duration = this.throwDuration;
+		const throwDistance = this.scene.playerTuning?.throw?.distance ?? 380;
+		const duration = this.scene.playerTuning?.throw?.duration ?? 650;
 
 		let landX, landY;
 		const indicator = this.gameObject._throwArcIndicator;
@@ -118,7 +112,7 @@ export default class PlayerThrow extends ScriptNode {
 		}
 		
 		// Fixed arc height for satisfying Z-axis pop in all directions
-		const arcHeight = 150;
+		const arcHeight = this.scene.playerTuning?.throw?.arcHeight ?? 150;
 
 		thrownFruit.body.enable = false;
 		

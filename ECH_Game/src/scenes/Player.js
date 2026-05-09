@@ -9,6 +9,7 @@ import PlayerThrow from "./PlayerThrow.js";
 import SquashStretch from "./SquashStretch.js";
 import ThrowArcIndicator from "./ThrowArcIndicator.js";
 import PlayerDeath from "./PlayerDeath.js";
+import PlayerTuning from "./PlayerTuning.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -40,6 +41,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
 		// playerDeath
 		new PlayerDeath(this);
+
+		// playerTuning
+		new PlayerTuning(this);
 
 		/* START-USER-CTR-CODE */
 		this.setData('type', 'player');
