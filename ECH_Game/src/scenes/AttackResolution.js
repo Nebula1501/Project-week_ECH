@@ -64,6 +64,10 @@ export default class AttackResolution extends ScriptNode {
 		this.gameObject.setPosition(myX, myY);
 		if (this.gameObject.body) this.gameObject.body.reset(myX, myY);
 
+		// Face each other
+		this.gameObject.flipX = false; // Left combatant faces right
+		other.flipX = true; // Right combatant faces left
+
 		// Switch both to combat state
 		this.gameObject._stateManager?.switchState('combat');
 		other._stateManager?.switchState('combat');

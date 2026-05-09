@@ -153,9 +153,12 @@ export default class Tier2HerbivoreController extends ScriptNode {
 		const isEating = this.gameObject._stateManager?.currentState === 'opportunity' && 
 		                 this.gameObject._behaviourOpportunity?.eating;
 		const isStartled = this.gameObject.getData('isStartled');
+		const isCombat = this.gameObject._stateManager?.currentState === 'combat';
 
 		// Handle animation switching
-		if (isStartled) {
+		if (isCombat) {
+			this.gameObject.play('creature_combat', true);
+		} else if (isStartled) {
 			// Do not interrupt startled animation
 		} else if (isEating) {
 			this.gameObject.play('tier2herb_eat', true);

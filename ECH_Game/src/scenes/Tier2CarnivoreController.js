@@ -135,9 +135,12 @@ export default class Tier2CarnivoreController extends ScriptNode {
 		// Check if actively eating a corpse
 		const isEating = this.gameObject._stateManager?.currentState === 'eatCorpse' && 
 		                 this.gameObject._behaviourEatCorpse?.eating;
+		const isCombat = this.gameObject._stateManager?.currentState === 'combat';
 
 		// Handle animation switching
-		if (isEating) {
+		if (isCombat) {
+			this.gameObject.play('creature_combat', true);
+		} else if (isEating) {
 			this.gameObject.play('tier2carn_eat', true);
 		} else if (Math.abs(body.velocity.x) > 1 || Math.abs(body.velocity.y) > 1) {
 			const currentAnim = this.gameObject.anims.currentAnim?.key;

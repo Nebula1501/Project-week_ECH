@@ -58,14 +58,14 @@ export default class CreatureTuning extends ScriptNode {
 
 		// Standard Predator - Chases player/herbivores, flees from Apex
 		this.tier2Carnivore = {
-			detectionRadius: 300,
+			detectionRadius: 400,
 			neutralSpeed: 50,
 			fleeSpeed: 150,
 			chaseSpeed: 300,
 			eatMoveSpeed: 100,
-			loiterRadius: 200,
+			loiterRadius: 150,
 			directionChangeInterval: 3000,
-			loiterPauseDuration: 2250,
+			loiterPauseDuration: 1500,
 			returnPauseDuration: 2000,
 			fleeDuration: 2000,
 			eatDuration: 10000,
@@ -80,11 +80,11 @@ export default class CreatureTuning extends ScriptNode {
 			chaseSpeed: 120,
 			eatMoveSpeed: 80,
 			loiterRadius: 150,
-			directionChangeInterval: 2000,
-			loiterPauseDuration: 1200,
+			directionChangeInterval: 1500,
+			loiterPauseDuration: 1000,
 			returnPauseDuration: 1000,
-			fleeDuration: 2000,
-			eatDuration: 2000,
+			fleeDuration: 3000,
+			eatDuration: 3000,
 			combatPower: 2
 		};
 
