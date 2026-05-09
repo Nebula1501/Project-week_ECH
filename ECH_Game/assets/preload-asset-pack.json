@@ -83,6 +83,45 @@
                 "key": "spritesheet_car01_idle1"
             },
             {
+                "url": "assets/sprites/creatures/tier2-carnivore/spritesheet_car01_walk.png",
+                "frameConfig": {
+                    "frameWidth": 730,
+                    "frameHeight": 700,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_car01_walk"
+            },
+            {
+                "url": "assets/sprites/creatures/tier2-carnivore/spritesheet_car01_walkend.png",
+                "frameConfig": {
+                    "frameWidth": 730,
+                    "frameHeight": 700,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_car01_walkend"
+            },
+            {
+                "url": "assets/sprites/creatures/tier2-carnivore/spritesheet_car01_walkstart.png",
+                "frameConfig": {
+                    "frameWidth": 730,
+                    "frameHeight": 700,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_car01_walkstart"
+            },
+            {
                 "url": "assets/sprites/creatures/tier2-herbivore/spritesheet_herb01_eat.png",
                 "frameConfig": {
                     "frameWidth": 420,
@@ -195,6 +234,21 @@
                 "url": "assets/animations/creatures/tier2carn_idle.json",
                 "type": "animation",
                 "key": "tier2carn_idle"
+            },
+            {
+                "url": "assets/animations/creatures/tier2carn_walk.json",
+                "type": "animation",
+                "key": "tier2carn_walk"
+            },
+            {
+                "url": "assets/animations/creatures/tier2carn_walkend.json",
+                "type": "animation",
+                "key": "tier2carn_walkend"
+            },
+            {
+                "url": "assets/animations/creatures/tier2carn_walkstart.json",
+                "type": "animation",
+                "key": "tier2carn_walkstart"
             },
             {
                 "url": "assets/animations/creatures/tier2herb_eat.json",

@@ -158,9 +158,9 @@ export default class Tier2CarnivoreController extends ScriptNode {
 		const body = this.gameObject.body;
 
 		// Handle sprite flipping
-		if (body.velocity.x < 0) {
+		if (body.velocity.x < -1) {
 			this.gameObject.flipX = true; // Face left
-		} else if (body.velocity.x > 0) {
+		} else if (body.velocity.x > 1) {
 			this.gameObject.flipX = false; // Face right
 		}
 
@@ -171,10 +171,22 @@ export default class Tier2CarnivoreController extends ScriptNode {
 		// Handle animation switching
 		if (isEating) {
 			this.gameObject.play('tier2carn_eat', true);
-		} else if (body.velocity.x !== 0 || body.velocity.y !== 0) {
-			this.gameObject.play('tier2carn_walk', true);
+		} else if (Math.abs(body.velocity.x) > 1 || Math.abs(body.velocity.y) > 1) {
+			const currentAnim = this.gameObject.anims.currentAnim?.key;
+			if (currentAnim !== 'tier2carn_walkstart' && currentAnim !== 'tier2carn_walk') {
+				this.gameObject.play('tier2carn_walkstart', true).chain('tier2carn_walk');
+			}
 		} else {
-			this.gameObject.play('tier2carn__idle', true);
+			const currentAnim = this.gameObject.anims.currentAnim?.key;
+			if (currentAnim === 'tier2carn_walk' || currentAnim === 'tier2carn_walkstart') {
+				this.gameObject.play('tier2carn_walkend', true);
+			} else if (currentAnim === 'tier2carn_walkend') {
+				if (!this.gameObject.anims.isPlaying) {
+					this.gameObject.play('tier2carn__idle', true);
+				}
+			} else {
+				this.gameObject.play('tier2carn__idle', true);
+			}
 		}
 	}
 }
