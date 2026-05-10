@@ -23,9 +23,19 @@ export default class PlayerThrow extends ScriptNode {
 
 	awake() {
 		this.spaceKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+		this.cKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 		this.heldFruit = null;
 		this.heldItemType = null;
+		this.isAiming = false;
 		this.gameObject._playerThrow = this;
+
+		// Execute throw when clicking left mouse button while aiming
+		this.scene.input.on('pointerdown', (pointer) => {
+			if (pointer.leftButtonDown() && this.isAiming && !this.gameObject.getData('isDead')) {
+				this.isAiming = false;
+				this.releaseFruit();
+			}
+		}, this);
 	}
 
 	update() {
@@ -33,15 +43,19 @@ export default class PlayerThrow extends ScriptNode {
 		if (this.gameObject.getData('isDead')) return;
 
 		if (Phaser.Input.Keyboard.JustDown(this.spaceKey)) {
-			this.spawnHeldFruit();
+			const inv = this.scene.playerInventory;
+			if (!this.isAiming && inv && inv.items.length > 0) {
+				this.isAiming = true;
+				this.spawnHeldFruit();
+			}
 		}
 
 		if (this.heldFruit) {
 			this.updateHeldFruitPosition();
 		}
 
-		if (Phaser.Input.Keyboard.JustUp(this.spaceKey)) {
-			this.releaseFruit();
+		if (this.isAiming && Phaser.Input.Keyboard.JustDown(this.cKey)) {
+			this.cancelThrow();
 		}
 	}
 
@@ -81,6 +95,16 @@ export default class PlayerThrow extends ScriptNode {
 	updateHeldFruitPosition() {
 		const pos = this.getWorldPosition();
 		this.heldFruit.setPosition(pos.x, pos.y);
+	}
+
+	cancelThrow() {
+		if (this.heldFruit) {
+			this.heldFruit.destroy();
+			this.heldFruit = null;
+		}
+		this.isAiming = false;
+		this.heldItemType = null;
+		console.log('Throw cancelled');
 	}
 
 	releaseFruit() {

@@ -18,9 +18,9 @@ export default class PlayerTuning extends ScriptNode {
 		};
 
 		this.throw = {
-			distance: 380, // [px] Maximum distance a thrown item travels
-			duration: 650, // [ms] How long the item hangs in the air
-			arcHeight: 150 // [px] The Z-axis pop height of the visual throw
+			distance: 500, // [px] Maximum distance a thrown item travels
+			duration: 600, // [ms] How long the item hangs in the air
+			arcHeight: 200 // [px] The Z-axis pop height of the visual throw
 		};
 
 		this.camera = {
@@ -32,7 +32,7 @@ export default class PlayerTuning extends ScriptNode {
 			
 			// Deep Pan (when stationary)
 			deepPanDelay: 2000,   // [ms] How long to stand still to trigger deep pan
-			deepPanDistance: 500, // [px] How far the camera pans deep
+			deepPanDistance: 400, // [px] How far the camera pans deep
 			deepPanLerp: 0.015    // [0.01 - 1.0] How fast the camera deep pans
 		};
 

@@ -52,6 +52,11 @@
                 "key": "creature_combat"
             },
             {
+                "url": "assets/dino.png",
+                "type": "image",
+                "key": "dino"
+            },
+            {
                 "url": "assets/guapen.png",
                 "type": "image",
                 "key": "guapen"

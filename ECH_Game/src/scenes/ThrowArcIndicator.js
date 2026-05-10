@@ -34,14 +34,14 @@ export default class ThrowArcIndicator extends ScriptNode {
 
 	update() {
 		const playerThrow = this.gameObject._playerThrow;
-		if (!playerThrow || !playerThrow.heldFruit || this.gameObject.getData('isDead')) {
+		if (!playerThrow || !playerThrow.isAiming || this.gameObject.getData('isDead')) {
 			this.gfx.clear();
 			this._currentLandX = null;
 			this._currentLandY = null;
 			return;
 		}
 
-		const dir = this.gameObject.getData('lastDirection') ?? { x: 1, y: 0 };
+		const pointer = this.scene.input.activePointer;
 		const startX = this.gameObject.x;
 		const startY = this.gameObject.y - 60; // Match the offset from PlayerThrow.js
 		const playerY = this.gameObject.y;
@@ -50,8 +50,17 @@ export default class ThrowArcIndicator extends ScriptNode {
 
 		const throwDistance = this.scene.playerTuning?.throw?.distance ?? 380;
 
-		const targetLandX = startX + dir.x * throwDistance;
-		const targetLandY = playerY + dir.y * throwDistance; // Calculate landing from the player's feet, not their head
+		// Target landing spot tracks the mouse but is clamped to the max throw distance
+		const mouseX = pointer.worldX;
+		const mouseY = pointer.worldY;
+
+		const distToMouse = Phaser.Math.Distance.Between(startX, playerY, mouseX, mouseY);
+		const angle = Phaser.Math.Angle.Between(startX, playerY, mouseX, mouseY);
+		
+		const clampedDist = Math.min(distToMouse, throwDistance);
+
+		const targetLandX = startX + Math.cos(angle) * clampedDist;
+		const targetLandY = playerY + Math.sin(angle) * clampedDist;
 
 		// Smoothly lerp the indicator towards the target direction
 		if (this._currentLandX === null || this._currentLandY === null) {

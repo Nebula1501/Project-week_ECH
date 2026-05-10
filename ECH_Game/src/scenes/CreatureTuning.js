@@ -84,7 +84,7 @@ export default class CreatureTuning extends ScriptNode {
 
 		// Prey - Harmless, flees from everything, eats food
 		this.tier2Herbivore = {
-			detectionRadius: 150,
+			detectionRadius: 250,
 			neutralSpeed: 60,
 			fleeSpeed: 160,
 			chaseSpeed: 120,

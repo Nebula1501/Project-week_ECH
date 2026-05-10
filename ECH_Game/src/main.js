@@ -1,14 +1,15 @@
 import config from '../config.js';
-import Test02 from "./scenes/Level1.js";
 import Level from "./scenes/Level.js";
 import Preload from "./scenes/Preload.js";
 import Level1 from './scenes/Level1.js';
+import Level2 from './scenes/Level2.js'; // 1. Import Level 2
 
 window.addEventListener('load', function () {
 
 	var game = new Phaser.Game(config);
 
 	game.scene.add("Level1", Level1);
+	game.scene.add("Level2", Level2);    // 2. Register Level 2
 	game.scene.add("Preload", Preload);
 	game.scene.add("Level", Level);
 	game.scene.add("Boot", Boot, true);
@@ -17,12 +18,11 @@ window.addEventListener('load', function () {
 class Boot extends Phaser.Scene {
 
 	preload() {
-		
 		this.load.pack("pack", "assets/preload-asset-pack.json");
 	}
 
 	create() {
-
-		this.scene.start("Level1");
+		// 3. Start Preload first so your animations get created!
+		this.scene.start("Preload"); 
 	}
 }
