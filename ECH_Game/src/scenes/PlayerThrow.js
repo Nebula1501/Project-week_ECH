@@ -67,6 +67,10 @@ export default class PlayerThrow extends ScriptNode {
 		}
 
 		this.scene.add.existing(heldObject);
+
+		if (!this.scene.globalEntities) this.scene.globalEntities = [];
+		this.scene.globalEntities.push(heldObject);
+
 		heldObject.body.enable = false;
 		heldObject.setData('isHeld', true);
 		this.heldFruit = heldObject;
@@ -161,11 +165,8 @@ export default class PlayerThrow extends ScriptNode {
 					}
 				});
 
-				const obstacles = this.scene.children.list.filter(
-					child => child.constructor.name === 'Obstacle'
-				);
-				if (obstacles.length > 0) {
-					this.scene.physics.add.collider(thrownFruit, obstacles);
+				if (this.scene.globalObstacles && this.scene.globalObstacles.length > 0) {
+					this.scene.physics.add.collider(thrownFruit, this.scene.globalObstacles);
 				}
 
 				this.scene.time.delayedCall(400, () => {

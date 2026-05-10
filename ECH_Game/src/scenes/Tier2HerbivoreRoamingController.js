@@ -23,6 +23,9 @@ export default class Tier2HerbivoreRoamingController extends ScriptNode {
 		// Tag this creature for detection system
 		this.gameObject.setData('type', 't2herb');
 
+		if (!this.scene.globalEntities) this.scene.globalEntities = [];
+		this.scene.globalEntities.push(this.gameObject);
+
 		this.scene.events.once('create', () => {
 			if (this.gameObject._attackResolution) {
 				this.gameObject._attackResolution.powerValue = 2;
@@ -105,11 +108,13 @@ export default class Tier2HerbivoreRoamingController extends ScriptNode {
 		];
 
 		// Register obstacle collision
-		const obstacles = this.scene.children.list.filter(child => 
-			child.constructor.name === 'Obstacle' || child._isInvisibleWall
-		);
-		if (obstacles.length > 0) {
-			this.scene.physics.add.collider(go, obstacles);
+		if (this.scene.globalObstacles && this.scene.globalObstacles.length > 0) {
+			this.scene.physics.add.collider(go, this.scene.globalObstacles);
+		}
+
+		// Register creature-only obstacle collision
+		if (this.scene.creatureObstacles && this.scene.creatureObstacles.length > 0) {
+			this.scene.physics.add.collider(go, this.scene.creatureObstacles);
 		}
 
 		go.setData('defaultState', 'neutral');

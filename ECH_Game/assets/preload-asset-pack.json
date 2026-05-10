@@ -17,6 +17,11 @@
                 "key": "A_Crystal"
             },
             {
+                "url": "assets/sprites/items/Obstacles/A_M_Rock.png",
+                "type": "image",
+                "key": "A_M_Rock"
+            },
+            {
                 "url": "assets/sprites/items/Obstacles/A_Mushrrom_01.png",
                 "type": "image",
                 "key": "A_Mushrrom_01"
@@ -80,6 +85,11 @@
                 "url": "assets/sprites/creatures/tier1-carnivore/sprite_carnivore2.png",
                 "type": "image",
                 "key": "sprite_carnivore2"
+            },
+            {
+                "url": "assets/sprites/items/fruit/sprite_corpse.png",
+                "type": "image",
+                "key": "sprite_corpse"
             },
             {
                 "url": "assets/sprites/items/fruit/sprite_apple.png",
@@ -232,6 +242,19 @@
                 "key": "spritesheet_herb01_walk"
             },
             {
+                "url": "assets/sprites/creatures/tier1-herbivore/spritesheet_herb02_idle.png",
+                "frameConfig": {
+                    "frameWidth": 850,
+                    "frameHeight": 680,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "spritesheet_herb02_idle"
+            },
+            {
                 "url": "assets/sprites/player/spritesheet_player01_idle1.png",
                 "frameConfig": {
                     "frameWidth": 300,
@@ -282,6 +305,11 @@
                 },
                 "type": "spritesheet",
                 "key": "spritesheet_player01_walk"
+            },
+            {
+                "url": "assets/animations/creatures/tier1herb_idle.json",
+                "type": "animation",
+                "key": "tier1herb_idle"
             },
             {
                 "url": "assets/animations/creatures/tier2carn_eat.json",
@@ -379,6 +407,19 @@
                 },
                 "type": "spritesheet",
                 "key": "tilesheet_ground01"
+            },
+            {
+                "url": "assets/tilemaps/tilesets/void_map_03.png",
+                "frameConfig": {
+                    "frameWidth": 64,
+                    "frameHeight": 64,
+                    "startFrame": 0,
+                    "endFrame": -1,
+                    "spacing": 0,
+                    "margin": 0
+                },
+                "type": "spritesheet",
+                "key": "void_map_03"
             }
         ]
     },

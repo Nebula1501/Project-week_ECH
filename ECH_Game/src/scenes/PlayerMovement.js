@@ -35,8 +35,17 @@ export default class PlayerMovement extends ScriptNode {
 		});
 
 		this.lastDirection = new Phaser.Math.Vector2(1, 0); // default facing right
+
+		if (!this.scene.globalEntities) this.scene.globalEntities = [];
+		this.scene.globalEntities.push(this.gameObject);
+
 		this.scene.events.once('create', () => {
 			this.gameObject.play('player_idle');
+			
+			// Register collisions with all globally registered obstacles
+			if (this.scene.globalObstacles && this.scene.globalObstacles.length > 0) {
+				this.scene.physics.add.collider(this.gameObject, this.scene.globalObstacles);
+			}
 		});
 	}
 

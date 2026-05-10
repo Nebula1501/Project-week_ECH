@@ -17,7 +17,7 @@ import SquashStretch from "./SquashStretch.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
-export default class Tier1Herbivore extends Phaser.Physics.Arcade.Image {
+export default class Tier1Herbivore extends Phaser.Physics.Arcade.Sprite {
 
 	constructor(scene, x, y, texture, frame) {
 		super(scene, x ?? 0, y ?? 0, texture || "sprite_herb2", frame);

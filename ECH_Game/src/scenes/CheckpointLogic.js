@@ -20,19 +20,25 @@ export default class CheckpointLogic extends ScriptNode {
 	/* START-USER-CODE */
 
 	awake() {
+		this.gameObject.setData('type', 'checkpoint');
+		
+		if (!this.scene.globalEntities) this.scene.globalEntities = [];
+		this.scene.globalEntities.push(this.gameObject);
+
 		this._activated = false;
+		this.scene.events.once('create', () => {
+			this.player = (this.scene.globalEntities || []).find(c => c && c.getData && c.getData('type') === 'player');
+		});
 	}
 
 	update() {
 		// Stop checking if this specific checkpoint was already hit
 		if (this._activated) return;
 		if (!this.gameObject || !this.gameObject.active) return;
-
-		const player = this.scene.children.list.find(child => child.constructor.name === 'Player');
-		if (!player || !player.body) return;
+		if (!this.player || !this.player.body || !this.player.active) return;
 
 		// Check if the player touches the checkpoint sensor
-		if (this.scene.physics.overlap(this.gameObject, player)) {
+		if (this.scene.physics.overlap(this.gameObject, this.player)) {
 			this._activated = true;
 
 			// Save the checkpoint coordinates globally

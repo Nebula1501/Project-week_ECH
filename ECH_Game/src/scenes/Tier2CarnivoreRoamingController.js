@@ -23,6 +23,9 @@ export default class Tier2CarnivoreRoamingController extends ScriptNode {
 		this.gameObject.setData('type', 't2carn');
 		this.gameObject._attackResolution && (this.gameObject._attackResolution.powerValue = 3);
 
+		if (!this.scene.globalEntities) this.scene.globalEntities = [];
+		this.scene.globalEntities.push(this.gameObject);
+
 		this.scene.events.once('create', () => {
 			this.gameObject.play('tier2carn__idle', true);
 			this.setupStateMachine();
@@ -31,7 +34,7 @@ export default class Tier2CarnivoreRoamingController extends ScriptNode {
 
 	setupStateMachine() {
 		const go = this.gameObject;
-		const tuning = this.scene.creatureTuning?.tier2Carnivore ?? {};
+		const tuning = this.scene.creatureTuning?.tier2CarnivoreRoaming ?? {};
 
 		// Chase targets — which entity types this creature will chase
 		// Available tags: 'player', 't2herb', 't1herb', 't2carn', 't1carn', 'mimic'
@@ -110,11 +113,13 @@ export default class Tier2CarnivoreRoamingController extends ScriptNode {
 		];
 
 		// Register obstacle collision
-		const obstacles = this.scene.children.list.filter(child => 
-			child.constructor.name === 'Obstacle' || child._isInvisibleWall
-		);
-		if (obstacles.length > 0) {
-			this.scene.physics.add.collider(go, obstacles);
+		if (this.scene.globalObstacles && this.scene.globalObstacles.length > 0) {
+			this.scene.physics.add.collider(go, this.scene.globalObstacles);
+		}
+
+		// Register creature-only obstacle collision
+		if (this.scene.creatureObstacles && this.scene.creatureObstacles.length > 0) {
+			this.scene.physics.add.collider(go, this.scene.creatureObstacles);
 		}
 
 		go.setData('defaultState', 'patrol');

@@ -43,9 +43,10 @@ export default class DetectionRadius extends ScriptNode {
 		const detectableTypes = ['player', 'food', 'corpse', 't2herb', 't1herb', 't2carn', 't1carn', 'mimic'];
 
 		const newDetected = [];
+		const entities = this.scene.globalEntities || [];
 
-		this.scene.children.list.forEach(child => {
-			if (!child.getData) return;
+		entities.forEach(child => {
+			if (!child || !child.active || !child.getData) return;
 			const tag = child.getData('type');
 			if (!tag || !detectableTypes.includes(tag)) return;
 			if (child === this.gameObject) return; // ignore self

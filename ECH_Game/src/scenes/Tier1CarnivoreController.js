@@ -21,6 +21,9 @@ export default class Tier1CarnivoreController extends ScriptNode {
 		this.gameObject.setData('type', 't1carn');
 		this.gameObject.setData('defaultState', 'patrol');
 
+		if (!this.scene.globalEntities) this.scene.globalEntities = [];
+		this.scene.globalEntities.push(this.gameObject);
+
 		this.scene.events.once('create', () => {
 			this.setupStateMachine();
 		});
@@ -95,11 +98,13 @@ export default class Tier1CarnivoreController extends ScriptNode {
 		];
 
 		// Register obstacle collision
-		const obstacles = this.scene.children.list.filter(child => 
-			child.constructor.name === 'Obstacle' || child._isInvisibleWall
-		);
-		if (obstacles.length > 0) {
-			this.scene.physics.add.collider(go, obstacles);
+		if (this.scene.globalObstacles && this.scene.globalObstacles.length > 0) {
+			this.scene.physics.add.collider(go, this.scene.globalObstacles);
+		}
+
+		// Register creature-only obstacle collision
+		if (this.scene.creatureObstacles && this.scene.creatureObstacles.length > 0) {
+			this.scene.physics.add.collider(go, this.scene.creatureObstacles);
 		}
 
 		go.setData('defaultState', 'patrol');

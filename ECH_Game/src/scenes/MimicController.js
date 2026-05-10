@@ -24,6 +24,9 @@ export default class MimicController extends ScriptNode {
 		this.gameObject.setData('defaultState', 'stalk');
 		this._killCount = 0;
 
+		if (!this.scene.globalEntities) this.scene.globalEntities = [];
+		this.scene.globalEntities.push(this.gameObject);
+
 		this.scene.events.once('create', () => {
 			this.setupStateMachine();
 		});
@@ -87,9 +90,13 @@ export default class MimicController extends ScriptNode {
 
 		go.on('attackWin', () => this.onMimicKill());
 
-		const obstacles = this.scene.children.list.filter(child => child.constructor.name === 'Obstacle');
-		if (obstacles.length > 0) {
-			this.scene.physics.add.collider(go, obstacles);
+		if (this.scene.globalObstacles && this.scene.globalObstacles.length > 0) {
+			this.scene.physics.add.collider(go, this.scene.globalObstacles);
+		}
+
+		// Register creature-only obstacle collision
+		if (this.scene.creatureObstacles && this.scene.creatureObstacles.length > 0) {
+			this.scene.physics.add.collider(go, this.scene.creatureObstacles);
 		}
 
 		stateManager.switchState('stalk');

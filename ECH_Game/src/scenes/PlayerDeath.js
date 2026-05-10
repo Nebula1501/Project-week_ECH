@@ -28,8 +28,9 @@ export default class PlayerDeath extends ScriptNode {
 		if (this.gameObject.getData('isDead')) return;
 
 		const dangerousTags = ['t1carn', 't2carn', 't1herb'];
-		const dangerousCreatures = this.scene.children.list.filter(child => {
-			return child.active && dangerousTags.includes(child.getData('type'));
+		const entities = this.scene.globalEntities || [];
+		const dangerousCreatures = entities.filter(child => {
+			return child && child.active && child.getData && dangerousTags.includes(child.getData('type'));
 		});
 
 		let isOverlapping = false;

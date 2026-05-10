@@ -37,6 +37,11 @@
                     "prefabId": "e5342b8e-2bdf-4010-af72-359018df7aca",
                     "id": "2c63f510-6fd1-49ad-9902-a5f9144087f8",
                     "label": "checkpointLogic"
+                },
+                {
+                    "prefabId": "f6277e45-aff8-48dd-904f-eef5d1c28b1e",
+                    "id": "4d9bc9ef-917a-459c-927c-a2056fc1d57d",
+                    "label": "syncPhysicsBody"
                 }
             ]
         }

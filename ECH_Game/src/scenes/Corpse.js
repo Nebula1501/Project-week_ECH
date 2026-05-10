@@ -4,22 +4,27 @@
 /* START OF COMPILED CODE */
 
 import CorpsePickup from "./CorpsePickup.js";
+import SyncPhysicsBody from "./SyncPhysicsBody.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
 export default class Corpse extends Phaser.GameObjects.Image {
 
 	constructor(scene, x, y, texture, frame) {
-		super(scene, x ?? 0, y ?? 0, texture || "guapen", frame);
+		super(scene, x ?? 0, y ?? 0, texture || "sprite_corpse", frame);
 
-		this.scaleX = 0.3;
-		this.scaleY = 0.3;
+		this.scaleX = 0.15;
+		this.scaleY = 0.2;
 		scene.physics.add.existing(this, false);
 		this.body.allowGravity = false;
-		this.body.setSize(208, 240, false);
+		this.body.pushable = false;
+		this.body.setSize(860, 482, false);
 
 		// corpsePickup
 		new CorpsePickup(this);
+
+		// syncPhysicsBody
+		new SyncPhysicsBody(this);
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.

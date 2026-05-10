@@ -17,19 +17,25 @@
             "id": "db675c2e-a863-43d1-bd16-3716da891f24",
             "label": "corpse",
             "texture": {
-                "key": "guapen"
+                "key": "sprite_corpse"
             },
-            "scaleX": 0.3,
-            "scaleY": 0.3,
+            "scaleX": 0.15,
+            "scaleY": 0.2,
             "ArcadeComponent.active": true,
             "body.allowGravity": false,
-            "body.width": 208,
-            "body.height": 240,
+            "body.pushable": false,
+            "body.width": 860,
+            "body.height": 482,
             "list": [
                 {
                     "prefabId": "65f02b2d-0997-4ba5-9ef6-efc4b003d28c",
                     "id": "bb2bcee8-6ec8-4a65-9a3a-5846ef5791b8",
                     "label": "corpsePickup"
+                },
+                {
+                    "prefabId": "f6277e45-aff8-48dd-904f-eef5d1c28b1e",
+                    "id": "9e348130-d1b2-494e-88fc-949d13f7e240",
+                    "label": "syncPhysicsBody"
                 }
             ]
         }

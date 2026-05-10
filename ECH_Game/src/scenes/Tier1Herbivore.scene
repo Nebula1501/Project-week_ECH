@@ -13,7 +13,7 @@
     },
     "displayList": [
         {
-            "type": "ArcadeImage",
+            "type": "ArcadeSprite",
             "id": "48e07d50-b039-41fd-8373-0f17f577b6ae",
             "label": "arcadeimage_1",
             "texture": {

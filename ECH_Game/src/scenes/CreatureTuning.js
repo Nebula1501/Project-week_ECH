@@ -72,6 +72,16 @@ export default class CreatureTuning extends ScriptNode {
 			combatPower: 3
 		};
 
+		// Standard Predator (Roaming Variant)
+		this.tier2CarnivoreRoaming = {
+			...this.tier2Carnivore, // Inherit base values, override below
+			detectionRadius: 400,
+			neutralSpeed: 30,
+			chaseSpeed: 300,
+			loiterRadius: 100,
+			directionChangeInterval: 3000
+		};
+
 		// Prey - Harmless, flees from everything, eats food
 		this.tier2Herbivore = {
 			detectionRadius: 150,

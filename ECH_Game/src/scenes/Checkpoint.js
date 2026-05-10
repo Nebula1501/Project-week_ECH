@@ -5,6 +5,7 @@
 
 import HideOnAwake from "./HideOnAwake.js";
 import CheckpointLogic from "./CheckpointLogic.js";
+import SyncPhysicsBody from "./SyncPhysicsBody.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -24,6 +25,9 @@ export default class Checkpoint extends Phaser.Physics.Arcade.Image {
 
 		// checkpointLogic
 		new CheckpointLogic(this);
+
+		// syncPhysicsBody
+		new SyncPhysicsBody(this);
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.

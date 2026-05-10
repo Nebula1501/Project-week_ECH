@@ -20,8 +20,8 @@
                 "key": "spritesheet_herb01_idle1",
                 "frame": 0
             },
-            "scaleX": 0.25,
-            "scaleY": 0.25,
+            "scaleX": 0.2,
+            "scaleY": 0.2,
             "body.width": 420,
             "body.height": 680,
             "list": [

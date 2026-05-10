@@ -20,8 +20,11 @@ export default class FruitPickup extends ScriptNode {
 	/* START-USER-CODE */
 
 	awake() {
+		if (!this.scene.globalEntities) this.scene.globalEntities = [];
+		this.scene.globalEntities.push(this.gameObject);
+
 		this.scene.events.once('create', () => {
-			const player = this.scene.children.list.find(child => child.constructor.name === 'Player');
+			const player = (this.scene.globalEntities || []).find(c => c && c.getData && c.getData('type') === 'player');
 			if (!player) return;
 
 			const playerBody = player;
@@ -36,9 +39,8 @@ export default class FruitPickup extends ScriptNode {
 				}
 			});
 
-			const obstacles = this.scene.children.list.filter(child => child.constructor.name === 'Obstacle');
-			if (obstacles.length > 0) {
-				this.scene.physics.add.collider(fruit, obstacles);
+			if (this.scene.globalObstacles && this.scene.globalObstacles.length > 0) {
+				this.scene.physics.add.collider(fruit, this.scene.globalObstacles);
 			}
 		});
 	}
