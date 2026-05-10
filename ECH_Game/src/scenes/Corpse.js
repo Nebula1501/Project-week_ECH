@@ -5,7 +5,6 @@
 
 import CorpsePickup from "./CorpsePickup.js";
 import SyncPhysicsBody from "./SyncPhysicsBody.js";
-import AtmosphereDepth from "./AtmosphereDepth.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -14,7 +13,7 @@ export default class Corpse extends Phaser.GameObjects.Image {
 	constructor(scene, x, y, texture, frame) {
 		super(scene, x ?? 0, y ?? 0, texture || "sprite_corpse", frame);
 
-		this.scaleX = 0.15;
+		this.scaleX = 0.2;
 		this.scaleY = 0.2;
 		scene.physics.add.existing(this, false);
 		this.body.allowGravity = false;
@@ -27,11 +26,9 @@ export default class Corpse extends Phaser.GameObjects.Image {
 		// syncPhysicsBody
 		new SyncPhysicsBody(this);
 
-		// atmosphereDepth
-		new AtmosphereDepth(this);
-
 		/* START-USER-CTR-CODE */
-		// Write your code here.
+		this.setData('type', 'corpse');
+		this.body.onOverlap = true;
 		/* END-USER-CTR-CODE */
 	}
 

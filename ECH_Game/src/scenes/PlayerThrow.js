@@ -87,6 +87,7 @@ export default class PlayerThrow extends ScriptNode {
 
 		heldObject.body.enable = false;
 		heldObject.setData('isHeld', true);
+		heldObject.setData('type', itemType);
 		this.heldFruit = heldObject;
 		this.heldItemType = itemType;
 		console.log('Held:', itemType);
