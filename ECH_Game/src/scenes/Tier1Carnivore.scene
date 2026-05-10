@@ -21,6 +21,7 @@
             },
             "scaleX": 0.5,
             "scaleY": 0.5,
+            "originY": 1,
             "body.width": 1406,
             "body.height": 554,
             "list": [

@@ -25,6 +25,7 @@ export default class Tier1Herbivore extends Phaser.Physics.Arcade.Sprite {
 
 		this.scaleX = 0.5;
 		this.scaleY = 0.5;
+		this.setOrigin(0.5, 1);
 		scene.physics.add.existing(this, false);
 		this.body.setSize(750, 650, false);
 

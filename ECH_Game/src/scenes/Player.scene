@@ -21,6 +21,7 @@
             },
             "scaleX": 0.2,
             "scaleY": 0.2,
+            "originY": 1,
             "animationPlayMethod": 1,
             "animationKey": "player_idle",
             "animationPreview": true,
@@ -66,6 +67,15 @@
                     "prefabId": "2e55141f-1ce4-452d-8133-f6e730e11d7c",
                     "id": "9edb3850-db2d-4f89-8d39-8e1006ddfe4c",
                     "label": "atmosphereDepth"
+                },
+                {
+                    "prefabId": "7d41317a-4090-4b04-a60b-37f321621170",
+                    "id": "e65bed5c-0341-49f0-8d2f-7f9972dcd2e7",
+                    "unlock": [
+                        "isStatic"
+                    ],
+                    "label": "ySort",
+                    "isStatic": false
                 }
             ]
         }

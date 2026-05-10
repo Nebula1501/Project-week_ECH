@@ -16,6 +16,7 @@ import BehaviourCombat from "./BehaviourCombat.js";
 import DetectionGlow from "./DetectionGlow.js";
 import SquashStretch from "./SquashStretch.js";
 import AtmosphereDepth from "./AtmosphereDepth.js";
+import YSort from "./YSort.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -26,6 +27,7 @@ export default class Tier2Carnivore extends Phaser.Physics.Arcade.Sprite {
 
 		this.scaleX = 0.2;
 		this.scaleY = 0.2;
+		this.setOrigin(0.5, 1);
 		scene.physics.add.existing(this, false);
 		this.body.setSize(730, 700, false);
 
@@ -67,6 +69,12 @@ export default class Tier2Carnivore extends Phaser.Physics.Arcade.Sprite {
 
 		// atmosphereDepth
 		new AtmosphereDepth(this);
+
+		// ySort
+		const ySort = new YSort(this);
+
+		// ySort (prefab fields)
+		ySort.isStatic = false;
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.

@@ -4,7 +4,6 @@
 /* START OF COMPILED CODE */
 
 import CorpsePickup from "./CorpsePickup.js";
-import SyncPhysicsBody from "./SyncPhysicsBody.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -13,8 +12,9 @@ export default class Corpse extends Phaser.GameObjects.Image {
 	constructor(scene, x, y, texture, frame) {
 		super(scene, x ?? 0, y ?? 0, texture || "sprite_corpse", frame);
 
-		this.scaleX = 0.2;
+		this.scaleX = 0.15;
 		this.scaleY = 0.2;
+		this.setOrigin(0.5, 0);
 		scene.physics.add.existing(this, false);
 		this.body.allowGravity = false;
 		this.body.pushable = false;
@@ -22,9 +22,6 @@ export default class Corpse extends Phaser.GameObjects.Image {
 
 		// corpsePickup
 		new CorpsePickup(this);
-
-		// syncPhysicsBody
-		new SyncPhysicsBody(this);
 
 		/* START-USER-CTR-CODE */
 		this.setData('type', 'corpse');

@@ -22,6 +22,7 @@
             },
             "scaleX": 0.2,
             "scaleY": 0.2,
+            "originY": 1,
             "body.width": 730,
             "body.height": 700,
             "list": [
@@ -89,6 +90,15 @@
                     "prefabId": "2e55141f-1ce4-452d-8133-f6e730e11d7c",
                     "id": "55ec4c45-f6f4-4511-abc2-c481fd907ca8",
                     "label": "atmosphereDepth"
+                },
+                {
+                    "prefabId": "7d41317a-4090-4b04-a60b-37f321621170",
+                    "id": "be8dd56f-00e9-4e5c-82cd-d6506c85d860",
+                    "unlock": [
+                        "isStatic"
+                    ],
+                    "label": "ySort",
+                    "isStatic": false
                 }
             ]
         }

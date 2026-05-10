@@ -24,10 +24,13 @@ export default class DetectionRadius extends ScriptNode {
 		this.detected = [];
 		this.previousTags = '';
 
+		const myX = this.gameObject.body ? this.gameObject.body.center.x : this.gameObject.x;
+		const myY = this.gameObject.body ? this.gameObject.body.center.y : this.gameObject.y;
+
 		// Create zone for visual reference only — detection done via distance
 		this.zone = this.scene.add.zone(
-			this.gameObject.x,
-			this.gameObject.y,
+			myX,
+			myY,
 			this.radius * 2,
 			this.radius * 2
 		);
@@ -36,8 +39,11 @@ export default class DetectionRadius extends ScriptNode {
 	}
 
 	update() {
+		const myX = this.gameObject.body ? this.gameObject.body.center.x : this.gameObject.x;
+		const myY = this.gameObject.body ? this.gameObject.body.center.y : this.gameObject.y;
+
 		// Keep zone centered on creature
-		this.zone.setPosition(this.gameObject.x, this.gameObject.y);
+		this.zone.setPosition(myX, myY);
 
 		// Scan all detectable entities by distance every frame
 		const detectableTypes = ['player', 'food', 'corpse', 't2herb', 't1herb', 't2carn', 't1carn', 'mimic'];
@@ -51,11 +57,14 @@ export default class DetectionRadius extends ScriptNode {
 			if (!tag || !detectableTypes.includes(tag)) return;
 			if (child === this.gameObject) return; // ignore self
 
+			const childX = child.body ? child.body.center.x : child.x;
+			const childY = child.body ? child.body.center.y : child.y;
+
 			// --- CPU OPTIMIZATION ---
 			// Use DistanceSquared to avoid heavy Math.sqrt() calculations on the CPU
 			const distSq = Phaser.Math.Distance.Squared(
-				this.gameObject.x, this.gameObject.y,
-				child.x, child.y
+				myX, myY,
+				childX, childY
 			);
 
 			if (distSq <= (this.radius * this.radius)) {

@@ -12,6 +12,7 @@ export default class Fruit extends Phaser.Physics.Arcade.Image {
 	constructor(scene, x, y, texture, frame) {
 		super(scene, x ?? 0, y ?? 0, texture || "sprite_fruit", frame);
 
+		this.setOrigin(0.5, 0);
 		scene.physics.add.existing(this, false);
 		this.body.pushable = false;
 		this.body.immovable = true;

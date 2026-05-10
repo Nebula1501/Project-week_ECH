@@ -1,5 +1,5 @@
 {
-    "id": "85d792b1-b364-40c7-a71c-ad1779d2ab9f",
+    "id": "31093b2c-adb8-4fec-80be-cc7a72f12c91",
     "sceneType": "PREFAB",
     "settings": {
         "exportClass": true,
@@ -14,24 +14,17 @@
     "displayList": [
         {
             "type": "Image",
-            "id": "db675c2e-a863-43d1-bd16-3716da891f24",
-            "label": "corpse",
+            "id": "6bd831ec-aa95-4a39-9a83-f0b810aeaa0f",
+            "label": "image_1",
             "texture": {
-                "key": "sprite_corpse"
+                "key": "A_Bush"
             },
-            "scaleX": 0.15,
-            "scaleY": 0.2,
-            "originY": 0,
-            "ArcadeComponent.active": true,
-            "body.allowGravity": false,
-            "body.pushable": false,
-            "body.width": 860,
-            "body.height": 482,
+            "originY": 1,
             "list": [
                 {
-                    "prefabId": "65f02b2d-0997-4ba5-9ef6-efc4b003d28c",
-                    "id": "bb2bcee8-6ec8-4a65-9a3a-5846ef5791b8",
-                    "label": "corpsePickup"
+                    "prefabId": "7d41317a-4090-4b04-a60b-37f321621170",
+                    "id": "bc978ab1-7269-467e-82dd-3cd5a15ac556",
+                    "label": "ySort"
                 }
             ]
         }
