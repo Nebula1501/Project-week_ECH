@@ -81,6 +81,9 @@ export default class PlayerDeath extends ScriptNode {
 		
 		// Fallback wait and restart
 		this.scene.time.delayedCall(1000, () => {
+			this.scene.globalEntities = [];
+			this.scene.globalObstacles = [];
+			this.scene.creatureObstacles = [];
 			this.scene.scene.restart();
 		});
 	}

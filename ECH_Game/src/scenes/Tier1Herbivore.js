@@ -14,6 +14,7 @@ import AttackResolution from "./AttackResolution.js";
 import Tier1HerbivoreController from "./Tier1HerbivoreController.js";
 import DetectionGlow from "./DetectionGlow.js";
 import SquashStretch from "./SquashStretch.js";
+import AtmosphereDepth from "./AtmosphereDepth.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -59,6 +60,9 @@ export default class Tier1Herbivore extends Phaser.Physics.Arcade.Sprite {
 
 		// squashStretch
 		new SquashStretch(this);
+
+		// atmosphereDepth
+		new AtmosphereDepth(this);
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.

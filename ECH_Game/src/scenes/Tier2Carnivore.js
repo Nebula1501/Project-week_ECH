@@ -15,6 +15,7 @@ import BehaviourPatrol from "./BehaviourPatrol.js";
 import BehaviourCombat from "./BehaviourCombat.js";
 import DetectionGlow from "./DetectionGlow.js";
 import SquashStretch from "./SquashStretch.js";
+import AtmosphereDepth from "./AtmosphereDepth.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -63,6 +64,9 @@ export default class Tier2Carnivore extends Phaser.Physics.Arcade.Sprite {
 
 		// squashStretch
 		new SquashStretch(this);
+
+		// atmosphereDepth
+		new AtmosphereDepth(this);
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.

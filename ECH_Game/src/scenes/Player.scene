@@ -61,6 +61,11 @@
                     "prefabId": "44dbd259-57a9-4965-b83f-3cdde754b17b",
                     "id": "19bb92b7-3c98-47a5-8c54-66651d141812",
                     "label": "playerTuning"
+                },
+                {
+                    "prefabId": "2e55141f-1ce4-452d-8133-f6e730e11d7c",
+                    "id": "9edb3850-db2d-4f89-8d39-8e1006ddfe4c",
+                    "label": "atmosphereDepth"
                 }
             ]
         }

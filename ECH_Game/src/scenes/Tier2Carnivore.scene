@@ -84,6 +84,11 @@
                     "prefabId": "28d8a426-af96-449f-b21e-91183add6fd9",
                     "id": "d66ac9d9-457b-49a1-8446-38c72c4e9f7c",
                     "label": "squashStretch"
+                },
+                {
+                    "prefabId": "2e55141f-1ce4-452d-8133-f6e730e11d7c",
+                    "id": "5da93f1f-7ede-4c51-98a2-a5c88b1e7bc4",
+                    "label": "atmosphereDepth"
                 }
             ]
         }

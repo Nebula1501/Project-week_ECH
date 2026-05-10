@@ -9,6 +9,7 @@ import Obstacle from "./Obstacle.js";
 import CameraController from "./CameraController.js";
 import HideOnAwake from "./HideOnAwake.js";
 import CreatureTuning from "./CreatureTuning.js";
+import AtmosphereFog from "./AtmosphereFog.js";
 import Tier2HerbivoreRoaming from "./Tier2HerbivoreRoaming.js";
 import Tier2Herbivore from "./Tier2Herbivore.js";
 import Tier2CarnivoreRoaming from "./Tier2CarnivoreRoaming.js";
@@ -198,6 +199,9 @@ export default class Level1 extends Phaser.Scene {
 
 		// creatureTuning
 		new CreatureTuning(obstacle);
+
+		// atmosphereFog
+		new AtmosphereFog(obstacle);
 
 		// Creatures
 		const creatures = this.add.layer();

@@ -36,6 +36,11 @@
                     "prefabId": "f6277e45-aff8-48dd-904f-eef5d1c28b1e",
                     "id": "9e348130-d1b2-494e-88fc-949d13f7e240",
                     "label": "syncPhysicsBody"
+                },
+                {
+                    "prefabId": "2e55141f-1ce4-452d-8133-f6e730e11d7c",
+                    "id": "9fac85d6-d63d-42c5-a6d1-d619f1b1739e",
+                    "label": "atmosphereDepth"
                 }
             ]
         }

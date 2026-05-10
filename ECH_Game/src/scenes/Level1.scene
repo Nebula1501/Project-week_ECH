@@ -89,6 +89,11 @@
                             "prefabId": "1e32ffd6-3bb2-419a-b4e6-fbe5b6826322",
                             "id": "74589a18-d74f-462a-ac29-20cc27c037e0",
                             "label": "creatureTuning"
+                        },
+                        {
+                            "prefabId": "57958cb2-98f2-4eaf-a0a5-9c0e8a7e6b20",
+                            "id": "a1584209-1cfe-425e-b261-da482e1555da",
+                            "label": "atmosphereFog"
                         }
                     ]
                 }

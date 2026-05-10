@@ -51,12 +51,14 @@ export default class DetectionRadius extends ScriptNode {
 			if (!tag || !detectableTypes.includes(tag)) return;
 			if (child === this.gameObject) return; // ignore self
 
-			const dist = Phaser.Math.Distance.Between(
+			// --- CPU OPTIMIZATION ---
+			// Use DistanceSquared to avoid heavy Math.sqrt() calculations on the CPU
+			const distSq = Phaser.Math.Distance.Squared(
 				this.gameObject.x, this.gameObject.y,
 				child.x, child.y
 			);
 
-			if (dist <= this.radius) {
+			if (distSq <= (this.radius * this.radius)) {
 				newDetected.push({ tag, entity: child });
 			}
 		});

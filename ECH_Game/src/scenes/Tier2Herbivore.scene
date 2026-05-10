@@ -79,6 +79,11 @@
                     "prefabId": "2d637e1c-d2c6-44b2-960b-522f09738667",
                     "id": "f0e121b8-926b-4899-af2a-e5773e41380d",
                     "label": "detectionGlow"
+                },
+                {
+                    "prefabId": "2e55141f-1ce4-452d-8133-f6e730e11d7c",
+                    "id": "9997ffec-24ce-4a10-b4a0-535581522bdc",
+                    "label": "atmosphereDepth"
                 }
             ]
         }

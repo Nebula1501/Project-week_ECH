@@ -5,6 +5,7 @@
 
 import CorpsePickup from "./CorpsePickup.js";
 import SyncPhysicsBody from "./SyncPhysicsBody.js";
+import AtmosphereDepth from "./AtmosphereDepth.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -25,6 +26,9 @@ export default class Corpse extends Phaser.GameObjects.Image {
 
 		// syncPhysicsBody
 		new SyncPhysicsBody(this);
+
+		// atmosphereDepth
+		new AtmosphereDepth(this);
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.

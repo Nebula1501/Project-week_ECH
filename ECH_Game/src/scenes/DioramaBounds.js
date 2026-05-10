@@ -21,11 +21,21 @@ export default class DioramaBounds extends ScriptNode {
 
 	awake() {
 		const layer = this.gameObject;
-		const tilemap = layer.tilemap;
-		this.top = layer.y;
-		this.left = layer.x;
-		this.bottom = layer.y + (tilemap.height * tilemap.tileHeight);
-		this.right = layer.x + (tilemap.width * tilemap.tileWidth);
+		const tilemap = layer?.tilemap;
+		
+		if (!tilemap) {
+			console.warn("DioramaBounds should be attached to a Tilemap Layer. Using fallback bounds.");
+			this.top = layer.y || 0;
+			this.left = layer.x || 0;
+			this.bottom = (layer.y || 0) + (layer.displayHeight || layer.height || this.scene.scale.height);
+			this.right = (layer.x || 0) + (layer.displayWidth || layer.width || this.scene.scale.width);
+		} else {
+			this.top = layer.y;
+			this.left = layer.x;
+			this.bottom = layer.y + (tilemap.height * tilemap.tileHeight);
+			this.right = layer.x + (tilemap.width * tilemap.tileWidth);
+		}
+
 		this.scene.dioramaBounds = this;
 	}
 
