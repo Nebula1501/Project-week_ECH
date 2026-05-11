@@ -382,11 +382,15 @@
             "id": "ecf990d1-6650-4753-bfa0-81a3eab36040",
             "unlock": [
                 "x",
-                "y"
+                "y",
+                "scaleX",
+                "scaleY"
             ],
             "label": "levelExit",
-            "x": 1308,
-            "y": 539
+            "x": 6216,
+            "y": 1678,
+            "scaleX": 2,
+            "scaleY": 2
         }
     ],
     "plainObjects": [

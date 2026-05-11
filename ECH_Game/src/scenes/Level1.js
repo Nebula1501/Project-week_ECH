@@ -296,8 +296,10 @@ export default class Level1 extends Phaser.Scene {
 		envAss_7.scaleY = 0.5;
 
 		// levelExit
-		const levelExit = new LevelExit(this, 1308, 539);
+		const levelExit = new LevelExit(this, 6216, 1678);
 		this.add.existing(levelExit);
+		levelExit.scaleX = 2;
+		levelExit.scaleY = 2;
 
 		this.editabletilemap = editabletilemap;
 

@@ -24,6 +24,11 @@
                     "prefabId": "657a7a58-492f-4669-8a0f-8b109052cfc0",
                     "id": "8023adae-edc8-464d-bbb0-245373fa021e",
                     "label": "levelExitLogic"
+                },
+                {
+                    "prefabId": "18c8b3f2-e174-41b7-8d51-4f40f50c416d",
+                    "id": "f676c7c4-c5f4-4ac9-b00c-69dddc8e3b53",
+                    "label": "hideOnAwake"
                 }
             ]
         }

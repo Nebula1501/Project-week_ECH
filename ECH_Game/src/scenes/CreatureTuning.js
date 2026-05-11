@@ -86,7 +86,7 @@ export default class CreatureTuning extends ScriptNode {
 		this.tier2Herbivore = {
 			detectionRadius: 250,
 			neutralSpeed: 60,
-			fleeSpeed: 160,
+			fleeSpeed: 250,
 			chaseSpeed: 120,
 			eatMoveSpeed: 80,
 			loiterRadius: 150,
@@ -103,7 +103,7 @@ export default class CreatureTuning extends ScriptNode {
 			...this.tier2Herbivore, // Inherit base values, override below
 			detectionRadius: 250,
 			neutralSpeed: 50,
-			fleeSpeed: 200,
+			fleeSpeed: 250,
 			eatMoveSpeed: 75,
 			loiterRadius: 125,
 			directionChangeInterval: 3000,

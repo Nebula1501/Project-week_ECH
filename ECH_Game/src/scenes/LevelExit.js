@@ -4,6 +4,7 @@
 /* START OF COMPILED CODE */
 
 import LevelExitLogic from "./LevelExitLogic.js";
+import HideOnAwake from "./HideOnAwake.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -16,6 +17,9 @@ export default class LevelExit extends Phaser.GameObjects.Rectangle {
 
 		// levelExitLogic
 		new LevelExitLogic(this);
+
+		// hideOnAwake
+		new HideOnAwake(this);
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.
