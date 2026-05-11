@@ -76,6 +76,11 @@
                     ],
                     "label": "ySort",
                     "isStatic": false
+                },
+                {
+                    "prefabId": "00686648-61d6-4546-863a-7d9b6ae6506b",
+                    "id": "0640d3dd-c192-40b9-b716-dd3483c34831",
+                    "label": "playerSpawnAnim"
                 }
             ]
         }

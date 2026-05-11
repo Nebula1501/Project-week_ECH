@@ -82,7 +82,11 @@ export default class MainMenu extends Phaser.Scene {
 			});
 		};
 
-		makeButton(H * 0.52, 'START GAME', () => this.scene.stop());
+		makeButton(H * 0.52, 'START GAME', () => {
+			const level1 = this.scene.get('Level1');
+			if (level1) level1.events.emit('triggerPlayerSpawn');
+			this.scene.stop();
+		});
 		makeButton(H * 0.63, 'LEVEL SELECT', () => this.scene.start('LevelSelect'));
 		makeButton(H * 0.74, 'QUIT', () => {
 			// Browser can't force quit — show message instead

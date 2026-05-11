@@ -12,6 +12,7 @@ import PlayerDeath from "./PlayerDeath.js";
 import PlayerTuning from "./PlayerTuning.js";
 import AtmosphereDepth from "./AtmosphereDepth.js";
 import YSort from "./YSort.js";
+import PlayerSpawnAnim from "./PlayerSpawnAnim.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -53,6 +54,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
 		// ySort
 		const ySort = new YSort(this);
+
+		// playerSpawnAnim
+		new PlayerSpawnAnim(this);
 
 		// ySort (prefab fields)
 		ySort.isStatic = false;

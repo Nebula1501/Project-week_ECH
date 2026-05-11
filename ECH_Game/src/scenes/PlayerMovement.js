@@ -52,6 +52,7 @@ export default class PlayerMovement extends ScriptNode {
 	update() {
 		if (!this.gameObject || !this.gameObject.body) return;
 		if (this.gameObject.getData('isDead')) return;
+		if (this.gameObject.getData('spawnLocked')) return;
 
 		const body = this.gameObject.body;
 		const cursors = this.cursors;

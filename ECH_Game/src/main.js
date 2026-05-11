@@ -5,6 +5,7 @@ import Level1 from './scenes/Level1.js';
 import Level2 from './scenes/Level2.js';
 import MainMenu from './scenes/MainMenu.js';
 import LevelSelect from './scenes/LevelSelect.js';
+import SpawnCinematic from './scenes/SpawnCinematic.js';
 
 window.addEventListener('load', function () {
 
@@ -16,6 +17,7 @@ window.addEventListener('load', function () {
 	game.scene.add("Level", Level);
 	game.scene.add("MainMenu", MainMenu);
 	game.scene.add("LevelSelect", LevelSelect);
+	game.scene.add("SpawnCinematic", SpawnCinematic);
 	game.scene.add("Boot", Boot, true);
 });
 
