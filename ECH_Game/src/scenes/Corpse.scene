@@ -21,7 +21,6 @@
             },
             "scaleX": 0.15,
             "scaleY": 0.2,
-            "originY": 0,
             "ArcadeComponent.active": true,
             "body.allowGravity": false,
             "body.pushable": false,

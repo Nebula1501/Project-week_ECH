@@ -14,7 +14,7 @@ export default class PlayerTuning extends ScriptNode {
 		// =============================================
 		
 		this.movement = {
-			speed: 250 // [px/sec] Walking speed
+			speed: 200 // [px/sec] Walking speed
 		};
 
 		this.throw = {

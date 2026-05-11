@@ -200,8 +200,11 @@ export default class PlayerThrow extends ScriptNode {
 						if (!thrownFruit.getData('isHeld') &&
 							!thrownFruit.getData('pickupDisabled')) {
 							const type = thrownFruit.getData('type') ?? this.heldItemType;
-							this.scene.playerInventory.addItem(type);
-							thrownFruit.destroy();
+							const inv = this.scene.playerInventory;
+							if (inv && !inv.isFull()) {
+								inv.addItem(type);
+								thrownFruit.destroy();
+							}
 						}
 					});
 				});
