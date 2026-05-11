@@ -29,9 +29,6 @@ export default class MainMenu extends Phaser.Scene {
 		const W = this.scale.width;   // 1280
 		const H = this.scale.height;  // 720
 
-		// Dark purple background
-		this.add.rectangle(W/2, H/2, W, H, 0x1a0a2e);
-
 		// Atmospheric gradient bands (layered rectangles)
 		this.add.rectangle(W/2, H * 0.25, W, H * 0.5, 0x2d1b4e, 0.6);
 		this.add.rectangle(W/2, H * 0.75, W, H * 0.5, 0x0d0618, 0.7);
@@ -85,7 +82,7 @@ export default class MainMenu extends Phaser.Scene {
 			});
 		};
 
-		makeButton(H * 0.52, 'START GAME', () => this.scene.start('Level1'));
+		makeButton(H * 0.52, 'START GAME', () => this.scene.stop());
 		makeButton(H * 0.63, 'LEVEL SELECT', () => this.scene.start('LevelSelect'));
 		makeButton(H * 0.74, 'QUIT', () => {
 			// Browser can't force quit — show message instead
@@ -96,8 +93,6 @@ export default class MainMenu extends Phaser.Scene {
 			}).setOrigin(0.5);
 		});
 
-		// Fade in on open
-		this.cameras.main.fadeIn(600, 0, 0, 0);
 	}
 
 	/* END-USER-CODE */
