@@ -19,8 +19,8 @@
             "texture": {
                 "key": "sprite_herb2"
             },
-            "scaleX": 0.5,
-            "scaleY": 0.5,
+            "scaleX": 0.27,
+            "scaleY": 0.27,
             "originY": 1,
             "body.width": 750,
             "body.height": 650,

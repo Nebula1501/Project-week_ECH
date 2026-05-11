@@ -219,7 +219,7 @@ export default class SquashStretch extends ScriptNode {
 	}
 
 	resetScale() {
-		if (this.gameObject) {
+		if (this.gameObject && this.baseScale) {
 			this.gameObject.scaleX = this.baseScale.x;
 			this.gameObject.scaleY = this.baseScale.y;
 		}

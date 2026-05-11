@@ -42,17 +42,17 @@ export default class CreatureTuning extends ScriptNode {
 
 		// Aggressive Herbivore - Chases player/predators out of territory, eats food
 		this.tier1Herbivore = {
-			detectionRadius: 200,
+			detectionRadius: 450,
 			neutralSpeed: 60,
-			fleeSpeed: 160,
-			chaseSpeed: 140,
+			fleeSpeed: 200,
+			chaseSpeed: 300,
 			eatMoveSpeed: 80,
-			loiterRadius: 150,
+			loiterRadius: 200,
 			directionChangeInterval: 2000,
 			loiterPauseDuration: 1200,
 			returnPauseDuration: 1000,
 			fleeDuration: 2000,
-			eatDuration: 2000,
+			eatDuration: 3000,
 			combatPower: 4
 		};
 

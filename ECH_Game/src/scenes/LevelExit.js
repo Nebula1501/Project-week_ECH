@@ -26,8 +26,12 @@ export default class LevelExit extends ScriptNode {
 		}
 
 		// You should add a User Property named 'targetScene' to this ScriptNode in Phaser Editor.
-		// If you forget, we'll default to "Level1" to prevent crashes.
-		this.targetScene = this.targetScene || "Level1";
+		// If you forget, we'll try to auto-detect the next level or default to "Level1".
+		let nextLevel = "Level1";
+		if (this.scene.scene.key === "Level1") nextLevel = "Level2";
+		else if (this.scene.scene.key === "Level2") nextLevel = "Level3";
+
+		this.targetScene = this.targetScene || nextLevel;
 
 		this.scene.events.once('create', () => {
 			const player = (this.scene.globalEntities || []).find(c => c && c.getData && c.getData('type') === 'player');

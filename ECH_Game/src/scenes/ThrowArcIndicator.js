@@ -51,8 +51,9 @@ export default class ThrowArcIndicator extends ScriptNode {
 		const throwDistance = this.scene.playerTuning?.throw?.distance ?? 380;
 
 		// Target landing spot tracks the mouse but is clamped to the max throw distance
-		const mouseX = pointer.worldX;
-		const mouseY = pointer.worldY;
+		const worldPoint = this.scene.cameras.main.getWorldPoint(pointer.x, pointer.y);
+		const mouseX = worldPoint.x;
+		const mouseY = worldPoint.y;
 
 		const distToMouse = Phaser.Math.Distance.Between(startX, playerY, mouseX, mouseY);
 		const angle = Phaser.Math.Angle.Between(startX, playerY, mouseX, mouseY);
@@ -67,8 +68,8 @@ export default class ThrowArcIndicator extends ScriptNode {
 			this._currentLandX = targetLandX;
 			this._currentLandY = targetLandY;
 		} else {
-			this._currentLandX += (targetLandX - this._currentLandX) * 0.2;
-			this._currentLandY += (targetLandY - this._currentLandY) * 0.2;
+			this._currentLandX += (targetLandX - this._currentLandX) * 0.6;
+			this._currentLandY += (targetLandY - this._currentLandY) * 0.6;
 		}
 
 		const landX = this._currentLandX;
