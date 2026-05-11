@@ -62,6 +62,13 @@
                 "key": "guapen"
             },
             {
+                "url": [
+                    "src/scenes/LevelExitLogic.js"
+                ],
+                "type": "scripts",
+                "key": "LevelExitLogic"
+            },
+            {
                 "url": "assets/animations/player/player_idle.json",
                 "type": "animation",
                 "key": "player_idle"

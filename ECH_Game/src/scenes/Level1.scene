@@ -376,6 +376,17 @@
             "y": 2918,
             "scaleX": 0.5,
             "scaleY": 0.5
+        },
+        {
+            "prefabId": "d2584426-6d45-4343-b0e2-027028e5e212",
+            "id": "ecf990d1-6650-4753-bfa0-81a3eab36040",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "levelExit",
+            "x": 1308,
+            "y": 539
         }
     ],
     "plainObjects": [

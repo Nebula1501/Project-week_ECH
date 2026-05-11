@@ -17,6 +17,7 @@ import Tier2Carnivore from "./Tier2Carnivore.js";
 import Checkpoint from "./Checkpoint.js";
 import Player from "./Player.js";
 import EnvAss from "./EnvAss.js";
+import LevelExit from "./LevelExit.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -293,6 +294,10 @@ export default class Level1 extends Phaser.Scene {
 		this.add.existing(envAss_7);
 		envAss_7.scaleX = 0.5;
 		envAss_7.scaleY = 0.5;
+
+		// levelExit
+		const levelExit = new LevelExit(this, 1308, 539);
+		this.add.existing(levelExit);
 
 		this.editabletilemap = editabletilemap;
 
