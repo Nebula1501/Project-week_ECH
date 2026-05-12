@@ -20,11 +20,6 @@ export default class PlayerMovement extends ScriptNode {
 	/* START-USER-CODE */
 
 	awake() {
-		// Snap to checkpoint if one exists globally
-		const checkpoint = this.scene.game.registry.get('activeCheckpoint');
-		if (checkpoint) {
-			this.gameObject.setPosition(checkpoint.x, checkpoint.y);
-		}
 
 		this.cursors = this.scene.input.keyboard.createCursorKeys();
 		this.wasd = this.scene.input.keyboard.addKeys({

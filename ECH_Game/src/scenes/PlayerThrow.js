@@ -41,6 +41,7 @@ export default class PlayerThrow extends ScriptNode {
 	update() {
 		if (!this.gameObject || !this.gameObject.body) return;
 		if (this.gameObject.getData('isDead')) return;
+		if (this.gameObject.getData('isTransitioning')) return;
 
 		if (Phaser.Input.Keyboard.JustDown(this.spaceKey)) {
 			const inv = this.scene.playerInventory;

@@ -101,6 +101,18 @@ export default class DetectionGlow extends ScriptNode {
 		const myX = this.gameObject.body ? this.gameObject.body.center.x : this.gameObject.x;
 		const myY = this.gameObject.body ? this.gameObject.body.center.y : this.gameObject.y;
 
+		// --- CPU & GPU OPTIMIZATION: CAMERA CULLING ---
+		const view = this.scene.cameras.main.worldView;
+		if (
+			myX < view.left - 200 || myX > view.right + 200 ||
+			myY < view.top - 200 || myY > view.bottom + 200
+		) {
+			if (this.glowGraphic.visible) this.glowGraphic.setVisible(false);
+			return;
+		}
+		
+		if (!this.glowGraphic.visible) this.glowGraphic.setVisible(true);
+
 		// Keep the glow strictly centered on the creature as it moves
 		this.glowGraphic.setPosition(myX, myY);
 

@@ -5,6 +5,7 @@
 
 import ScriptNode from "../../phaserjs_editor_scripts_base/ScriptNode.js";
 /* START-USER-IMPORTS */
+import Corpse from "./Corpse.js";
 /* END-USER-IMPORTS */
 
 export default class PlayerDeath extends ScriptNode {
@@ -58,6 +59,7 @@ export default class PlayerDeath extends ScriptNode {
 
 	die(killer) {
 		this.gameObject.setData('isDead', true);
+		this.scene.isPlayerDead = true; // Tell the CameraController to let go
 		
 		// Stop player movement immediately
 		this.gameObject.body.setVelocity(0);
@@ -65,26 +67,58 @@ export default class PlayerDeath extends ScriptNode {
 		// Freeze scene physics for dramatic "Game Over" effect
 		this.scene.physics.pause();
 
-		// Play death animation (Commented out until ready)
-		/*
+		// Dramatic Camera FX
+		const cam = this.scene.cameras.main;
+
+		this.scene.tweens.add({
+			targets: cam,
+			zoom: cam.zoom * 1.3, // Zoom in by 30%
+			duration: 1000,
+			ease: 'Sine.easeInOut'
+		});
+		cam.pan(this.gameObject.x, this.gameObject.y, 1000, 'Sine.easeInOut');
+
 		if (this.gameObject.anims && this.scene.anims.exists('player_death')) {
 			this.gameObject.play('player_death', true);
 			this.gameObject.once('animationcomplete-player_death', () => {
-				this.scene.scene.restart(); // Restart scene after death
+				this.spawnCorpseAndFeast();
 			});
 		} else {
 			this.scene.time.delayedCall(1000, () => {
-				this.scene.scene.restart();
+				this.spawnCorpseAndFeast();
 			});
 		}
-		*/
+	}
+
+	spawnCorpseAndFeast() {
+		// Hide and disable the player completely
+		this.gameObject.setVisible(false);
+		if (this.gameObject.body) this.gameObject.body.enable = false;
+
+		// Remove player from global tracking so AI stops hunting them
+		if (this.scene.globalEntities) {
+			this.scene.globalEntities = this.scene.globalEntities.filter(e => e !== this.gameObject);
+		}
+
+		// Swap player with a fresh corpse
+		const corpse = new Corpse(this.scene, this.gameObject.x, this.gameObject.y);
+		this.scene.add.existing(corpse);
 		
-		// Fallback wait and restart
-		this.scene.time.delayedCall(1000, () => {
-			this.scene.globalEntities = [];
-			this.scene.globalObstacles = [];
-			this.scene.creatureObstacles = [];
-			this.scene.scene.restart();
+		if (!this.scene.globalEntities) this.scene.globalEntities = [];
+		this.scene.globalEntities.push(corpse);
+
+		// Unfreeze the game so the killer can feast!
+		this.scene.physics.resume();
+
+		// Wait 5 seconds to force the player to watch, then fade and restart
+		this.scene.time.delayedCall(5000, () => {
+			this.scene.cameras.main.fadeOut(1000, 0, 0, 0);
+			this.scene.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+				this.scene.globalEntities = [];
+				this.scene.globalObstacles = [];
+				this.scene.creatureObstacles = [];
+				this.scene.scene.restart();
+			});
 		});
 	}
 

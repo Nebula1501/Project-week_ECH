@@ -25,6 +25,11 @@
                     "prefabId": "7d41317a-4090-4b04-a60b-37f321621170",
                     "id": "bc978ab1-7269-467e-82dd-3cd5a15ac556",
                     "label": "ySort"
+                },
+                {
+                    "prefabId": "2e55141f-1ce4-452d-8133-f6e730e11d7c",
+                    "id": "1755659e-f4d7-4818-86aa-c62f9220b3c3",
+                    "label": "atmosphereDepth"
                 }
             ]
         }
