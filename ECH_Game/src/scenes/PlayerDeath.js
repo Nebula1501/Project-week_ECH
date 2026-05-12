@@ -120,6 +120,9 @@ export default class PlayerDeath extends ScriptNode {
 		this.scene.time.delayedCall(5000, () => {
 			this.scene.cameras.main.fadeOut(1000, 0, 0, 0);
 			this.scene.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+				// Clear the inventory on death to prevent puzzle-breaking carry-over
+				this.scene.game.registry.remove('savedInventory');
+				
 				this.scene.globalEntities = [];
 				this.scene.globalObstacles = [];
 				this.scene.creatureObstacles = [];

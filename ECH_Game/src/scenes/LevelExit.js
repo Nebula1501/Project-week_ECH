@@ -49,11 +49,8 @@ export default class LevelExit extends ScriptNode {
 		player.setData('isTransitioning', true);
 		if (player.body) player.body.setVelocity(0, 0);
 
-		// Save the player's held inventory before transitioning
-		const inv = this.scene.playerInventory;
-		if (inv) {
-			this.scene.game.registry.set('savedInventory', inv.items);
-		}
+		// Clear the saved inventory so the next puzzle room starts fresh
+		this.scene.game.registry.remove('savedInventory');
 
 		this.scene.game.registry.remove('activeCheckpoint');
 		this.scene.cameras.main.fadeOut(1000, 0, 0, 0);
