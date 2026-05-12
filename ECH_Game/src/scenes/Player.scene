@@ -21,6 +21,7 @@
             },
             "scaleX": 0.2,
             "scaleY": 0.2,
+            "originY": 1,
             "animationPlayMethod": 1,
             "animationKey": "player_idle",
             "animationPreview": true,
@@ -51,6 +52,46 @@
                     "prefabId": "a8e0b486-9684-4c8c-9792-559e58e128f4",
                     "id": "199e3f7b-0627-4d1b-b54c-91b9dbf4f655",
                     "label": "throwArcIndicator"
+                },
+                {
+                    "prefabId": "b5d8e730-c5a4-4605-aab5-da20ece317ef",
+                    "id": "4c1a6307-169e-48b8-82cd-8e9c91808c94",
+                    "label": "playerDeath"
+                },
+                {
+                    "prefabId": "44dbd259-57a9-4965-b83f-3cdde754b17b",
+                    "id": "19bb92b7-3c98-47a5-8c54-66651d141812",
+                    "label": "playerTuning"
+                },
+                {
+                    "prefabId": "2e55141f-1ce4-452d-8133-f6e730e11d7c",
+                    "id": "9edb3850-db2d-4f89-8d39-8e1006ddfe4c",
+                    "label": "atmosphereDepth"
+                },
+                {
+                    "prefabId": "7d41317a-4090-4b04-a60b-37f321621170",
+                    "id": "e65bed5c-0341-49f0-8d2f-7f9972dcd2e7",
+                    "unlock": [
+                        "isStatic"
+                    ],
+                    "label": "ySort",
+                    "isStatic": false
+                },
+                {
+                    "prefabId": "767ba779-bd8e-4dfc-934b-075ac0ea8b87",
+                    "id": "94f6feae-c04a-494e-a83c-f9e914231f15",
+                    "label": "playerSpawn"
+                },
+                {
+                    "prefabId": "e3b478cf-92e3-499e-b5b4-edc405471b3e",
+                    "id": "dc99e13c-19f6-4f2d-8990-1efa07f82704",
+                    "unlock": [
+                        "dustColour",
+                        "dustScale"
+                    ],
+                    "label": "movementDust",
+                    "dustColour": "#ffffffff",
+                    "dustScale": 0.5
                 }
             ]
         }

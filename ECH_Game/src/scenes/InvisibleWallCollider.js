@@ -24,32 +24,13 @@ export default class InvisibleWallCollider extends ScriptNode {
 		this.scene.physics.add.existing(this.gameObject, true);
 		this.gameObject._isInvisibleWall = true;
 
-		this.scene.events.once('create', () => {
-			this.registerCollisions();
-		});
-	}
-
-	registerCollisions() {
-		const wall = this.gameObject;
-		const allEntities = this.scene.children.list.filter(child => {
-			const name = child.constructor.name;
-			return name === 'Player' ||
-				   name === 'Tier2Herbivore' ||
-				   name === 'Tier2Carnivore' ||
-				   name === 'Tier1Herbivore' ||
-				   name === 'Tier1Carnivore' ||
-				   name === 'Mimic' ||
-				   name === 'Tier2HerbivoreRoaming' ||
-				   name === 'Tier2CarnivoreRoaming' ||
-				   name === 'Tier1HerbivoreRoaming' ||
-				   name === 'Tier1CarnivoreRoaming';
-		});
-
-		allEntities.forEach(entity => {
-			this.scene.physics.add.collider(entity, wall);
-		});
-
-		console.log('InvisibleWall registered collisions with', allEntities.length, 'entities');
+		// Initialize the global registry if it doesn't exist yet
+		if (!this.scene.globalObstacles) {
+			this.scene.globalObstacles = [];
+		}
+		
+		// Announce myself to the scene
+		this.scene.globalObstacles.push(this.gameObject);
 	}
 
 	/* END-USER-CODE */

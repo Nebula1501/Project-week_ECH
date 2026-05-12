@@ -22,134 +22,170 @@ export default class PlayerThrow extends ScriptNode {
 	/* START-USER-CODE */
 
 	awake() {
-		this.throwSpeed = 800;
 		this.spaceKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-		this.heldFruit = null;
+		this.cKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
 		this.heldItemType = null;
+		this.isAiming = false;
 		this.gameObject._playerThrow = this;
+
+		// Execute throw when clicking left mouse button while aiming
+		this.scene.input.on('pointerdown', (pointer) => {
+			if (this.scene.game.registry.get('isMenuOpen')) return;
+
+			if (pointer.leftButtonDown() && this.isAiming && !this.gameObject.getData('isDead')) {
+				this.isAiming = false;
+				this.releaseFruit();
+			}
+		}, this);
 	}
 
 	update() {
+		if (!this.gameObject || !this.gameObject.body) return;
+		if (this.gameObject.getData('isDead')) return;
+		if (this.gameObject.getData('isTransitioning')) return;
+		if (this.scene.game.registry.get('isMenuOpen')) return;
+
 		if (Phaser.Input.Keyboard.JustDown(this.spaceKey)) {
-			this.spawnHeldFruit();
+			const inv = this.scene.playerInventory;
+			if (!this.isAiming && inv && inv.items.length > 0) {
+				this.isAiming = true;
+				this.heldItemType = inv.getCurrentItem() ?? 'food';
+				console.log('Aiming:', this.heldItemType);
+			}
 		}
 
-		if (this.heldFruit) {
-			this.updateHeldFruitPosition();
-		}
-
-		if (Phaser.Input.Keyboard.JustUp(this.spaceKey)) {
-			this.releaseFruit();
+		if (this.isAiming && Phaser.Input.Keyboard.JustDown(this.cKey)) {
+			this.cancelThrow();
 		}
 	}
 
 	getWorldPosition() {
-		return { x: this.gameObject.x, y: this.gameObject.y };
+		// Offset Y so the item is held above the player's head
+		return { x: this.gameObject.x, y: this.gameObject.y - 60 };
 	}
 
-	spawnHeldFruit() {
-		const inventory = this.scene.playerInventory;
-		if (!inventory || inventory.items.length === 0) return;
-		if (this.heldFruit) return;
-
-		const currentItem = inventory.getCurrentItem();
-		const itemType = inventory.getCurrentItem() ?? 'food';
-		const pos = this.getWorldPosition();
-
-		let heldObject;
-		if (itemType === 'corpse') {
-			heldObject = new Corpse(this.scene, pos.x, pos.y);
-		} else {
-			heldObject = new Fruit(this.scene, pos.x, pos.y);
-		}
-
-		this.scene.add.existing(heldObject);
-		heldObject.body.enable = false;
-		heldObject.setData('isHeld', true);
-		this.heldFruit = heldObject;
-		this.heldItemType = itemType;
-		console.log('Held:', itemType);
-	}
-
-	updateHeldFruitPosition() {
-		const pos = this.getWorldPosition();
-		this.heldFruit.setPosition(pos.x, pos.y);
+	cancelThrow() {
+		this.isAiming = false;
+		this.heldItemType = null;
+		console.log('Throw cancelled');
 	}
 
 	releaseFruit() {
-		if (!this.heldFruit) return;
-
 		const inventory = this.scene.playerInventory;
-		if (inventory) inventory.removeItem();
+		if (!inventory || inventory.items.length === 0) return;
+
+		// Capture type before removing
+		const itemType = this.heldItemType || inventory.getCurrentItem() || 'food';
+		inventory.removeItem();
+
+		const pos = this.getWorldPosition();
+		let thrownFruit;
+		
+		if (itemType === 'corpse') {
+			thrownFruit = new Corpse(this.scene, pos.x, pos.y);
+		} else {
+			thrownFruit = new Fruit(this.scene, pos.x, pos.y);
+		}
+
+		this.scene.add.existing(thrownFruit);
+
+		if (!this.scene.globalEntities) this.scene.globalEntities = [];
+		this.scene.globalEntities.push(thrownFruit);
+
+		thrownFruit.setData('type', itemType);
+		thrownFruit.setData('pickupDisabled', true);
+		thrownFruit.body.enable = false;
+		
+		this.heldItemType = null;
 
 		const dir = this.gameObject.getData('lastDirection') ?? { x: 1, y: 0 };
 
-		const thrownFruit = this.heldFruit;
-		this.heldFruit = null;
-		thrownFruit.setData('pickupDisabled', true);
-
 		const startX = thrownFruit.x;
 		const startY = thrownFruit.y;
-		const worldBounds = this.scene.physics.world.bounds;
-		const throwDistance = 380;
-		const duration = 650;
+		const playerX = this.gameObject.x;
+		const playerY = this.gameObject.y;
+		const throwDistance = this.scene.playerTuning?.throw?.distance ?? 380;
+		const duration = this.scene.playerTuning?.throw?.duration ?? 650;
 
-		const landX = Phaser.Math.Clamp(
-			startX + dir.x * throwDistance,
-			worldBounds.left + 20,
-			worldBounds.right - 20
-		);
-		const landY = Phaser.Math.Clamp(
-			startY + dir.y * throwDistance,
-			worldBounds.top + 20,
-			worldBounds.bottom - 20
-		);
-		// Reduce arc for vertical throws so it doesn't fight the direction
-		const arcHeight = 180 * Math.abs(dir.x);
+		let landX, landY;
+		const indicator = this.gameObject._throwArcIndicator;
+		
+		if (indicator && indicator._currentLandX !== null) {
+			// Use the smooth lagging indicator position for the actual throw
+			landX = indicator._currentLandX;
+			landY = indicator._currentLandY;
+		} else {
+			// Fallback if indicator is missing
+			landX = playerX + dir.x * throwDistance;
+			landY = playerY + dir.y * throwDistance;
+		}
+		
+		// Fixed arc height for satisfying Z-axis pop in all directions
+		const arcHeight = this.scene.playerTuning?.throw?.arcHeight ?? 150;
 
-		thrownFruit.body.enable = false;
+		// Capture original scale so we can safely squish/stretch it
+		const baseScaleX = thrownFruit.scaleX;
+		const baseScaleY = thrownFruit.scaleY;
 
-		let elapsed = 0;
-		const flyTicker = this.scene.time.addEvent({
-			delay: 16,
-			repeat: Math.ceil(duration / 16),
-			callback: () => {
-				elapsed += 16;
-				const t = Math.min(elapsed / duration, 1);
+		this.scene.tweens.addCounter({
+			from: 0,
+			to: 1,
+			duration: duration,
+			// Custom "Hang Time" Ease: Starts fast, slows down at the peak (t=0.5), ends fast
+			ease: (t) => t + 0.15 * Math.sin(Math.PI * 2 * t),
+			onUpdate: (tween) => {
+				const t = tween.getValue();
 				thrownFruit.x = startX + (landX - startX) * t;
 				thrownFruit.y = startY + (landY - startY) * t - arcHeight * Math.sin(Math.PI * t);
+				
+				// Dynamic flight stretch: fast at start/end, normal at apex (t=0.5)
+				const speedFactor = Math.abs(t - 0.5) * 2; 
+				thrownFruit.scaleX = baseScaleX * (1 + 0.3 * speedFactor);
+				thrownFruit.scaleY = baseScaleY * (1 - 0.3 * speedFactor);
+			},
+			onComplete: () => {
+				thrownFruit.x = landX;
+				thrownFruit.y = landY;
+				thrownFruit.body.enable = true;
+				thrownFruit.body.reset(landX, landY);
+				thrownFruit.body.setAllowGravity(false);
+				thrownFruit.body.setVelocity(0, 0);
+				thrownFruit.body.immovable = true;
+				thrownFruit.setData('isHeld', false);
+				thrownFruit.setData('pickupDisabled', false);
+				console.log('Object landed');
 
-				if (t >= 1) {
-					thrownFruit.x = landX;
-					thrownFruit.y = landY;
-					thrownFruit.body.enable = true;
-					thrownFruit.body.reset(landX, landY);
-					thrownFruit.body.setAllowGravity(false);
-					thrownFruit.body.setVelocity(0, 0);
-					thrownFruit.body.immovable = true;
-					thrownFruit.setData('isHeld', false);
-					thrownFruit.setData('pickupDisabled', false);
-					console.log('Object landed');
-
-					const obstacles = this.scene.children.list.filter(
-						child => child.constructor.name === 'Obstacle'
-					);
-					if (obstacles.length > 0) {
-						this.scene.physics.add.collider(thrownFruit, obstacles);
+				// Impact Squash when hitting the ground
+				this.scene.tweens.add({
+					targets: thrownFruit,
+					scaleX: baseScaleX * 1.25,
+					scaleY: baseScaleY * 0.75,
+					duration: 100,
+					yoyo: true,
+					ease: 'Quad.easeOut',
+					onComplete: () => {
+						thrownFruit.setScale(baseScaleX, baseScaleY);
 					}
+				});
 
-					this.scene.time.delayedCall(400, () => {
-						const player = this.gameObject;
-						this.scene.physics.add.overlap(thrownFruit, player, () => {
-							if (!thrownFruit.getData('isHeld') &&
-								!thrownFruit.getData('pickupDisabled')) {
-								const type = thrownFruit.getData('type') ?? this.heldItemType;
-								this.scene.playerInventory.addItem(type);
+				if (this.scene.globalObstacles && this.scene.globalObstacles.length > 0) {
+					this.scene.physics.add.collider(thrownFruit, this.scene.globalObstacles);
+				}
+
+				this.scene.time.delayedCall(400, () => {
+					const player = this.gameObject;
+					this.scene.physics.add.overlap(thrownFruit, player, () => {
+						if (!thrownFruit.getData('isHeld') &&
+							!thrownFruit.getData('pickupDisabled')) {
+							const type = thrownFruit.getData('type') ?? itemType;
+							const inv = this.scene.playerInventory;
+							if (inv && !inv.isFull()) {
+								inv.addItem(type);
 								thrownFruit.destroy();
 							}
-						});
+						}
 					});
-				}
+				});
 			}
 		});
 

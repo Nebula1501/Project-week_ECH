@@ -74,16 +74,15 @@ export default class Preload extends Phaser.Scene {
 	}
 
 	create() {
-	    this.editorCreate();
+		// Lock controls and spawning BEFORE launching the level so there are no race conditions
+		this.registry.set('isMenuOpen', true);
 
-	    this.anims.create({
-	        key: 'player_idle',
-	        frames: this.anims.generateFrameNumbers('sprite_player', { start: 0, end: 2 }),
-	        frameRate: 6,
-	        repeat: -1
-	    });
-
-		this.scene.start("Level");
+		// Launch Level 1 in the background (concurrent scene)
+		this.scene.launch("Level1");
+		
+		// Start the Main Menu in the foreground and bring it to top
+		this.scene.start("MainMenu");
+		this.scene.bringToTop("MainMenu");
 	}
 
 	/* END-USER-CODE */

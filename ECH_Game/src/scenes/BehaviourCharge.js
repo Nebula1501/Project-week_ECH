@@ -22,6 +22,7 @@ export default class BehaviourCharge extends ScriptNode {
 		this.chargeDuration = 800;
 		this.chargeTimer = 0;
 		this.chargeDirection = { x: 0, y: 0 };
+		this.bounceTimer = 0;
 		this.active = false;
 		this.gameObject._behaviourCharge = this;
 	}
@@ -29,6 +30,7 @@ export default class BehaviourCharge extends ScriptNode {
 	onActivate() {
 		this.active = true;
 		this.chargeTimer = 0;
+		this.bounceTimer = 0;
 
 		// Lock charge direction toward player at moment of activation
 		const detected = this.gameObject._detectionRadius?.detected ?? [];
@@ -73,7 +75,40 @@ export default class BehaviourCharge extends ScriptNode {
 				);
 			}
 			this.active = false;
+			return;
 		}
+
+		if (this.bounceTimer > 0) {
+			this.bounceTimer -= this.scene.game.loop.delta;
+		} else {
+			// Bounce off walls while charging
+			const body = this.gameObject.body;
+			if (body) {
+				const blockedLeft = body.blocked.left;
+				const blockedRight = body.blocked.right;
+				const blockedUp = body.blocked.up;
+				const blockedDown = body.blocked.down;
+
+				let bounced = false;
+				if ((blockedLeft && this.chargeDirection.x < 0) || (blockedRight && this.chargeDirection.x > 0)) {
+					this.chargeDirection.x *= -1;
+					bounced = true;
+				}
+				if ((blockedUp && this.chargeDirection.y < 0) || (blockedDown && this.chargeDirection.y > 0)) {
+					this.chargeDirection.y *= -1;
+					bounced = true;
+				}
+				if (bounced) {
+					const bounceTime = this.scene.creatureTuning?.globals?.bounceTimers?.charge ?? 600;
+					this.bounceTimer = bounceTime; // Commit to the bounce to prevent pinballing
+				}
+			}
+		}
+
+		this.gameObject.body.setVelocity(
+			this.chargeDirection.x * this.chargeSpeed,
+			this.chargeDirection.y * this.chargeSpeed
+		);
 	}
 }
 

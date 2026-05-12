@@ -13,14 +13,15 @@
     },
     "displayList": [
         {
-            "type": "ArcadeImage",
+            "type": "ArcadeSprite",
             "id": "48e07d50-b039-41fd-8373-0f17f577b6ae",
             "label": "arcadeimage_1",
             "texture": {
                 "key": "sprite_herb2"
             },
-            "scaleX": 0.5,
-            "scaleY": 0.5,
+            "scaleX": 0.27,
+            "scaleY": 0.27,
+            "originY": 1,
             "body.width": 750,
             "body.height": 650,
             "list": [
@@ -78,6 +79,16 @@
                     "prefabId": "28d8a426-af96-449f-b21e-91183add6fd9",
                     "id": "2e2ac63d-cff3-4d87-86e8-f90b8ea0dd3e",
                     "label": "squashStretch"
+                },
+                {
+                    "prefabId": "2e55141f-1ce4-452d-8133-f6e730e11d7c",
+                    "id": "86ef2165-1912-4275-8fb8-f1944a5e6897",
+                    "label": "atmosphereDepth"
+                },
+                {
+                    "prefabId": "e3b478cf-92e3-499e-b5b4-edc405471b3e",
+                    "id": "465aea5c-d19d-4ca7-bf4a-38908c18d48d",
+                    "label": "movementDust"
                 }
             ]
         }

@@ -31,6 +31,11 @@
                     "prefabId": "f47ef2f3-2f81-4d15-a3c9-59e7ea7237d5",
                     "id": "055bbc68-7f49-48b2-bce4-300fd434f08c",
                     "label": "obstacleCollider"
+                },
+                {
+                    "prefabId": "f6277e45-aff8-48dd-904f-eef5d1c28b1e",
+                    "id": "16efae36-f1b4-4866-a85a-34b474777341",
+                    "label": "syncPhysicsBody"
                 }
             ]
         }

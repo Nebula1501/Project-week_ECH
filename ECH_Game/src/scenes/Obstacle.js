@@ -4,6 +4,7 @@
 /* START OF COMPILED CODE */
 
 import ObstacleCollider from "./ObstacleCollider.js";
+import SyncPhysicsBody from "./SyncPhysicsBody.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -20,6 +21,9 @@ export default class Obstacle extends Phaser.Physics.Arcade.Image {
 
 		// obstacleCollider
 		new ObstacleCollider(this);
+
+		// syncPhysicsBody
+		new SyncPhysicsBody(this);
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.

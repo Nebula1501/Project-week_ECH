@@ -14,6 +14,9 @@ import AttackResolution from "./AttackResolution.js";
 import BehaviourCombat from "./BehaviourCombat.js";
 import SquashStretch from "./SquashStretch.js";
 import DetectionGlow from "./DetectionGlow.js";
+import AtmosphereDepth from "./AtmosphereDepth.js";
+import YSort from "./YSort.js";
+import MovementDust from "./MovementDust.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -22,8 +25,9 @@ export default class Tier2Herbivore extends Phaser.Physics.Arcade.Sprite {
 	constructor(scene, x, y, texture, frame) {
 		super(scene, x ?? 0, y ?? 0, texture || "spritesheet_herb01_idle1", frame ?? 0);
 
-		this.scaleX = 0.25;
-		this.scaleY = 0.25;
+		this.scaleX = 0.2;
+		this.scaleY = 0.2;
+		this.setOrigin(0.5, 1);
 		scene.physics.add.existing(this, false);
 		this.body.setSize(420, 680, false);
 
@@ -59,6 +63,18 @@ export default class Tier2Herbivore extends Phaser.Physics.Arcade.Sprite {
 
 		// detectionGlow
 		new DetectionGlow(this);
+
+		// atmosphereDepth
+		new AtmosphereDepth(this);
+
+		// ySort
+		const ySort = new YSort(this);
+
+		// movementDust
+		new MovementDust(this);
+
+		// ySort (prefab fields)
+		ySort.isStatic = false;
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.

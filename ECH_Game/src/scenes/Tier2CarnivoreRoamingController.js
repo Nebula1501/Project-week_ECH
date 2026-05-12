@@ -23,6 +23,9 @@ export default class Tier2CarnivoreRoamingController extends ScriptNode {
 		this.gameObject.setData('type', 't2carn');
 		this.gameObject._attackResolution && (this.gameObject._attackResolution.powerValue = 3);
 
+		if (!this.scene.globalEntities) this.scene.globalEntities = [];
+		this.scene.globalEntities.push(this.gameObject);
+
 		this.scene.events.once('create', () => {
 			this.gameObject.play('tier2carn__idle', true);
 			this.setupStateMachine();
@@ -31,43 +34,11 @@ export default class Tier2CarnivoreRoamingController extends ScriptNode {
 
 	setupStateMachine() {
 		const go = this.gameObject;
-
-		// =============================================
-		// CREATURE TUNING VALUES — edit these freely
-		// =============================================
-
-		// Detection radius — how far this creature can sense other entities (px)
-		const detectionRadius = 300;
-
-		// Movement speeds (px per second)
-		const neutralSpeed = 50;        // loiter/patrol movement speed
-		const fleeSpeed = 150;          // flee movement speed
-		const chaseSpeed = 300;         // chase movement speed (set per carnivore/aggressive herb)
-		const eatMoveSpeed = 100;        // speed while moving toward food/corpse
-
-		// Loiter behaviour
-		const loiterRadius = 200;               // how far from home position creature will wander (px)
-		const directionChangeInterval = 3000;   // how often creature picks a new loiter direction (ms)
-		const loiterPauseDuration = 2250;       // pause duration between direction changes (ms)
-		const returnPauseDuration = 2000;       // pause before returning to home position (ms)
-
-		// Flee behaviour
-		const fleeDuration = 2000;      // how long creature flees before re-evaluating (ms)
-
-		// Eating behaviour
-		const eatDuration = 10000;       // how long eating animation lasts before food/corpse is destroyed (ms)
-
-		// Combat
-		const powerValue = 3;           // power value for combat resolution — higher wins
-		                                // Power scale: T1Carn=5, T1Herb=4, T2Carn=3, T2Herb=2, Mimic base=1
+		const tuning = this.scene.creatureTuning?.tier2CarnivoreRoaming ?? {};
 
 		// Chase targets — which entity types this creature will chase
 		// Available tags: 'player', 't2herb', 't1herb', 't2carn', 't1carn', 'mimic'
 		const chaseTargets = ['t2herb', 't1herb', 'player'];        // empty for herbivores, fill for carnivores and T1 herb
-
-		// =============================================
-		// STATE MACHINE WIRING — do not edit below
-		// =============================================
 
 		const stateDecider = go._stateDecider;
 		const stateManager = go._stateManager;
@@ -83,36 +54,36 @@ export default class Tier2CarnivoreRoamingController extends ScriptNode {
 		}
 
 		// Apply detection radius
-		if (go._detectionRadius) go._detectionRadius.radius = detectionRadius;
+		if (go._detectionRadius) go._detectionRadius.radius = tuning.detectionRadius ?? 300;
 
 		// Apply neutral/patrol behaviour values
 		if (patrol) {
-			patrol.moveSpeed = neutralSpeed;
-			patrol.loiterRadius = loiterRadius;
-			patrol.directionChangeInterval = directionChangeInterval;
-			patrol.pauseDuration = loiterPauseDuration;
-			patrol.returnPauseDuration = returnPauseDuration;
+			patrol.moveSpeed = tuning.neutralSpeed ?? 50;
+			patrol.loiterRadius = tuning.loiterRadius ?? 200;
+			patrol.directionChangeInterval = tuning.directionChangeInterval ?? 3000;
+			patrol.pauseDuration = tuning.loiterPauseDuration ?? 2250;
+			patrol.returnPauseDuration = tuning.returnPauseDuration ?? 2000;
 		}
 
 		// Apply flee behaviour values
 		if (flee) {
-			flee.moveSpeed = fleeSpeed;
-			flee.fleeDuration = fleeDuration;
+			flee.moveSpeed = tuning.fleeSpeed ?? 150;
+			flee.fleeDuration = tuning.fleeDuration ?? 2000;
 		}
 
 		// Apply opportunity/eat behaviour values
 		if (eatCorpse) {
-			eatCorpse.moveSpeed = eatMoveSpeed;
-			eatCorpse.eatDuration = eatDuration;
+			eatCorpse.moveSpeed = tuning.eatMoveSpeed ?? 100;
+			eatCorpse.eatDuration = tuning.eatDuration ?? 10000;
 		}
 
 		if (chase) {
 			chase.targetTags = chaseTargets;
-			chase.moveSpeed = chaseSpeed;
+			chase.moveSpeed = tuning.chaseSpeed ?? 300;
 		}
 
 		// Apply power value for combat resolution
-		if (go._attackResolution) go._attackResolution.powerValue = powerValue;
+		if (go._attackResolution) go._attackResolution.powerValue = tuning.combatPower ?? 3;
 
 		// Register behaviour nodes
 		stateManager.registerState('patrol', patrol);
@@ -142,11 +113,13 @@ export default class Tier2CarnivoreRoamingController extends ScriptNode {
 		];
 
 		// Register obstacle collision
-		const obstacles = this.scene.children.list.filter(child => 
-			child.constructor.name === 'Obstacle' || child._isInvisibleWall
-		);
-		if (obstacles.length > 0) {
-			this.scene.physics.add.collider(go, obstacles);
+		if (this.scene.globalObstacles && this.scene.globalObstacles.length > 0) {
+			this.scene.physics.add.collider(go, this.scene.globalObstacles);
+		}
+
+		// Register creature-only obstacle collision
+		if (this.scene.creatureObstacles && this.scene.creatureObstacles.length > 0) {
+			this.scene.physics.add.collider(go, this.scene.creatureObstacles);
 		}
 
 		go.setData('defaultState', 'patrol');
@@ -173,9 +146,12 @@ export default class Tier2CarnivoreRoamingController extends ScriptNode {
 		// Check if actively eating a corpse
 		const isEating = this.gameObject._stateManager?.currentState === 'eatCorpse' && 
 		                 this.gameObject._behaviourEatCorpse?.eating;
+		const isCombat = this.gameObject._stateManager?.currentState === 'combat';
 
 		// Handle animation switching
-		if (isEating) {
+		if (isCombat) {
+			this.gameObject.play('creature_combat', true);
+		} else if (isEating) {
 			this.gameObject.play('tier2carn_eat', true);
 		} else if (Math.abs(body.velocity.x) > 1 || Math.abs(body.velocity.y) > 1) {
 			const currentAnim = this.gameObject.anims.currentAnim?.key;

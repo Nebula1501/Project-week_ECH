@@ -20,25 +20,15 @@ export default class CameraController extends ScriptNode {
 	/* START-USER-CODE */
 
 	awake() {
-	    // =============================================
-	    // CAMERA TUNING VALUES — edit these freely
-	    // =============================================
+	    const tuning = this.scene.playerTuning?.camera ?? {};
+	    
+	    this.zoomLevel = tuning.zoomLevel ?? 0.8;
+	    this.lookAheadDistance = tuning.lookAheadDistance ?? 150;
+	    this.lookAheadLerp = tuning.lookAheadLerp ?? 0.05;
+	    this.deepPanDelay = tuning.deepPanDelay ?? 2000;
+	    this.deepPanDistance = tuning.deepPanDistance ?? 500;
+	    this.deepPanLerp = tuning.deepPanLerp ?? 0.015;
 
-	    // Camera Zoom
-	    this.zoomLevel = 0.8;              // Camera zoom level (1 = default, >1 = zoomed in, <1 = zoomed out)
-
-	    // Basic look-ahead (when moving or recently stopped)
-	    this.lookAheadDistance = 150;    // How far the camera pans in the direction of movement (px)
-	    this.lookAheadLerp = 0.05;       // How fast the camera pans normally (0.01 to 1.0)
-
-	    // Deep pan (when stationary for a while)
-	    this.deepPanDelay = 2000;        // How long the player must be stationary to trigger deep pan (ms)
-	    this.deepPanDistance = 500;      // How far the camera pans during deep pan (px)
-	    this.deepPanLerp = 0.015;        // How fast the camera pans during deep pan (slower for a cinematic feel)
-
-	    // =============================================
-	    // INTERNAL STATE — do not edit below
-	    // =============================================
 	    this.lookAheadOffset = { x: 0, y: 0 };
 	    this.lookAheadTarget = { x: 0, y: 0 };
 	    this.idleTimer = 0;
@@ -46,16 +36,26 @@ export default class CameraController extends ScriptNode {
 	    this.player = null;
 
 	    this.scene.events.once('create', () => {
-	        this.player = this.scene.children.list.find(child => child.constructor.name === 'Player');
+	        this.player = (this.scene.globalEntities || []).find(c => c && c.getData && c.getData('type') === 'player');
 	        if (this.player) {
-	            this.scene.cameras.main.startFollow(this.player, true, 0.08, 0.08);
+	            // Check if PlayerSpawn gave us a target landing spot
+	            const spawnTarget = this.player.getData('spawnTarget');
+	            const startX = spawnTarget ? spawnTarget.x : this.player.x;
+	            const startY = spawnTarget ? spawnTarget.y : this.player.y;
+
+	            this.scene.cameras.main.centerOn(startX, startY);
+	            if (!spawnTarget) {
+	                this.scene.cameras.main.startFollow(this.player, true, 0.08, 0.08);
+	            }
 	            this.scene.cameras.main.setZoom(this.zoomLevel);
 	        }
 	    });
 	}
 
 	update() {
+	    if (this.scene.isPlayerDead) return;
 	    if (!this.player || !this.player.body) return;
+	    if (this.player.getData('isSpawning')) return;
 
 	    const speed = Math.abs(this.player.body.velocity.x) + Math.abs(this.player.body.velocity.y);
 	    const isMoving = speed > 10;

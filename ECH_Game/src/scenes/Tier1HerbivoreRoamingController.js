@@ -23,13 +23,18 @@ export default class Tier1HerbivoreRoamingController extends ScriptNode {
 		this.gameObject.setData('type', 't1herb');
 		this.gameObject.setData('defaultState', 'neutral');
 
+		if (!this.scene.globalEntities) this.scene.globalEntities = [];
+		this.scene.globalEntities.push(this.gameObject);
+
 		this.scene.events.once('create', () => {
+			if (this.gameObject.play) this.gameObject.play('tier1herb_idle', true);
 			this.setupStateMachine();
 		});
 	}
 
 	setupStateMachine() {
 		const go = this.gameObject;
+		const tuning = this.scene.creatureTuning?.tier1Herbivore ?? {};
 
 		const stateDecider = go._stateDecider;
 		const stateManager = go._stateManager;
@@ -43,12 +48,30 @@ export default class Tier1HerbivoreRoamingController extends ScriptNode {
 			return;
 		}
 
+		// Apply detection radius
+		if (go._detectionRadius) go._detectionRadius.radius = tuning.detectionRadius ?? 200;
+
+		// Apply neutral/patrol behaviour values
+		if (neutral) {
+			neutral.moveSpeed = tuning.neutralSpeed ?? 60;
+			neutral.loiterRadius = tuning.loiterRadius ?? 150;
+			neutral.directionChangeInterval = tuning.directionChangeInterval ?? 2000;
+			neutral.pauseDuration = tuning.loiterPauseDuration ?? 1200;
+			neutral.returnPauseDuration = tuning.returnPauseDuration ?? 1000;
+		}
+
+		// Apply opportunity/eat behaviour values
+		if (opportunity) {
+			opportunity.moveSpeed = tuning.eatMoveSpeed ?? 80;
+			opportunity.eatDuration = tuning.eatDuration ?? 2000;
+		}
+
 		// Configure chase to target everything including player and carnivores
 		if (chase) chase.targetTags = ['player', 't2herb', 't2carn', 't1carn', 'mimic'];
-		if (chase) chase.moveSpeed = 140;
+		if (chase) chase.moveSpeed = tuning.chaseSpeed ?? 140;
 
 		// Set power value
-		if (go._attackResolution) go._attackResolution.powerValue = 4;
+		if (go._attackResolution) go._attackResolution.powerValue = tuning.combatPower ?? 4;
 
 		// Register behaviour nodes
 		stateManager.registerState('neutral', neutral);
@@ -73,14 +96,48 @@ export default class Tier1HerbivoreRoamingController extends ScriptNode {
 		];
 
 		// Register obstacle collision
-		const obstacles = this.scene.children.list.filter(child => child.constructor.name === 'Obstacle');
-		if (obstacles.length > 0) {
-			this.scene.physics.add.collider(go, obstacles);
+		if (this.scene.globalObstacles && this.scene.globalObstacles.length > 0) {
+			this.scene.physics.add.collider(go, this.scene.globalObstacles);
+		}
+
+		// Register creature-only obstacle collision
+		if (this.scene.creatureObstacles && this.scene.creatureObstacles.length > 0) {
+			this.scene.physics.add.collider(go, this.scene.creatureObstacles);
 		}
 
 		stateManager.switchState('neutral');
 		if (neutral) neutral.roaming = true;
 		console.log('Tier1Herbivore Roaming state machine ready');
+	}
+
+	update() {
+		if (!this.gameObject || !this.gameObject.body) return;
+
+		const body = this.gameObject.body;
+
+		// Handle sprite flipping
+		if (body.velocity.x < 0) {
+			this.gameObject.flipX = true; // Face left
+		} else if (body.velocity.x > 0) {
+			this.gameObject.flipX = false; // Face right
+		}
+
+		// Handle animation switching (safeguard in case it's still an Image instead of a Sprite)
+		if (!this.gameObject.play) return;
+
+		const isEating = this.gameObject._stateManager?.currentState === 'opportunity' && 
+		                 this.gameObject._behaviourOpportunity?.eating;
+		const isCombat = this.gameObject._stateManager?.currentState === 'combat';
+
+		if (isCombat) {
+			this.gameObject.play('creature_combat', true);
+		} else if (isEating) {
+			this.gameObject.play('tier1herb_eat', true);
+		} else if (body.velocity.x !== 0 || body.velocity.y !== 0) {
+			this.gameObject.play('tier1herb_walk', true);
+		} else {
+			this.gameObject.play('tier1herb_idle', true);
+		}
 	}
 
 	/* END-USER-CODE */

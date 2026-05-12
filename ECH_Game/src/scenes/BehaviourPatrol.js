@@ -31,6 +31,7 @@ export default class BehaviourPatrol extends ScriptNode {
 		this.returnPauseDuration = 1000;
 		this.returnPauseTimer = 0;
 		this.returnPausing = false;
+		this.bounceTimer = 0;
 		this.gameObject.setData('returning', false);
 		this.gameObject._behaviourPatrol = this;
 		this.roaming = false;
@@ -45,6 +46,7 @@ export default class BehaviourPatrol extends ScriptNode {
 		this.pauseTimer = 0;
 		this.returnPausing = false;
 		this.returnPauseTimer = 0;
+		this.bounceTimer = 0;
 		this.gameObject.setData('returning', false);
 		this.pickNewDirection();
 	}
@@ -109,13 +111,30 @@ export default class BehaviourPatrol extends ScriptNode {
 			this.gameObject.setData('returning', true);
 			return;
 		} else {
-			// Loiter — check if blocked by world bounds before applying velocity
-			const body = this.gameObject.body;
-			const blockedX = body.blocked.left || body.blocked.right;
-			const blockedY = body.blocked.up || body.blocked.down;
+			if (this.bounceTimer > 0) {
+				this.bounceTimer -= this.scene.game.loop.delta;
+			} else {
+				// Loiter — bounce off world bounds or static obstacles
+				const body = this.gameObject.body;
+				const blockedLeft = body.blocked.left;
+				const blockedRight = body.blocked.right;
+				const blockedUp = body.blocked.up;
+				const blockedDown = body.blocked.down;
 
-			if (blockedX) this.currentDirection.x *= -1;
-			if (blockedY) this.currentDirection.y *= -1;
+				let bounced = false;
+				if ((blockedLeft && this.currentDirection.x < 0) || (blockedRight && this.currentDirection.x > 0)) {
+					this.currentDirection.x *= -1;
+					bounced = true;
+				}
+				if ((blockedUp && this.currentDirection.y < 0) || (blockedDown && this.currentDirection.y > 0)) {
+					this.currentDirection.y *= -1;
+					bounced = true;
+				}
+				if (bounced) {
+					const bounceTime = this.scene.creatureTuning?.globals?.bounceTimers?.loiter ?? 800;
+					this.bounceTimer = bounceTime; // Commit to the bounce to prevent pinballing
+				}
+			}
 
 			if (this.pausing) {
 				this.gameObject.body.setVelocity(0, 0);

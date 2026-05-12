@@ -41,6 +41,11 @@ export default class BehaviourCombat extends ScriptNode {
 		if (this.gameObject.body) {
 			this.gameObject.body.setVelocity(0, 0);
 		}
+
+		// Play universal combat animation
+		if (this.gameObject.anims) {
+			this.gameObject.play('creature_combat', true);
+		}
 	}
 }
 

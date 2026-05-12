@@ -20,8 +20,9 @@
                 "key": "spritesheet_herb01_idle1",
                 "frame": 0
             },
-            "scaleX": 0.25,
-            "scaleY": 0.25,
+            "scaleX": 0.2,
+            "scaleY": 0.2,
+            "originY": 1,
             "body.width": 420,
             "body.height": 680,
             "list": [
@@ -79,6 +80,25 @@
                     "prefabId": "2d637e1c-d2c6-44b2-960b-522f09738667",
                     "id": "f0e121b8-926b-4899-af2a-e5773e41380d",
                     "label": "detectionGlow"
+                },
+                {
+                    "prefabId": "2e55141f-1ce4-452d-8133-f6e730e11d7c",
+                    "id": "9997ffec-24ce-4a10-b4a0-535581522bdc",
+                    "label": "atmosphereDepth"
+                },
+                {
+                    "prefabId": "7d41317a-4090-4b04-a60b-37f321621170",
+                    "id": "aa2c6577-ddb4-44bb-84e8-66eb7c0007e4",
+                    "unlock": [
+                        "isStatic"
+                    ],
+                    "label": "ySort",
+                    "isStatic": false
+                },
+                {
+                    "prefabId": "e3b478cf-92e3-499e-b5b4-edc405471b3e",
+                    "id": "d12b93de-f3ab-4aa0-8a9d-28d55169daf7",
+                    "label": "movementDust"
                 }
             ]
         }

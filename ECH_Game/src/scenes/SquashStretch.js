@@ -19,56 +19,92 @@ export default class SquashStretch extends ScriptNode {
 
 	/* START-USER-CODE */
 
-	awake() {
-		this.idleThreshold = 10;
-		this.maxSpeed = 300;
-		this.impactTriggerDelta = 250;
-		this.impactStopSpeed = 80;
-		this.movementStretchMin = 0.015;
-		this.movementStretchMax = 0.05;
-		this.movementTweenDuration = 240;
-		this.baseScale = new Phaser.Math.Vector2(this.gameObject.scaleX, this.gameObject.scaleY);
-		this.idleTween = null;
-		this.movementTween = null;
-		this.impactTween = null;
-		this.lastVelocity = new Phaser.Math.Vector2();
-		this.isImpacting = false;
-		this.state = 'idle';
-
-		this.scene.events.once('create', () => {
-			this.startIdleBreathing();
-		});
-	}
-
 	update() {
-		if (!this.gameObject || !this.gameObject.body) return;
+		if (!this.gameObject) return;
 
-		const body = this.gameObject.body;
-		const velocity = body.velocity;
+		// Lazy initialization ensures this works even for objects dynamically spawned mid-game!
+		if (!this._initialized) {
+			this.idleThreshold = 10;
+			this.maxSpeed = 300;
+			this.impactTriggerDelta = 250;
+			this.impactStopSpeed = 80;
+			this.movementStretchMin = 0.015;
+			this.movementStretchMax = 0.05;
+			this.movementTweenDuration = 240;
+			this.baseScale = new Phaser.Math.Vector2(this.gameObject.scaleX, this.gameObject.scaleY);
+			this.idleTween = null;
+			this.movementTween = null;
+			this.impactTween = null;
+			this.lastVelocity = new Phaser.Math.Vector2();
+			this._lastPos = new Phaser.Math.Vector2(this.gameObject.x, this.gameObject.y);
+			this.isImpacting = false;
+			this.state = 'idle';
+			this._initialized = true;
 
-		// --- ANTI-CLIPPING FIX ---
-		// If pushing against a static wall, lock scale to base scale so the hitbox
-		// doesn't shrink. Shrinking while against a wall causes it to clip through!
-		if (body.blocked.left || body.blocked.right || body.blocked.up || body.blocked.down) {
+			this.startIdleBreathing();
+		}
+		
+		if (this.gameObject.getData('isDead')) {
+			this.stopIdleBreathing();
 			this.stopMovementTween();
-			this.stopImpactTween();
-			this.resetScale();
-			this.lastVelocity.copy(velocity);
 			return;
 		}
 
-		const speed = velocity.length();
+		const body = this.gameObject.body;
+		const dt = this.scene.game.loop.delta / 1000;
+
+		let vx = 0;
+		let vy = 0;
+
+		// Use physics velocity if body is active, otherwise fallback to true positional tracking!
+		if (this.gameObject.getData('isHeld')) {
+			// Do not stretch wildly while carried in the player's hands
+		} else if (body && body.enable !== false && body.velocity) {
+			vx = body.velocity.x;
+			vy = body.velocity.y;
+		} else if (dt > 0 && this._lastPos) {
+			vx = (this.gameObject.x - this._lastPos.x) / dt;
+			vy = (this.gameObject.y - this._lastPos.y) / dt;
+		}
+
+		if (this._lastPos) this._lastPos.set(this.gameObject.x, this.gameObject.y);
+
+		// --- ANTI-CLIPPING FIX ---
+		if (body && body.blocked && (body.blocked.left || body.blocked.right || body.blocked.up || body.blocked.down)) {
+			this.stopMovementTween();
+			this.stopImpactTween();
+			this.resetScale();
+			this.lastVelocity.set(vx, vy);
+			return;
+		}
+
+		const speed = Math.sqrt(vx * vx + vy * vy);
 		const lastSpeed = this.lastVelocity.length();
 		const speedDelta = Math.abs(speed - lastSpeed);
 		const newState = speed < this.idleThreshold ? 'idle' : 'moving';
 
 		const stopImpact = !this.isImpacting && this.state === 'moving' && newState === 'idle' && lastSpeed > this.impactStopSpeed;
-		if (stopImpact || (!this.isImpacting && speedDelta > this.impactTriggerDelta && speed < lastSpeed)) {
-			this.triggerImpact();
+		
+		let isImpact = false;
+		let impactSpeed = 0;
+
+		if (stopImpact) {
+			isImpact = true;
+			impactSpeed = lastSpeed;
+		} else if (!this.isImpacting && speedDelta > this.impactTriggerDelta && speed < lastSpeed) {
+			isImpact = true;
+			impactSpeed = Math.max(lastSpeed, speedDelta);
+		}
+
+		if (isImpact) {
+			// Dynamic intensity based on standard movement speed (~200px/s)
+			// A drop from the sky yields a massive speed and will cleanly cap out at a 4x multiplier.
+			const intensity = Phaser.Math.Clamp(impactSpeed / 200, 1, 4);
+			this.triggerImpact(intensity);
 		}
 
 		if (this.isImpacting) {
-			this.lastVelocity.copy(velocity);
+			this.lastVelocity.set(vx, vy);
 			return;
 		}
 
@@ -85,7 +121,7 @@ export default class SquashStretch extends ScriptNode {
 			this.updateMovementStretch(speed);
 		}
 
-		this.lastVelocity.copy(velocity);
+		this.lastVelocity.set(vx, vy);
 	}
 
 	startIdleBreathing() {
@@ -137,7 +173,7 @@ export default class SquashStretch extends ScriptNode {
 		});
 	}
 
-	triggerImpact() {
+	triggerImpact(intensity = 1) {
 		if (this.isImpacting) return;
 
 		this.isImpacting = true;
@@ -149,14 +185,19 @@ export default class SquashStretch extends ScriptNode {
 		const absY = Math.abs(this.lastVelocity.y);
 		const horizontalImpact = absX >= absY;
 
+		// Calculate dynamic squash/stretch bounds based on intensity
+		const flex = 0.15 * intensity;
+		const squash = Math.max(0.2, 1 - flex);
+		const stretch = 1 + flex;
+
 		let impactX;
 		let impactY;
 		if (horizontalImpact) {
-			impactX = this.baseScale.x * 0.85;
-			impactY = this.baseScale.y * 1.15;
+			impactX = this.baseScale.x * squash;
+			impactY = this.baseScale.y * stretch;
 		} else {
-			impactX = this.baseScale.x * 1.15;
-			impactY = this.baseScale.y * 0.85;
+			impactX = this.baseScale.x * stretch;
+			impactY = this.baseScale.y * squash;
 		}
 
 		const impactTween1 = this.scene.tweens.add({
@@ -198,7 +239,7 @@ export default class SquashStretch extends ScriptNode {
 	}
 
 	resetScale() {
-		if (this.gameObject) {
+		if (this.gameObject && this.baseScale) {
 			this.gameObject.scaleX = this.baseScale.x;
 			this.gameObject.scaleY = this.baseScale.y;
 		}

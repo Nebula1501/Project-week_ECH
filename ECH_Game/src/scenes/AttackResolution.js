@@ -33,9 +33,10 @@ export default class AttackResolution extends ScriptNode {
 	registerCombat() {
 		const self = this.gameObject;
 		const creatureTypes = ['t2herb', 't1herb', 't2carn', 't1carn', 'mimic'];
+		const entities = this.scene.globalEntities || [];
 
-		const others = this.scene.children.list.filter(child => {
-			if (child === self) return false;
+		const others = entities.filter(child => {
+			if (!child || !child.active || child === self) return false;
 			const tag = child.getData ? child.getData('type') : null;
 			return tag && creatureTypes.includes(tag);
 		});
@@ -63,6 +64,10 @@ export default class AttackResolution extends ScriptNode {
 		const myY = other.y;
 		this.gameObject.setPosition(myX, myY);
 		if (this.gameObject.body) this.gameObject.body.reset(myX, myY);
+
+		// Face each other
+		this.gameObject.flipX = false; // Left combatant faces right
+		other.flipX = true; // Right combatant faces left
 
 		// Switch both to combat state
 		this.gameObject._stateManager?.switchState('combat');
@@ -103,8 +108,12 @@ export default class AttackResolution extends ScriptNode {
 			this.scene.add.existing(corpse);
 			corpse.setData('type', 'corpse');
 
+			if (!this.scene.globalEntities) this.scene.globalEntities = [];
+			this.scene.globalEntities.push(corpse);
+
 			// Register player pickup overlap directly since scene create event has already fired
-			const player = this.scene.children.list.find(c => c.getData && c.getData('type') === 'player');
+			const entities = this.scene.globalEntities || [];
+			const player = entities.find(c => c && c.active && c.getData && c.getData('type') === 'player');
 			if (player) {
 				this.scene.time.delayedCall(500, () => {
 					if (!corpse || !corpse.active) return;

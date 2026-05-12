@@ -25,48 +25,76 @@ export default class ThrowArcIndicator extends ScriptNode {
 		this._throwSpeedX = 800;
 		this._throwSpeedY = -350;
 		this._gravity = 900;
+
+		// Variables to track the lagging position
+		this._currentLandX = null;
+		this._currentLandY = null;
+		this.gameObject._throwArcIndicator = this; // Expose to PlayerThrow
 	}
 
 	update() {
 		const playerThrow = this.gameObject._playerThrow;
-		if (!playerThrow || !playerThrow.heldFruit) {
+		if (!playerThrow || !playerThrow.isAiming || this.gameObject.getData('isDead')) {
 			this.gfx.clear();
+			this._currentLandX = null;
+			this._currentLandY = null;
 			return;
 		}
 
-		const dir = this.gameObject.getData('lastDirection') ?? { x: 1, y: 0 };
+		const pointer = this.scene.input.activePointer;
 		const startX = this.gameObject.x;
-		const startY = this.gameObject.y - 40;
+		const startY = this.gameObject.y - 60; // Match the offset from PlayerThrow.js
+		const playerY = this.gameObject.y;
 
 		this.gfx.clear();
 
-		const throwDistance = 380;
-		const worldBounds = this.scene.physics.world.bounds;
+		const throwDistance = this.scene.playerTuning?.throw?.distance ?? 380;
 
-		const landX = Phaser.Math.Clamp(
-			startX + dir.x * throwDistance,
-			worldBounds.left + 20,
-			worldBounds.right - 20
-		);
-		const landY = Phaser.Math.Clamp(
-			startY + dir.y * throwDistance,
-			worldBounds.top + 20,
-			worldBounds.bottom - 20
-		);
-		// Reduce arc for vertical throws so it doesn't fight the direction
-		const arcHeight = 180 * Math.abs(dir.x);
-		const steps = 16;
+		// Target landing spot tracks the mouse but is clamped to the max throw distance
+		const worldPoint = this.scene.cameras.main.getWorldPoint(pointer.x, pointer.y);
+		const mouseX = worldPoint.x;
+		const mouseY = worldPoint.y;
+
+		const distToMouse = Phaser.Math.Distance.Between(startX, playerY, mouseX, mouseY);
+		const angle = Phaser.Math.Angle.Between(startX, playerY, mouseX, mouseY);
+		
+		const clampedDist = Math.min(distToMouse, throwDistance);
+
+		const targetLandX = startX + Math.cos(angle) * clampedDist;
+		const targetLandY = playerY + Math.sin(angle) * clampedDist;
+
+		// Smoothly lerp the indicator towards the target direction
+		if (this._currentLandX === null || this._currentLandY === null) {
+			this._currentLandX = targetLandX;
+			this._currentLandY = targetLandY;
+		} else {
+			this._currentLandX += (targetLandX - this._currentLandX) * 0.6;
+			this._currentLandY += (targetLandY - this._currentLandY) * 0.6;
+		}
+
+		const landX = this._currentLandX;
+		const landY = this._currentLandY;
+		
+		// Fixed arc height for satisfying Z-axis pop
+		const arcHeight = this.scene.playerTuning?.throw?.arcHeight ?? 150;
+		const steps = 32;
+
+		// Draw drop shadow
+		this.gfx.fillStyle(0x000000, 0.25);
+		this.gfx.fillEllipse(landX, landY, 48, 24);
+
+		// Draw solid arc line
+		this.gfx.lineStyle(3, 0xffffff, 0.8);
+		this.gfx.beginPath();
+		this.gfx.moveTo(startX, startY);
 
 		for (let i = 1; i <= steps; i++) {
 			const t = i / steps;
 			const px = startX + (landX - startX) * t;
 			const py = startY + (landY - startY) * t - arcHeight * Math.sin(Math.PI * t);
-
-			const alpha = 1 - (i / steps) * 0.7;
-			const radius = Math.max(2, 5 - i * 0.2);
-			this.gfx.fillStyle(0xffffff, alpha);
-			this.gfx.fillCircle(px, py, radius);
+			this.gfx.lineTo(px, py);
 		}
+		this.gfx.strokePath();
 	}
 
 	/* END-USER-CODE */

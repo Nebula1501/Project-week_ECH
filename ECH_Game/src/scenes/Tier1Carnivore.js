@@ -14,6 +14,7 @@ import AttackResolution from "./AttackResolution.js";
 import Tier1CarnivoreController from "./Tier1CarnivoreController.js";
 import DetectionGlow from "./DetectionGlow.js";
 import SquashStretch from "./SquashStretch.js";
+import AtmosphereDepth from "./AtmosphereDepth.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -24,6 +25,7 @@ export default class Tier1Carnivore extends Phaser.Physics.Arcade.Image {
 
 		this.scaleX = 0.5;
 		this.scaleY = 0.5;
+		this.setOrigin(0.5, 1);
 		scene.physics.add.existing(this, false);
 		this.body.setSize(1406, 554, false);
 
@@ -59,6 +61,9 @@ export default class Tier1Carnivore extends Phaser.Physics.Arcade.Image {
 
 		// squashStretch
 		new SquashStretch(this);
+
+		// atmosphereDepth
+		new AtmosphereDepth(this);
 
 		/* START-USER-CTR-CODE */
 		// Write your code here.

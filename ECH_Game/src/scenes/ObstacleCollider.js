@@ -20,15 +20,13 @@ export default class ObstacleCollider extends ScriptNode {
 	/* START-USER-CODE */
 
 	awake() {
-		this.scene.events.once('create', () => {
-			const player = this.scene.children.list.find(child => child.constructor.name === 'Player');
-			if (!player) return;
-
-			const playerBody = player;
-			const obstacle = this.gameObject;
-
-			this.scene.physics.add.collider(playerBody, obstacle);
-		});
+		// Initialize the global registry if it doesn't exist yet
+		if (!this.scene.globalObstacles) {
+			this.scene.globalObstacles = [];
+		}
+		
+		// Announce myself to the scene
+		this.scene.globalObstacles.push(this.gameObject);
 	}
 
 	/* END-USER-CODE */

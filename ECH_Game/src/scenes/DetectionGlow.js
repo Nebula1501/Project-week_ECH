@@ -98,8 +98,23 @@ export default class DetectionGlow extends ScriptNode {
 		// Stop updating if the graphics object is missing or the creature is inactive
 		if (!this.glowGraphic || !this.gameObject.active) return;
 
+		const myX = this.gameObject.body ? this.gameObject.body.center.x : this.gameObject.x;
+		const myY = this.gameObject.body ? this.gameObject.body.center.y : this.gameObject.y;
+
+		// --- CPU & GPU OPTIMIZATION: CAMERA CULLING ---
+		const view = this.scene.cameras.main.worldView;
+		if (
+			myX < view.left - 200 || myX > view.right + 200 ||
+			myY < view.top - 200 || myY > view.bottom + 200
+		) {
+			if (this.glowGraphic.visible) this.glowGraphic.setVisible(false);
+			return;
+		}
+		
+		if (!this.glowGraphic.visible) this.glowGraphic.setVisible(true);
+
 		// Keep the glow strictly centered on the creature as it moves
-		this.glowGraphic.setPosition(this.gameObject.x, this.gameObject.y);
+		this.glowGraphic.setPosition(myX, myY);
 
 		// Re-check the radius in case it changed, then redraw the glow
 		const radius = this.gameObject._detectionRadius?.radius ?? 150;
