@@ -30,6 +30,8 @@ export default class PlayerThrow extends ScriptNode {
 
 		// Execute throw when clicking left mouse button while aiming
 		this.scene.input.on('pointerdown', (pointer) => {
+			if (this.scene.game.registry.get('isMenuOpen')) return;
+
 			if (pointer.leftButtonDown() && this.isAiming && !this.gameObject.getData('isDead')) {
 				this.isAiming = false;
 				this.releaseFruit();
@@ -41,6 +43,7 @@ export default class PlayerThrow extends ScriptNode {
 		if (!this.gameObject || !this.gameObject.body) return;
 		if (this.gameObject.getData('isDead')) return;
 		if (this.gameObject.getData('isTransitioning')) return;
+		if (this.scene.game.registry.get('isMenuOpen')) return;
 
 		if (Phaser.Input.Keyboard.JustDown(this.spaceKey)) {
 			const inv = this.scene.playerInventory;

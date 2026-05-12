@@ -49,6 +49,13 @@ export default class PlayerMovement extends ScriptNode {
 		if (this.gameObject.getData('isDead')) return;
 		if (this.gameObject.getData('isTransitioning')) return;
 
+		// Lock movement if the main menu is open
+		if (this.scene.game.registry.get('isMenuOpen')) {
+			this.gameObject.body.setVelocity(0);
+			this.gameObject.play('player_idle', true);
+			return;
+		}
+
 		const body = this.gameObject.body;
 		const cursors = this.cursors;
 		const wasd = this.wasd;

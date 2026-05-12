@@ -15,6 +15,7 @@ import Tier1HerbivoreController from "./Tier1HerbivoreController.js";
 import DetectionGlow from "./DetectionGlow.js";
 import SquashStretch from "./SquashStretch.js";
 import AtmosphereDepth from "./AtmosphereDepth.js";
+import MovementDust from "./MovementDust.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -64,6 +65,9 @@ export default class Tier1Herbivore extends Phaser.Physics.Arcade.Sprite {
 
 		// atmosphereDepth
 		new AtmosphereDepth(this);
+
+		// movementDust
+		new MovementDust(this);
 
 		/* START-USER-CTR-CODE */
 		this.play("tier1herb_idle", true);

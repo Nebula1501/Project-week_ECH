@@ -42,24 +42,36 @@ export default class PlayerSpawn extends ScriptNode {
 		if (this.gameObject.body) this.gameObject.body.enable = false;
 		
 		this.scene.events.once('create', () => {
-			this.scene.tweens.add({
-				targets: this.gameObject,
-				y: targetY,
-				duration: 800,
-				ease: 'Cubic.easeIn',
-				onComplete: () => {
-					// Unlock player actions and re-enable physics
-					this.gameObject.setData('isTransitioning', false);
-					this.gameObject.setData('isSpawning', false);
-					if (this.gameObject.body) {
-						this.gameObject.body.enable = true;
-						this.gameObject.body.reset(targetX, targetY);
-					}
-					
-					// Tell camera to start following now that we've landed
-					this.scene.cameras.main.startFollow(this.gameObject, true, 0.08, 0.08);
+			// Check if the main menu is active (so we don't drop during the diorama)
+			if (this.scene.game.registry.get('isMenuOpen')) {
+				this.scene.game.events.once('play_button_pressed', () => {
+					this.executeDrop(targetX, targetY);
+				});
+			} else {
+				// Drop immediately (used for normal level transitions and respawns)
+				this.executeDrop(targetX, targetY);
+			}
+		});
+	}
+
+	executeDrop(targetX, targetY) {
+		this.scene.tweens.add({
+			targets: this.gameObject,
+			y: targetY,
+			duration: 800,
+			ease: 'Cubic.easeIn',
+			onComplete: () => {
+				// Unlock player actions and re-enable physics
+				this.gameObject.setData('isTransitioning', false);
+				this.gameObject.setData('isSpawning', false);
+				if (this.gameObject.body) {
+					this.gameObject.body.enable = true;
+					this.gameObject.body.reset(targetX, targetY);
 				}
-			});
+				
+				// Tell camera to start following now that we've landed
+				this.scene.cameras.main.startFollow(this.gameObject, true, 0.08, 0.08);
+			}
 		});
 	}
 

@@ -279,7 +279,7 @@ export default class Level1 extends Phaser.Scene {
 		checkpoints.add(checkpoint_1);
 
 		// player
-		const player = new Player(this, 4889, 2408);
+		const player = new Player(this, 556, 589);
 		this.add.existing(player);
 
 		// envAss

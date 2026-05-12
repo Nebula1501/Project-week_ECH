@@ -87,6 +87,11 @@
                 "key": "A_Wall"
             },
             {
+                "url": "assets/sprites/VFX/clouds2.png",
+                "type": "image",
+                "key": "dust_particle"
+            },
+            {
                 "url": "assets/animations/combat/creature_combat.json",
                 "type": "animation",
                 "key": "creature_combat"
@@ -166,6 +171,11 @@
                 "url": "assets/sprites/items/fruit/sprite_corpse.png",
                 "type": "image",
                 "key": "sprite_corpse"
+            },
+            {
+                "url": "assets/sprites/VFX/clouds.png",
+                "type": "image",
+                "key": "sprite_fightclouds"
             },
             {
                 "url": "assets/sprites/items/fruit/sprite_apple.png",

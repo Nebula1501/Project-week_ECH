@@ -94,6 +94,11 @@
                     ],
                     "label": "ySort",
                     "isStatic": false
+                },
+                {
+                    "prefabId": "e3b478cf-92e3-499e-b5b4-edc405471b3e",
+                    "id": "d12b93de-f3ab-4aa0-8a9d-28d55169daf7",
+                    "label": "movementDust"
                 }
             ]
         }
