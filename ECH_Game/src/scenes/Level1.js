@@ -19,6 +19,7 @@ import Player from "./Player.js";
 import EnvAss from "./EnvAss.js";
 import LevelExit from "./LevelExit.js";
 import YSort from "./YSort.js";
+import InventoryHUD from "./InventoryHUD.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -370,6 +371,10 @@ export default class Level1 extends Phaser.Scene {
 		this.add.existing(envAss_4);
 		envAss_4.scaleX = 0.5;
 		envAss_4.scaleY = 0.5;
+
+		// inventoryHUD
+		const inventoryHUD = new InventoryHUD(this, 99, 338);
+		this.add.existing(inventoryHUD);
 
 		this.editabletilemap = editabletilemap;
 

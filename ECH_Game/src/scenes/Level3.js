@@ -18,6 +18,7 @@ import Tier2HerbivoreRoaming from "./Tier2HerbivoreRoaming.js";
 import Tier2Carnivore from "./Tier2Carnivore.js";
 import Checkpoint from "./Checkpoint.js";
 import Tier2CarnivoreRoaming from "./Tier2CarnivoreRoaming.js";
+import InventoryHUD from "./InventoryHUD.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -337,6 +338,10 @@ export default class Level3 extends Phaser.Scene {
 		// fruit_16
 		const fruit_16 = new Fruit(this, 4952, 5089);
 		this.add.existing(fruit_16);
+
+		// inventoryHUD
+		const inventoryHUD = new InventoryHUD(this, -26, 1701);
+		this.add.existing(inventoryHUD);
 
 		this.editabletilemap = editabletilemap;
 

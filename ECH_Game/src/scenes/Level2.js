@@ -18,6 +18,7 @@ import CreatureTuning from "./CreatureTuning.js";
 import AtmosphereFog from "./AtmosphereFog.js";
 import Checkpoint from "./Checkpoint.js";
 import LevelExit from "./LevelExit.js";
+import InventoryHUD from "./InventoryHUD.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -345,6 +346,10 @@ export default class Level2 extends Phaser.Scene {
 
 		// hideOnAwake_1
 		new HideOnAwake(levelExit);
+
+		// inventoryHUD
+		const inventoryHUD = new InventoryHUD(this, 3841, 5913);
+		this.add.existing(inventoryHUD);
 
 		this.editabletilemap = editabletilemap;
 

@@ -24,7 +24,6 @@ export default class PlayerThrow extends ScriptNode {
 	awake() {
 		this.spaceKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 		this.cKey = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C);
-		this.heldFruit = null;
 		this.heldItemType = null;
 		this.isAiming = false;
 		this.gameObject._playerThrow = this;
@@ -47,12 +46,9 @@ export default class PlayerThrow extends ScriptNode {
 			const inv = this.scene.playerInventory;
 			if (!this.isAiming && inv && inv.items.length > 0) {
 				this.isAiming = true;
-				this.spawnHeldFruit();
+				this.heldItemType = inv.getCurrentItem() ?? 'food';
+				console.log('Aiming:', this.heldItemType);
 			}
-		}
-
-		if (this.heldFruit) {
-			this.updateHeldFruitPosition();
 		}
 
 		if (this.isAiming && Phaser.Input.Keyboard.JustDown(this.cKey)) {
@@ -65,61 +61,41 @@ export default class PlayerThrow extends ScriptNode {
 		return { x: this.gameObject.x, y: this.gameObject.y - 60 };
 	}
 
-	spawnHeldFruit() {
-		const inventory = this.scene.playerInventory;
-		if (!inventory || inventory.items.length === 0) return;
-		if (this.heldFruit) return;
-
-		const currentItem = inventory.getCurrentItem();
-		const itemType = inventory.getCurrentItem() ?? 'food';
-		const pos = this.getWorldPosition();
-
-		let heldObject;
-		if (itemType === 'corpse') {
-			heldObject = new Corpse(this.scene, pos.x, pos.y);
-		} else {
-			heldObject = new Fruit(this.scene, pos.x, pos.y);
-		}
-
-		this.scene.add.existing(heldObject);
-
-		if (!this.scene.globalEntities) this.scene.globalEntities = [];
-		this.scene.globalEntities.push(heldObject);
-
-		heldObject.body.enable = false;
-		heldObject.setData('isHeld', true);
-		heldObject.setData('type', itemType);
-		this.heldFruit = heldObject;
-		this.heldItemType = itemType;
-		console.log('Held:', itemType);
-	}
-
-	updateHeldFruitPosition() {
-		const pos = this.getWorldPosition();
-		this.heldFruit.setPosition(pos.x, pos.y);
-	}
-
 	cancelThrow() {
-		if (this.heldFruit) {
-			this.heldFruit.destroy();
-			this.heldFruit = null;
-		}
 		this.isAiming = false;
 		this.heldItemType = null;
 		console.log('Throw cancelled');
 	}
 
 	releaseFruit() {
-		if (!this.heldFruit) return;
-
 		const inventory = this.scene.playerInventory;
-		if (inventory) inventory.removeItem();
+		if (!inventory || inventory.items.length === 0) return;
+
+		// Capture type before removing
+		const itemType = this.heldItemType || inventory.getCurrentItem() || 'food';
+		inventory.removeItem();
+
+		const pos = this.getWorldPosition();
+		let thrownFruit;
+		
+		if (itemType === 'corpse') {
+			thrownFruit = new Corpse(this.scene, pos.x, pos.y);
+		} else {
+			thrownFruit = new Fruit(this.scene, pos.x, pos.y);
+		}
+
+		this.scene.add.existing(thrownFruit);
+
+		if (!this.scene.globalEntities) this.scene.globalEntities = [];
+		this.scene.globalEntities.push(thrownFruit);
+
+		thrownFruit.setData('type', itemType);
+		thrownFruit.setData('pickupDisabled', true);
+		thrownFruit.body.enable = false;
+		
+		this.heldItemType = null;
 
 		const dir = this.gameObject.getData('lastDirection') ?? { x: 1, y: 0 };
-
-		const thrownFruit = this.heldFruit;
-		this.heldFruit = null;
-		thrownFruit.setData('pickupDisabled', true);
 
 		const startX = thrownFruit.x;
 		const startY = thrownFruit.y;
@@ -144,8 +120,6 @@ export default class PlayerThrow extends ScriptNode {
 		// Fixed arc height for satisfying Z-axis pop in all directions
 		const arcHeight = this.scene.playerTuning?.throw?.arcHeight ?? 150;
 
-		thrownFruit.body.enable = false;
-		
 		// Capture original scale so we can safely squish/stretch it
 		const baseScaleX = thrownFruit.scaleX;
 		const baseScaleY = thrownFruit.scaleY;
@@ -200,7 +174,7 @@ export default class PlayerThrow extends ScriptNode {
 					this.scene.physics.add.overlap(thrownFruit, player, () => {
 						if (!thrownFruit.getData('isHeld') &&
 							!thrownFruit.getData('pickupDisabled')) {
-							const type = thrownFruit.getData('type') ?? this.heldItemType;
+							const type = thrownFruit.getData('type') ?? itemType;
 							const inv = this.scene.playerInventory;
 							if (inv && !inv.isFull()) {
 								inv.addItem(type);

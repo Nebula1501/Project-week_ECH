@@ -392,6 +392,17 @@
                     "label": "hideOnAwake_1"
                 }
             ]
+        },
+        {
+            "prefabId": "c2a72aca-4ab1-485a-8242-49df14d9a3ff",
+            "id": "e1b9eb88-6597-4fea-aeb8-adc77abf47d5",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "inventoryHUD",
+            "x": 3841,
+            "y": 5913
         }
     ],
     "plainObjects": [

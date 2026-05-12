@@ -471,6 +471,17 @@
             "y": 963,
             "scaleX": 0.5,
             "scaleY": 0.5
+        },
+        {
+            "prefabId": "c2a72aca-4ab1-485a-8242-49df14d9a3ff",
+            "id": "f97b91e0-261b-42e6-8b47-79abaf4d5f49",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "inventoryHUD",
+            "x": 99,
+            "y": 338
         }
     ],
     "plainObjects": [

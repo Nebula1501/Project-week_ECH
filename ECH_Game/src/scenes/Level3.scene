@@ -482,6 +482,17 @@
             "label": "fruit_16",
             "x": 4952,
             "y": 5089
+        },
+        {
+            "prefabId": "c2a72aca-4ab1-485a-8242-49df14d9a3ff",
+            "id": "f26433d8-b022-45c2-aa1d-992e90206b00",
+            "unlock": [
+                "x",
+                "y"
+            ],
+            "label": "inventoryHUD",
+            "x": -26,
+            "y": 1701
         }
     ],
     "plainObjects": [
