@@ -301,7 +301,7 @@ export default class Level2 extends Phaser.Scene {
 		creatures.add(tier2Herbivore_5);
 
 		// player
-		const player = new Player(this, 5215, 970);
+		const player = new Player(this, 3165, 5888);
 		this.add.existing(player);
 
 		// obstacle

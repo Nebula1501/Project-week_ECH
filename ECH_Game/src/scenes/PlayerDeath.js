@@ -28,7 +28,7 @@ export default class PlayerDeath extends ScriptNode {
 		if (!this.gameObject || !this.gameObject.body) return;
 		if (this.gameObject.getData('isDead')) return;
 
-		const dangerousTags = ['t1carn', 't2carn', 't1herb'];
+		const dangerousTags = ['t1carn', 't2carn', 't1herb', 'mimic'];
 		const entities = this.scene.globalEntities || [];
 		const dangerousCreatures = entities.filter(child => {
 			return child && child.active && child.getData && dangerousTags.includes(child.getData('type'));
@@ -38,6 +38,12 @@ export default class PlayerDeath extends ScriptNode {
 		let killer = null;
 
 		for (const creature of dangerousCreatures) {
+			// Ignore creatures that are distracted by eating or fighting
+			const state = creature._stateManager?.currentState;
+			if (state === 'combat' || state === 'opportunity' || state === 'eatCorpse') {
+				continue;
+			}
+
 			if (this.scene.physics.overlap(this.gameObject, creature)) {
 				isOverlapping = true;
 				killer = creature;
