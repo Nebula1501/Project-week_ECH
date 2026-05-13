@@ -21,16 +21,22 @@ export default class MainMenu extends Phaser.Scene {
 	editorCreate() {
 
 		// Title
-		this.add.image(190, 287, "dino");
+		const title = this.add.image(412, 342, "ECHOES of the HUNT");
+		title.scaleX = 0.5;
+		title.scaleY = 0.5;
 
 		// Play
-		const play = this.add.image(184, 582, "dino");
+		const play = this.add.image(405, 680, "Play");
+		play.scaleX = 0.5;
+		play.scaleY = 0.5;
 
 		// playButton
 		new PlayButton(play);
 
 		// Quit
-		this.add.image(184, 867, "dino");
+		const quit = this.add.image(405, 827, "Quit");
+		quit.scaleX = 0.5;
+		quit.scaleY = 0.5;
 
 		this.play = play;
 

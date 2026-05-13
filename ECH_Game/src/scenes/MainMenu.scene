@@ -17,10 +17,12 @@
             "id": "deffde27-8195-4792-b71c-169a863e8c26",
             "label": "Title",
             "texture": {
-                "key": "dino"
+                "key": "ECHOES of the HUNT"
             },
-            "x": 190,
-            "y": 287
+            "x": 412,
+            "y": 342,
+            "scaleX": 0.5,
+            "scaleY": 0.5
         },
         {
             "type": "Image",
@@ -28,10 +30,12 @@
             "label": "Play",
             "scope": "CLASS",
             "texture": {
-                "key": "dino"
+                "key": "Play"
             },
-            "x": 184,
-            "y": 582,
+            "x": 405,
+            "y": 680,
+            "scaleX": 0.5,
+            "scaleY": 0.5,
             "list": [
                 {
                     "prefabId": "3a2f675b-5f88-41d1-9abc-cd51a589037d",
@@ -45,10 +49,12 @@
             "id": "b77b1047-90c6-41a7-9f3d-c38ed62505fc",
             "label": "Quit",
             "texture": {
-                "key": "dino"
+                "key": "Quit"
             },
-            "x": 184,
-            "y": 867
+            "x": 405,
+            "y": 827,
+            "scaleX": 0.5,
+            "scaleY": 0.5
         }
     ],
     "plainObjects": [],

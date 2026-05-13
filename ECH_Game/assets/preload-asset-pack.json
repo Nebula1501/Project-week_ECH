@@ -87,11 +87,6 @@
                 "key": "A_Wall"
             },
             {
-                "url": "assets/sprites/VFX/clouds2.png",
-                "type": "image",
-                "key": "dust_particle"
-            },
-            {
                 "url": "assets/animations/combat/creature_combat.json",
                 "type": "animation",
                 "key": "creature_combat"
@@ -100,6 +95,16 @@
                 "url": "assets/dino.png",
                 "type": "image",
                 "key": "dino"
+            },
+            {
+                "url": "assets/sprites/VFX/clouds2.png",
+                "type": "image",
+                "key": "dust_particle"
+            },
+            {
+                "url": "assets/sprites/UI/ECHOES of the HUNT.png",
+                "type": "image",
+                "key": "ECHOES of the HUNT"
             },
             {
                 "url": "assets/tilemaps/tilesets/Ground_Dark_03.png",
@@ -133,6 +138,11 @@
                 "key": "guapen"
             },
             {
+                "url": "assets/sprites/UI/Play.png",
+                "type": "image",
+                "key": "Play"
+            },
+            {
                 "url": "assets/animations/player/player_death.json",
                 "type": "animation",
                 "key": "player_death"
@@ -156,6 +166,11 @@
                 "url": "assets/animations/player/player_walk.json",
                 "type": "animation",
                 "key": "player_walk"
+            },
+            {
+                "url": "assets/sprites/UI/Quit.png",
+                "type": "image",
+                "key": "Quit"
             },
             {
                 "url": "assets/sprites/creatures/tier2-carnivore/sprite_carnivore1.png",
