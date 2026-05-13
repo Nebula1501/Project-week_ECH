@@ -87,11 +87,6 @@
                 "key": "A_Wall"
             },
             {
-                "url": "assets/sprites/VFX/clouds2.png",
-                "type": "image",
-                "key": "dust_particle"
-            },
-            {
                 "url": "assets/animations/combat/creature_combat.json",
                 "type": "animation",
                 "key": "creature_combat"
@@ -100,6 +95,11 @@
                 "url": "assets/dino.png",
                 "type": "image",
                 "key": "dino"
+            },
+            {
+                "url": "assets/sprites/VFX/clouds2.png",
+                "type": "image",
+                "key": "dust_particle"
             },
             {
                 "url": "assets/tilemaps/tilesets/Ground_Dark_03.png",
@@ -158,6 +158,11 @@
                 "key": "player_walk"
             },
             {
+                "url": "assets/sprite_background.png",
+                "type": "image",
+                "key": "sprite_background"
+            },
+            {
                 "url": "assets/sprites/creatures/tier2-carnivore/sprite_carnivore1.png",
                 "type": "image",
                 "key": "sprite_carnivore1"
@@ -181,6 +186,21 @@
                 "url": "assets/sprites/items/fruit/sprite_apple.png",
                 "type": "image",
                 "key": "sprite_fruit"
+            },
+            {
+                "url": "sprite_ground_lvl1_sector1.png",
+                "type": "image",
+                "key": "sprite_ground_lvl1_sector1"
+            },
+            {
+                "url": "sprite_ground_lvl1_sector2.png",
+                "type": "image",
+                "key": "sprite_ground_lvl1_sector2"
+            },
+            {
+                "url": "sprite_ground_lvl1_sector3.png",
+                "type": "image",
+                "key": "sprite_ground_lvl1_sector3"
             },
             {
                 "url": "assets/sprites/creatures/tier1-herbivore/sprite_herb2.png",

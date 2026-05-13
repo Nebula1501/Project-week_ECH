@@ -343,6 +343,213 @@ export default class Level3 extends Phaser.Scene {
 		const inventoryHUD = new InventoryHUD(this, -26, 1701);
 		this.add.existing(inventoryHUD);
 
+		// dimensions
+		const dimensions = this.add.container(0, 0);
+
+		// rectangle_1
+		const rectangle_1 = this.add.rectangle(1216, 1408, 128, 128);
+		rectangle_1.scaleX = 5;
+		rectangle_1.scaleY = 11;
+		rectangle_1.alpha = 0.6;
+		rectangle_1.isFilled = true;
+		rectangle_1.fillColor = 16583178;
+		dimensions.add(rectangle_1);
+
+		// rectangle
+		const rectangle = this.add.rectangle(768, 1440, 128, 128);
+		rectangle.scaleX = 2;
+		rectangle.scaleY = 10.5;
+		rectangle.alpha = 0.6;
+		rectangle.isFilled = true;
+		rectangle.fillColor = 15989752;
+		dimensions.add(rectangle);
+
+		// rectangle_2
+		const rectangle_2 = this.add.rectangle(416, 1568, 128, 128);
+		rectangle_2.scaleX = 3.5;
+		rectangle_2.scaleY = 6.5;
+		rectangle_2.alpha = 0.6;
+		rectangle_2.isFilled = true;
+		rectangle_2.fillColor = 3407794;
+		dimensions.add(rectangle_2);
+
+		// rectangle_3
+		const rectangle_3 = this.add.rectangle(2944, 2176, 128, 128);
+		rectangle_3.scaleX = 16;
+		rectangle_3.scaleY = 12;
+		rectangle_3.alpha = 0.6;
+		rectangle_3.isFilled = true;
+		rectangle_3.fillColor = 16773700;
+		dimensions.add(rectangle_3);
+
+		// rectangle_4
+		const rectangle_4 = this.add.rectangle(5600, 1600, 128, 128);
+		rectangle_4.scaleX = 8.5;
+		rectangle_4.scaleY = 10;
+		rectangle_4.alpha = 0.52;
+		rectangle_4.isFilled = true;
+		rectangle_4.fillColor = 4517375;
+		dimensions.add(rectangle_4);
+
+		// rectangle_5
+		const rectangle_5 = this.add.rectangle(5760, 2784, 128, 128);
+		rectangle_5.scaleX = 28;
+		rectangle_5.scaleY = 2.5;
+		rectangle_5.alpha = 0.52;
+		rectangle_5.isFilled = true;
+		rectangle_5.fillColor = 4517375;
+		dimensions.add(rectangle_5);
+
+		// rectangle_6
+		const rectangle_6 = this.add.rectangle(7200, 4576, 128, 128);
+		rectangle_6.scaleX = 27.5;
+		rectangle_6.scaleY = 4.5;
+		rectangle_6.alpha = 0.52;
+		rectangle_6.isFilled = true;
+		rectangle_6.fillColor = 4517375;
+		dimensions.add(rectangle_6);
+
+		// rectangle_7
+		const rectangle_7 = this.add.rectangle(9280, 5216, 128, 128);
+		rectangle_7.scaleX = 15;
+		rectangle_7.scaleY = 3.5;
+		rectangle_7.alpha = 0.52;
+		rectangle_7.isFilled = true;
+		rectangle_7.fillColor = 16716326;
+		dimensions.add(rectangle_7);
+
+		// rectangle_8
+		const rectangle_8 = this.add.rectangle(4800, 1472, 128, 128);
+		rectangle_8.scaleX = 4;
+		rectangle_8.scaleY = 3;
+		rectangle_8.alpha = 0.51;
+		rectangle_8.isFilled = true;
+		rectangle_8.fillColor = 59685;
+		dimensions.add(rectangle_8);
+
+		// rectangle_9
+		const rectangle_9 = this.add.rectangle(5952, 2432, 128, 128);
+		rectangle_9.scaleX = 3;
+		rectangle_9.scaleY = 3;
+		rectangle_9.alpha = 0.51;
+		rectangle_9.isFilled = true;
+		rectangle_9.fillColor = 59685;
+		dimensions.add(rectangle_9);
+
+		// rectangle_10
+		const rectangle_10 = this.add.rectangle(4896, 2304, 128, 128);
+		rectangle_10.scaleX = 2.5;
+		rectangle_10.scaleY = 5;
+		rectangle_10.alpha = 0.51;
+		rectangle_10.isFilled = true;
+		rectangle_10.fillColor = 59685;
+		dimensions.add(rectangle_10);
+
+		// rectangle_11
+		const rectangle_11 = this.add.rectangle(7360, 3488, 128, 128);
+		rectangle_11.scaleX = 3;
+		rectangle_11.scaleY = 8.5;
+		rectangle_11.alpha = 0.51;
+		rectangle_11.isFilled = true;
+		rectangle_11.fillColor = 59685;
+		dimensions.add(rectangle_11);
+
+		// rectangle_12
+		const rectangle_12 = this.add.rectangle(6784, 3168, 128, 128);
+		rectangle_12.scaleX = 6;
+		rectangle_12.scaleY = 1.5;
+		rectangle_12.alpha = 0.52;
+		rectangle_12.isFilled = true;
+		rectangle_12.fillColor = 4517375;
+		dimensions.add(rectangle_12);
+
+		// rectangle_13
+		const rectangle_13 = this.add.rectangle(5664, 3904, 128, 128);
+		rectangle_13.scaleX = 3.5;
+		rectangle_13.scaleY = 6;
+		rectangle_13.alpha = 0.51;
+		rectangle_13.isFilled = true;
+		rectangle_13.fillColor = 59685;
+		dimensions.add(rectangle_13);
+
+		// rectangle_14
+		const rectangle_14 = this.add.rectangle(6272, 3680, 128, 128);
+		rectangle_14.scaleX = 6;
+		rectangle_14.scaleY = 2.5;
+		rectangle_14.alpha = 0.52;
+		rectangle_14.isFilled = true;
+		rectangle_14.fillColor = 4517375;
+		dimensions.add(rectangle_14);
+
+		// rectangle_15
+		const rectangle_15 = this.add.rectangle(6912, 3712, 128, 128);
+		rectangle_15.scaleX = 4;
+		rectangle_15.scaleY = 5;
+		rectangle_15.alpha = 0.51;
+		rectangle_15.isFilled = true;
+		rectangle_15.fillColor = 13128192;
+		dimensions.add(rectangle_15);
+
+		// rectangle_16
+		const rectangle_16 = this.add.rectangle(5920, 5536, 128, 128);
+		rectangle_16.scaleX = 7.5;
+		rectangle_16.scaleY = 10.5;
+		rectangle_16.alpha = 0.51;
+		rectangle_16.isFilled = true;
+		rectangle_16.fillColor = 59685;
+		dimensions.add(rectangle_16);
+
+		// rectangle_17
+		const rectangle_17 = this.add.rectangle(1728, 1600, 128, 128);
+		rectangle_17.scaleX = 3;
+		rectangle_17.scaleY = 2;
+		rectangle_17.alpha = 0.51;
+		rectangle_17.isFilled = true;
+		rectangle_17.fillColor = 59685;
+		dimensions.add(rectangle_17);
+
+		// rectangle_18
+		const rectangle_18 = this.add.rectangle(4928, 5024, 128, 128);
+		rectangle_18.scaleX = 5;
+		rectangle_18.scaleY = 5.5;
+		rectangle_18.alpha = 0.51;
+		rectangle_18.isFilled = true;
+		rectangle_18.fillColor = 13128192;
+		dimensions.add(rectangle_18);
+
+		// rectangle_19
+		const rectangle_19 = this.add.rectangle(5344, 4832, 128, 128);
+		rectangle_19.scaleX = 1.5;
+		rectangle_19.scaleY = 2.5;
+		rectangle_19.alpha = 0.51;
+		rectangle_19.isFilled = true;
+		rectangle_19.fillColor = 59685;
+		dimensions.add(rectangle_19);
+
+		// rectangle_20
+		const rectangle_20 = this.add.rectangle(480, 992, 128, 128);
+		rectangle_20.scaleX = 2.5;
+		rectangle_20.scaleY = 2.5;
+		rectangle_20.alpha = 0.6;
+		rectangle_20.isFilled = true;
+		rectangle_20.fillColor = 16583178;
+		dimensions.add(rectangle_20);
+
+		// rectangle_21
+		const rectangle_21 = this.add.rectangle(576, 2048, 128, 128);
+		rectangle_21.alpha = 0.6;
+		rectangle_21.isFilled = true;
+		rectangle_21.fillColor = 16583178;
+		dimensions.add(rectangle_21);
+
+		// rectangle_22
+		const rectangle_22 = this.add.rectangle(8640, 4928, 128, 128);
+		rectangle_22.scaleX = 5;
+		rectangle_22.alpha = 0.51;
+		rectangle_22.isFilled = true;
+		rectangle_22.fillColor = 59685;
+		dimensions.add(rectangle_22);
+
 		this.editabletilemap = editabletilemap;
 
 		this.events.emit("scene-awake");
