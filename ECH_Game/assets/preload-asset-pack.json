@@ -203,6 +203,11 @@
                 "key": "sprite_ground_lvl1_sector3"
             },
             {
+                "url": "assets/sprite_ground_lvl2.png",
+                "type": "image",
+                "key": "sprite_ground_lvl2"
+            },
+            {
                 "url": "assets/sprites/creatures/tier1-herbivore/sprite_herb2.png",
                 "type": "image",
                 "key": "sprite_herb2"
