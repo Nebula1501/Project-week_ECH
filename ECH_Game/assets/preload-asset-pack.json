@@ -248,6 +248,11 @@
                 "key": "guapen"
             },
             {
+                "url": "assets/sprites/Play.png",
+                "type": "image",
+                "key": "Play"
+            },
+            {
                 "url": "assets/animations/player/player_death.json",
                 "type": "animation",
                 "key": "player_death"
@@ -271,6 +276,11 @@
                 "url": "assets/animations/player/player_walk.json",
                 "type": "animation",
                 "key": "player_walk"
+            },
+            {
+                "url": "assets/sprites/Quit.png",
+                "type": "image",
+                "key": "Quit"
             },
             {
                 "url": "assets/sprite_background.png",
@@ -309,6 +319,11 @@
             },
             {
                 "url": "assets/sprites/items/fruit/sprite_apple.png",
+                "type": "image",
+                "key": "sprite_fruit_dep"
+            },
+            {
+                "url": "assets/sprites/items/fruit/sprite_fruit1.png",
                 "type": "image",
                 "key": "sprite_fruit"
             },
@@ -692,6 +707,11 @@
                 },
                 "type": "spritesheet",
                 "key": "tilesheet_ground01"
+            },
+            {
+                "url": "assets/sprites/UI_title.png",
+                "type": "image",
+                "key": "UI_title"
             },
             {
                 "url": "assets/tilemaps/tilesets/void_map_03.png",

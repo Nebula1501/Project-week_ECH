@@ -19,6 +19,8 @@
             "texture": {
                 "key": "sprite_fruit"
             },
+            "scaleX": 0.5,
+            "scaleY": 0.5,
             "body.pushable": false,
             "body.immovable": true,
             "body.width": 64,
