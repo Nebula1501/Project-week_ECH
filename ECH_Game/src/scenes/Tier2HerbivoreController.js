@@ -134,6 +134,7 @@ export default class Tier2HerbivoreController extends ScriptNode {
 		if (this._lastDetectedCount === undefined) this._lastDetectedCount = 0;
 
 		if (currentDetectedCount > this._lastDetectedCount) {
+			this.scene.soundManager?.play('startle');
 			this.gameObject.setData('isStartled', true);
 			if (this.gameObject.anims && this.scene.anims.exists('tier2herb__startled')) {
 				this.gameObject.play({ key: 'tier2herb__startled', repeat: 0 });

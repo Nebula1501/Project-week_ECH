@@ -173,6 +173,34 @@
                 "key": "Quit"
             },
             {
+                "url": [
+                    "assets/SFX/sfx_walk02.mp3"
+                ],
+                "type": "audio",
+                "key": "sfx_walk_dep3"
+            },
+            {
+                "url": [
+                    "assets/SFX/sfx_walk.mp3"
+                ],
+                "type": "audio",
+                "key": "sfx_walk_dep"
+            },
+            {
+                "url": [
+                    "assets/SFX/sfx_walk01.mp3"
+                ],
+                "type": "audio",
+                "key": "sfx_walk_dep2"
+            },
+            {
+                "url": [
+                    "assets/SFX/sfx_walk03.wav"
+                ],
+                "type": "audio",
+                "key": "sfx_walk"
+            },
+            {
                 "url": "assets/sprites/creatures/tier2-carnivore/sprite_carnivore1.png",
                 "type": "image",
                 "key": "sprite_carnivore1"

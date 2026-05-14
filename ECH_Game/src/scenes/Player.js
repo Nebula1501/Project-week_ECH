@@ -14,6 +14,7 @@ import AtmosphereDepth from "./AtmosphereDepth.js";
 import YSort from "./YSort.js";
 import PlayerSpawn from "./PlayerSpawn.js";
 import MovementDust from "./MovementDust.js";
+import SoundManager from "./SoundManager.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -61,6 +62,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
 		// movementDust
 		const movementDust = new MovementDust(this);
+
+		// soundManager
+		new SoundManager(this);
 
 		// ySort (prefab fields)
 		ySort.isStatic = false;

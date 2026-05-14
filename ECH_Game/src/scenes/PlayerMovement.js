@@ -91,8 +91,14 @@ export default class PlayerMovement extends ScriptNode {
 			// Do not interrupt the pickup animation
 		} else if (body.velocity.x !== 0 || body.velocity.y !== 0) {
 			this.gameObject.play('player_walk', true);
+			
+			// Play the walk sound continuously (SoundManager will prevent overlaps!)
+			this.scene.soundManager?.play('footstep', 'player');
 		} else {
 			this.gameObject.play('player_idle', true);
+			
+			// Stop the walk sound cleanly when stopping
+			this.scene.soundManager?.stop('footstep', 'player');
 		}
 	}
 

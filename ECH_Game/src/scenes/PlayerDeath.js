@@ -66,6 +66,7 @@ export default class PlayerDeath extends ScriptNode {
 	die(killer) {
 		this.gameObject.setData('isDead', true);
 		this.scene.isPlayerDead = true; // Tell the CameraController to let go
+		this.scene.soundManager?.play('death');
 		
 		// Stop player movement immediately
 		this.gameObject.body.setVelocity(0);

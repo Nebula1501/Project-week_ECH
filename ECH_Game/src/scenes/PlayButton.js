@@ -31,6 +31,7 @@ export default class PlayButton extends ScriptNode {
 		// Visual effects for hovering over the button
 		btn.on('pointerover', () => {
 			btn.setTint(0xffd700); // Gives it a nice golden hover tint
+			this.scene.soundManager?.play('hover');
 			this.scene.tweens.add({
 				targets: btn,
 				scaleX: 1.1,
@@ -54,6 +55,7 @@ export default class PlayButton extends ScriptNode {
 		// Click action
 		btn.on('pointerdown', () => {
 			btn.disableInteractive(); // Prevent rapid multi-clicking
+			this.scene.soundManager?.play('button');
 			
 			// Fade out the UI smoothly
 			this.scene.tweens.add({

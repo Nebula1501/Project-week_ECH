@@ -34,6 +34,7 @@ export default class PlayerThrow extends ScriptNode {
 
 			if (pointer.leftButtonDown() && this.isAiming && !this.gameObject.getData('isDead')) {
 				this.isAiming = false;
+				this.scene.soundManager?.play('throw');
 				this.releaseFruit();
 			}
 		}, this);
@@ -50,6 +51,7 @@ export default class PlayerThrow extends ScriptNode {
 			if (!this.isAiming && inv && inv.items.length > 0) {
 				this.isAiming = true;
 				this.heldItemType = inv.getCurrentItem() ?? 'food';
+				this.scene.soundManager?.play('aim');
 				console.log('Aiming:', this.heldItemType);
 			}
 		}
@@ -154,6 +156,7 @@ export default class PlayerThrow extends ScriptNode {
 				thrownFruit.setData('isHeld', false);
 				thrownFruit.setData('pickupDisabled', false);
 				console.log('Object landed');
+				this.scene.soundManager?.play('impact');
 
 				// Impact Squash when hitting the ground
 				this.scene.tweens.add({

@@ -39,6 +39,7 @@ export default class PlayerInventory extends ScriptNode {
 		}
 		this.items.push(itemType);
 		console.log('Item added:', itemType, '| Inventory:', this.items);
+		this.scene.soundManager?.play('pickup');
 
 		// Trigger pickup animation safely
 		if (this.gameObject.anims && this.scene.anims.exists('player_pickup')) {

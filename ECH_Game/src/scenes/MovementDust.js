@@ -124,6 +124,13 @@ export default class MovementDust extends ScriptNode {
 				// Emit a particle exactly at the feet (assuming origin is 0.5, 1)
 				this.emitter.emitParticleAt(this.gameObject.x, this.gameObject.y);
 				this.lastEmitPos.set(this.gameObject.x, this.gameObject.y);
+				
+				// Tell the sound manager to play a footstep for AI.
+				// (The Player skips this because PlayerMovement.js handles it independently!)
+				const entityType = this.gameObject.getData('type');
+				if (entityType !== 'player') {
+					this.scene.soundManager?.play('footstep', entityType);
+				}
 			}
 		}
 
@@ -133,6 +140,7 @@ export default class MovementDust extends ScriptNode {
 			this.currentBrakeAngle = Phaser.Math.RadToDeg(Math.atan2(this.lastVelocity.y, this.lastVelocity.x));
 			this.currentBrakeSpeed = lastSpeed; // Store the momentum to power the particle speed
 			this.brakeEmitter.emitParticleAt(this.gameObject.x, this.gameObject.y, this.tuning.burstCount);
+			this.scene.soundManager?.play('brake');
 		}
 
 		this.lastVelocity.set(vx, vy);
