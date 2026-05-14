@@ -341,10 +341,10 @@ export default class Level2 extends Phaser.Scene {
 		envAss.scaleY = 0.55;
 
 		// envAss_1
-		const envAss_1 = new EnvAss(this, 2555, 5115, "A_tree_03");
+		const envAss_1 = new EnvAss(this, 2555, 5062, "A_N_tree_04");
 		this.add.existing(envAss_1);
-		envAss_1.scaleX = 0.55;
-		envAss_1.scaleY = 0.55;
+		envAss_1.scaleX = 1.35;
+		envAss_1.scaleY = 1.35;
 		envAss_1.flipX = false;
 		envAss_1.flipY = false;
 
@@ -429,10 +429,10 @@ export default class Level2 extends Phaser.Scene {
 		envAss_13.scaleY = 0.1;
 
 		// envAss_14
-		const envAss_14 = new EnvAss(this, 3485, 3633, "A_Big_Rock");
+		const envAss_14 = new EnvAss(this, 3485, 3633, "A_N_Big_Boii_Rock_1");
 		this.add.existing(envAss_14);
-		envAss_14.scaleX = 0.3;
-		envAss_14.scaleY = 0.3;
+		envAss_14.scaleX = 0.95;
+		envAss_14.scaleY = 1.05;
 		envAss_14.flipX = false;
 		envAss_14.flipY = false;
 
@@ -555,10 +555,10 @@ export default class Level2 extends Phaser.Scene {
 		envAss_31.flipY = false;
 
 		// envAss_33
-		const envAss_33 = new EnvAss(this, 3978, 505, "A_tomb_01");
+		const envAss_33 = new EnvAss(this, 3978, 505, "A_N_tomb");
 		this.add.existing(envAss_33);
-		envAss_33.scaleX = 0.2;
-		envAss_33.scaleY = 0.2;
+		envAss_33.scaleX = 1.3;
+		envAss_33.scaleY = 1.3;
 
 		// envAss_34
 		const envAss_34 = new EnvAss(this, 4044, 492, "A_Mushrrom_01");
@@ -568,17 +568,11 @@ export default class Level2 extends Phaser.Scene {
 		envAss_34.flipX = false;
 		envAss_34.flipY = false;
 
-		// envAss_35
-		const envAss_35 = new EnvAss(this, 3925, 1521, "A_Wall");
-		this.add.existing(envAss_35);
-		envAss_35.scaleX = 0.8;
-		envAss_35.scaleY = 0.9;
-
 		// envAss_36
-		const envAss_36 = new EnvAss(this, 3668, 521, "A_Mineshaft");
+		const envAss_36 = new EnvAss(this, 3668, 645, "A_N_Rock");
 		this.add.existing(envAss_36);
-		envAss_36.scaleX = 0.5;
-		envAss_36.scaleY = 0.55;
+		envAss_36.scaleX = 1.9;
+		envAss_36.scaleY = 1.65;
 
 		// envAss_37
 		const envAss_37 = new EnvAss(this, 2606, 5908, "A_M_Rock");
@@ -587,10 +581,10 @@ export default class Level2 extends Phaser.Scene {
 		envAss_37.scaleY = 0.4;
 
 		// envAss_38
-		const envAss_38 = new EnvAss(this, 6125, 1399, "A_tomb_01");
+		const envAss_38 = new EnvAss(this, 6127, 1362, "A_N_Tomb_02");
 		this.add.existing(envAss_38);
-		envAss_38.scaleX = 0.25;
-		envAss_38.scaleY = 0.25;
+		envAss_38.scaleX = 1.15;
+		envAss_38.scaleY = 1.15;
 
 		// envAss_39
 		const envAss_39 = new EnvAss(this, 6160, 1395, "A_Mushrrom_01");
@@ -639,6 +633,74 @@ export default class Level2 extends Phaser.Scene {
 		envAss_45.scaleY = 0.08;
 		envAss_45.flipX = false;
 		envAss_45.flipY = false;
+
+		// envAss_46
+		const envAss_46 = new EnvAss(this, 3668, 862, "A_N_Rock_V");
+		this.add.existing(envAss_46);
+		envAss_46.scaleX = 2.5;
+		envAss_46.scaleY = 2.6;
+		envAss_46.flipX = true;
+		envAss_46.flipY = false;
+
+		// envAss_47
+		const envAss_47 = new EnvAss(this, 3668, 1094, "A_N_Rock_S_01");
+		this.add.existing(envAss_47);
+		envAss_47.scaleX = 1.9;
+		envAss_47.scaleY = 4.3;
+		envAss_47.flipX = true;
+		envAss_47.flipY = false;
+
+		// envAss_35
+		const envAss_35 = new EnvAss(this, 3963, 1356, "A_N_Wall_1");
+		this.add.existing(envAss_35);
+		envAss_35.scaleX = 1.5;
+		envAss_35.scaleY = 1.6;
+
+		// envAss_48
+		const envAss_48 = new EnvAss(this, 5351, 1350, "A_M_Rock");
+		this.add.existing(envAss_48);
+		envAss_48.scaleX = 0.85;
+		envAss_48.scaleY = 0.55;
+
+		// envAss_49
+		const envAss_49 = new EnvAss(this, 4419, 1283, "A_Mushrrom_01");
+		this.add.existing(envAss_49);
+		envAss_49.scaleX = 0.08;
+		envAss_49.scaleY = 0.08;
+		envAss_49.flipX = false;
+		envAss_49.flipY = false;
+
+		// envAss_50
+		const envAss_50 = new EnvAss(this, 3285, 1657, "A_Mushrrom_01");
+		this.add.existing(envAss_50);
+		envAss_50.scaleX = 0.08;
+		envAss_50.scaleY = 0.08;
+		envAss_50.flipX = false;
+		envAss_50.flipY = false;
+
+		// envAss_51
+		const envAss_51 = new EnvAss(this, 3244, 1648, "A_Crystal");
+		this.add.existing(envAss_51);
+		envAss_51.scaleX = 0.38;
+		envAss_51.scaleY = 0.38;
+		envAss_51.flipX = false;
+		envAss_51.flipY = false;
+
+		// envAss_52
+		const envAss_52 = new EnvAss(this, 4870, 1723, "A_N_Rock");
+		this.add.existing(envAss_52);
+		envAss_52.scaleX = 1.03;
+		envAss_52.scaleY = 0.68;
+		envAss_52.flipX = true;
+		envAss_52.flipY = false;
+
+		// envAss_53
+		const envAss_53 = new EnvAss(this, 4777, 1703, "A_Mushrrom_01");
+		this.add.existing(envAss_53);
+		envAss_53.scaleX = 0.08;
+		envAss_53.scaleY = 0.08;
+		envAss_53.flipX = false;
+		envAss_53.flipY = false;
 
 		this.editabletilemap = editabletilemap;
 

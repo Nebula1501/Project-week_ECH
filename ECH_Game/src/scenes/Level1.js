@@ -167,11 +167,6 @@ export default class Level1 extends Phaser.Scene {
 		editabletilemap.addTilesetImage("Ground_Dark_03");
 		editabletilemap.addTilesetImage("Ground_light_03");
 
-		// sprite_ground_lvl1_sector3
-		const sprite_ground_lvl1_sector3 = this.add.image(5917, 2411, "sprite_ground_lvl1_sector3");
-		sprite_ground_lvl1_sector3.scaleX = 2;
-		sprite_ground_lvl1_sector3.scaleY = 2;
-
 		// Tiles
 		const tiles = this.add.layer();
 
@@ -188,6 +183,11 @@ export default class Level1 extends Phaser.Scene {
 
 		// tileMapCollider
 		new TileMapCollider(collision_layer);
+
+		// sprite_ground_lvl1_sector3
+		const sprite_ground_lvl1_sector3 = this.add.image(5917, 2411, "sprite_ground_lvl1_sector3");
+		sprite_ground_lvl1_sector3.scaleX = 2;
+		sprite_ground_lvl1_sector3.scaleY = 2;
 
 		// tier2HerbivoreRoaming_1
 		const tier2HerbivoreRoaming_1 = new Tier2HerbivoreRoaming(this, 2998, 3097);
@@ -279,20 +279,20 @@ export default class Level1 extends Phaser.Scene {
 		const envAss_2 = new EnvAss(this, 560, 464, "A_Tree");
 		this.add.existing(envAss_2);
 		envAss_2.scaleX = 0.5;
-		envAss_2.scaleY = 0.5;
+		envAss_2.scaleY = 0.65;
 
 		// a_Wall
-		const a_Wall = this.add.image(3614, 2027, "A_Wall");
-		a_Wall.scaleX = 1.1;
-		a_Wall.scaleY = 1.1;
+		const a_Wall = this.add.image(3614, 2027, "A_N_Wall_1");
+		a_Wall.scaleX = 2.15;
+		a_Wall.scaleY = 2;
 
 		// ySort_1
 		new YSort(a_Wall);
 
 		// a_Mineshaft
-		const a_Mineshaft = this.add.image(3932, 3088, "A_Mineshaft");
-		a_Mineshaft.scaleX = 0.8;
-		a_Mineshaft.scaleY = 0.8;
+		const a_Mineshaft = this.add.image(3932, 3088, "A_N_Mineshaft_1");
+		a_Mineshaft.scaleX = 1.5;
+		a_Mineshaft.scaleY = 1.5;
 		a_Mineshaft.setOrigin(0.5, 1);
 
 		// ySort_2
@@ -338,9 +338,9 @@ export default class Level1 extends Phaser.Scene {
 		envAss_4.scaleY = 0.75;
 
 		// a_Lake
-		const a_Lake = this.add.image(3012, 2698, "A_Lake");
-		a_Lake.scaleX = 0.8;
-		a_Lake.scaleY = 0.8;
+		const a_Lake = this.add.image(3012, 2698, "A_N_Lake_1");
+		a_Lake.scaleX = 1.75;
+		a_Lake.scaleY = 1.75;
 
 		// Obstacles
 		const obstacles = this.add.layer();
@@ -380,65 +380,22 @@ export default class Level1 extends Phaser.Scene {
 		envAss_8.scaleY = 0.25;
 
 		// envAss_6
-		const envAss_6 = new EnvAss(this, 3633, 340, "A_tomb_01");
+		const envAss_6 = new EnvAss(this, 3607, 340, "A_N_tomb");
 		this.add.existing(envAss_6);
-		envAss_6.scaleX = 0.25;
-		envAss_6.scaleY = 0.25;
+		envAss_6.scaleX = 2;
+		envAss_6.scaleY = 2;
 
 		// envAss_9
-		const envAss_9 = new EnvAss(this, 2588, 415, "A_tree_03");
+		const envAss_9 = new EnvAss(this, 2588, 415, "A_N_tree_03.");
 		this.add.existing(envAss_9);
-		envAss_9.scaleX = 0.6;
-		envAss_9.scaleY = 0.6;
+		envAss_9.scaleX = 1.1;
+		envAss_9.scaleY = 1.35;
 
 		// envAss_10
-		const envAss_10 = new EnvAss(this, 2700, 2210, "A_Big_Rock");
+		const envAss_10 = new EnvAss(this, 2700, 2210, "A_N_Big_Boii_Rock_1");
 		this.add.existing(envAss_10);
-		envAss_10.scaleX = 0.3;
-		envAss_10.scaleY = 0.3;
-
-		// a_Mushrrom_1
-		const a_Mushrrom_1 = this.add.image(4021, 1707, "A_Mushrrom_01");
-		a_Mushrrom_1.scaleX = 0.1;
-		a_Mushrrom_1.scaleY = 0.1;
-		a_Mushrrom_1.setOrigin(0.5, 1);
-
-		// ySort_6
-		new YSort(a_Mushrrom_1);
-
-		// envAss_11
-		const envAss_11 = new EnvAss(this, 4113, 1782, "A_tree_03");
-		this.add.existing(envAss_11);
-		envAss_11.scaleX = 0.55;
-		envAss_11.scaleY = 0.55;
-		envAss_11.flipX = true;
-		envAss_11.flipY = false;
-
-		// a_Mushrrom_2
-		const a_Mushrrom_2 = this.add.image(4254, 1770, "A_Mushrrom_01");
-		a_Mushrrom_2.scaleX = 0.1;
-		a_Mushrrom_2.scaleY = 0.1;
-		a_Mushrrom_2.setOrigin(0.5, 1);
-		a_Mushrrom_2.flipX = true;
-
-		// ySort_7
-		new YSort(a_Mushrrom_2);
-
-		// envAss_12
-		const envAss_12 = new EnvAss(this, 3646, 1586, "A_Bush");
-		this.add.existing(envAss_12);
-		envAss_12.scaleX = 0.25;
-		envAss_12.scaleY = 0.25;
-		envAss_12.flipX = false;
-		envAss_12.flipY = false;
-
-		// envAss_13
-		const envAss_13 = new EnvAss(this, 3741, 1571, "A_Mushrrom_01");
-		this.add.existing(envAss_13);
-		envAss_13.scaleX = 0.1;
-		envAss_13.scaleY = 0.1;
-		envAss_13.flipX = false;
-		envAss_13.flipY = false;
+		envAss_10.scaleX = 1;
+		envAss_10.scaleY = 1;
 
 		// envAss_14
 		const envAss_14 = new EnvAss(this, 2470, 1728, "A_Bush");
@@ -465,59 +422,175 @@ export default class Level1 extends Phaser.Scene {
 		envAss_16.flipY = false;
 
 		// envAss_17
-		const envAss_17 = new EnvAss(this, 4629, 3011, "A_M_Rock");
+		const envAss_17 = new EnvAss(this, 4895, 2896, "A_N_tree_03.");
 		this.add.existing(envAss_17);
-		envAss_17.scaleX = 0.75;
-		envAss_17.scaleY = 0.75;
+		envAss_17.scaleX = 1.55;
+		envAss_17.scaleY = 1.55;
 
 		// envAss_18
-		const envAss_18 = new EnvAss(this, 6841, 2378, "A_tree_03");
+		const envAss_18 = new EnvAss(this, 6666, 2395, "A_N_clift_01");
 		this.add.existing(envAss_18);
-		envAss_18.scaleX = 0.75;
-		envAss_18.scaleY = 0.75;
-
-		// a_Mushrrom_3
-		const a_Mushrrom_3 = this.add.image(6645, 2301, "A_Mushrrom_01");
-		a_Mushrrom_3.scaleX = 0.1;
-		a_Mushrrom_3.scaleY = 0.1;
-		a_Mushrrom_3.setOrigin(0.5, 1);
-
-		// ySort_8
-		new YSort(a_Mushrrom_3);
-
-		// a_Mushrrom_4
-		const a_Mushrrom_4 = this.add.image(6947, 2364, "A_Mushrrom_01");
-		a_Mushrrom_4.scaleX = 0.1;
-		a_Mushrrom_4.scaleY = 0.1;
-		a_Mushrrom_4.setOrigin(0.5, 1);
-		a_Mushrrom_4.flipX = true;
-
-		// ySort_9
-		new YSort(a_Mushrrom_4);
-
-		// a_Mushrrom_5
-		const a_Mushrrom_5 = this.add.image(6674, 2364, "A_Mushrrom_01");
-		a_Mushrrom_5.scaleX = 0.07;
-		a_Mushrrom_5.scaleY = 0.07;
-		a_Mushrrom_5.setOrigin(0.5, 1);
-		a_Mushrrom_5.flipX = true;
-
-		// ySort_10
-		new YSort(a_Mushrrom_5);
-
-		// envAss_19
-		const envAss_19 = new EnvAss(this, 5902, 2776, "A_Rock");
-		this.add.existing(envAss_19);
-		envAss_19.scaleX = 0.5;
-		envAss_19.scaleY = 0.45;
+		envAss_18.scaleX = 1.5;
+		envAss_18.scaleY = 1.5;
 
 		// envAss_20
-		const envAss_20 = new EnvAss(this, 6605, 3065, "A_Mineshaft");
+		const envAss_20 = new EnvAss(this, 5921, 2783, "A_N_Rock_S_01");
 		this.add.existing(envAss_20);
-		envAss_20.scaleX = 0.6;
-		envAss_20.scaleY = 0.6;
+		envAss_20.scaleX = 2.65;
+		envAss_20.scaleY = 3.4;
 		envAss_20.flipX = true;
 		envAss_20.flipY = false;
+
+		// envAss_21
+		const envAss_21 = new EnvAss(this, 3678, 1728, "A_N_Door_Rock");
+		this.add.existing(envAss_21);
+		envAss_21.scaleX = 1.7;
+		envAss_21.scaleY = 1.9;
+		envAss_21.flipX = false;
+		envAss_21.flipY = false;
+
+		// envAss_22
+		const envAss_22 = new EnvAss(this, 4188, 1819, "A_N_Big_Boii_Rock_1");
+		this.add.existing(envAss_22);
+		envAss_22.scaleX = 1;
+		envAss_22.scaleY = 1;
+
+		// envAss_23
+		const envAss_23 = new EnvAss(this, 4007, 1837, "A_Mushrrom_01");
+		this.add.existing(envAss_23);
+		envAss_23.scaleX = 0.2;
+		envAss_23.scaleY = 0.2;
+		envAss_23.flipX = false;
+		envAss_23.flipY = false;
+
+		// envAss_11
+		const envAss_11 = new EnvAss(this, 6588, 3097, "A_N_Rock");
+		this.add.existing(envAss_11);
+		envAss_11.scaleX = 2.15;
+		envAss_11.scaleY = 1.8;
+		envAss_11.flipX = true;
+		envAss_11.flipY = false;
+
+		// envAss_12
+		const envAss_12 = new EnvAss(this, 6318, 2296, "A_N_Rock_V2");
+		this.add.existing(envAss_12);
+		envAss_12.scaleX = 0.35;
+		envAss_12.scaleY = 0.35;
+		envAss_12.flipX = true;
+		envAss_12.flipY = false;
+
+		// envAss_13
+		const envAss_13 = new EnvAss(this, 5610, 2014, "A_N_Rock_M_02");
+		this.add.existing(envAss_13);
+		envAss_13.scaleX = 2.45;
+		envAss_13.scaleY = 2.35;
+		envAss_13.flipX = true;
+		envAss_13.flipY = false;
+
+		// envAss_19
+		const envAss_19 = new EnvAss(this, 955, 423, "A_N_Rock_V3");
+		this.add.existing(envAss_19);
+		envAss_19.scaleX = 1.15;
+		envAss_19.scaleY = 1.15;
+
+		// envAss_24
+		const envAss_24 = new EnvAss(this, 2415, 324, "A_N_Rock_V3");
+		this.add.existing(envAss_24);
+		envAss_24.scaleX = 1.15;
+		envAss_24.scaleY = 1.15;
+
+		// envAss_25
+		const envAss_25 = new EnvAss(this, 2347, 2670, "A_N_Rock_V3");
+		this.add.existing(envAss_25);
+		envAss_25.scaleX = 1.05;
+		envAss_25.scaleY = 1.05;
+		envAss_25.flipX = true;
+		envAss_25.flipY = false;
+
+		// envAss_26
+		const envAss_26 = new EnvAss(this, 6207, 1728, "A_N_raft");
+		this.add.existing(envAss_26);
+		envAss_26.scaleX = 1;
+		envAss_26.scaleY = 1;
+		envAss_26.flipX = true;
+		envAss_26.flipY = false;
+
+		// envAss_29
+		const envAss_29 = new EnvAss(this, 3016, 1385, "A_N_Rib_Bone_1");
+		this.add.existing(envAss_29);
+		envAss_29.scaleX = 1.55;
+		envAss_29.scaleY = 1.55;
+		envAss_29.angle = 0;
+
+		// envAss_28
+		const envAss_28 = new EnvAss(this, 3017, 1430, "A_N_Rib_Bone_1");
+		this.add.existing(envAss_28);
+		envAss_28.scaleX = 1.55;
+		envAss_28.scaleY = 1.55;
+		envAss_28.angle = 0;
+
+		// envAss_30
+		const envAss_30 = new EnvAss(this, 2821, 1340, "A_N_Rib_Bone_1");
+		this.add.existing(envAss_30);
+		envAss_30.scaleX = 1.55;
+		envAss_30.scaleY = 1.55;
+		envAss_30.angle = 0;
+		envAss_30.flipX = true;
+		envAss_30.flipY = false;
+
+		// envAss_31
+		const envAss_31 = new EnvAss(this, 2820, 1385, "A_N_Rib_Bone_1");
+		this.add.existing(envAss_31);
+		envAss_31.scaleX = 1.55;
+		envAss_31.scaleY = 1.55;
+		envAss_31.angle = 0;
+		envAss_31.flipX = true;
+		envAss_31.flipY = false;
+
+		// envAss_32
+		const envAss_32 = new EnvAss(this, 2821, 1430, "A_N_Rib_Bone_1");
+		this.add.existing(envAss_32);
+		envAss_32.scaleX = 1.55;
+		envAss_32.scaleY = 1.55;
+		envAss_32.angle = 0;
+		envAss_32.flipX = true;
+		envAss_32.flipY = false;
+
+		// a_Mineshaft_1
+		const a_Mineshaft_1 = this.add.image(2678, 3072, "A_TrainTracks_01");
+		a_Mineshaft_1.scaleX = 0.65;
+		a_Mineshaft_1.scaleY = 0.75;
+		a_Mineshaft_1.setOrigin(0.5, 1);
+
+		// ySort_6
+		new YSort(a_Mineshaft_1);
+
+		// a_Mineshaft_2
+		const a_Mineshaft_2 = this.add.image(3708, 2475, "A_TrainTracks_02");
+		a_Mineshaft_2.scaleX = 0.6;
+		a_Mineshaft_2.scaleY = 0.6;
+		a_Mineshaft_2.setOrigin(0.5, 1);
+
+		// ySort_7
+		new YSort(a_Mineshaft_2);
+
+		// envAss_27
+		const envAss_27 = new EnvAss(this, 5508, 3284, "A_N_Rock_tri");
+		this.add.existing(envAss_27);
+		envAss_27.scaleX = 1.4;
+		envAss_27.scaleY = 1.4;
+		envAss_27.flipX = false;
+		envAss_27.flipY = false;
+
+		// envAss_33
+		const envAss_33 = new EnvAss(this, 6951, 3365, "A_N_Rock_M_01");
+		this.add.existing(envAss_33);
+		envAss_33.scaleX = 2.15;
+		envAss_33.scaleY = 2.15;
+		envAss_33.angle = -4;
+		envAss_33.setOrigin(0.5, 0.5);
+		envAss_33.flipX = false;
+		envAss_33.flipY = false;
 
 		this.editabletilemap = editabletilemap;
 
