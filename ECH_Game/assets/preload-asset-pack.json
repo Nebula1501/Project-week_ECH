@@ -102,11 +102,6 @@
                 "key": "dust_particle"
             },
             {
-                "url": "assets/sprites/UI/ECHOES of the HUNT.png",
-                "type": "image",
-                "key": "ECHOES of the HUNT"
-            },
-            {
                 "url": "assets/tilemaps/tilesets/Ground_Dark_03.png",
                 "frameConfig": {
                     "frameWidth": 64,
@@ -138,11 +133,6 @@
                 "key": "guapen"
             },
             {
-                "url": "assets/sprites/UI/Play.png",
-                "type": "image",
-                "key": "Play"
-            },
-            {
                 "url": "assets/animations/player/player_death.json",
                 "type": "animation",
                 "key": "player_death"
@@ -168,9 +158,9 @@
                 "key": "player_walk"
             },
             {
-                "url": "assets/sprites/UI/Quit.png",
+                "url": "assets/sprite_background.png",
                 "type": "image",
-                "key": "Quit"
+                "key": "sprite_background"
             },
             {
                 "url": "assets/sprites/creatures/tier2-carnivore/sprite_carnivore1.png",
@@ -196,6 +186,21 @@
                 "url": "assets/sprites/items/fruit/sprite_apple.png",
                 "type": "image",
                 "key": "sprite_fruit"
+            },
+            {
+                "url": "sprite_ground_lvl1_sector1.png",
+                "type": "image",
+                "key": "sprite_ground_lvl1_sector1"
+            },
+            {
+                "url": "sprite_ground_lvl1_sector2.png",
+                "type": "image",
+                "key": "sprite_ground_lvl1_sector2"
+            },
+            {
+                "url": "sprite_ground_lvl1_sector3.png",
+                "type": "image",
+                "key": "sprite_ground_lvl1_sector3"
             },
             {
                 "url": "assets/sprites/creatures/tier1-herbivore/sprite_herb2.png",
