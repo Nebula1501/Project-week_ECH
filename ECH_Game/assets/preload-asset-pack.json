@@ -273,11 +273,6 @@
                 "key": "player_walk"
             },
             {
-                "url": "assets/sprites/items/Obstacles/Screenshot 2026-05-14 144927.png",
-                "type": "image",
-                "key": "Screenshot 2026-05-14 144927"
-            },
-            {
                 "url": "assets/sprite_background.png",
                 "type": "image",
                 "key": "sprite_background"
