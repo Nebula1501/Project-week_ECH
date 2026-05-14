@@ -84,8 +84,23 @@ export default class SquashStretch extends ScriptNode {
 		const newState = speed < this.idleThreshold ? 'idle' : 'moving';
 
 		const stopImpact = !this.isImpacting && this.state === 'moving' && newState === 'idle' && lastSpeed > this.impactStopSpeed;
-		if (stopImpact || (!this.isImpacting && speedDelta > this.impactTriggerDelta && speed < lastSpeed)) {
-			this.triggerImpact();
+		
+		let isImpact = false;
+		let impactSpeed = 0;
+
+		if (stopImpact) {
+			isImpact = true;
+			impactSpeed = lastSpeed;
+		} else if (!this.isImpacting && speedDelta > this.impactTriggerDelta && speed < lastSpeed) {
+			isImpact = true;
+			impactSpeed = Math.max(lastSpeed, speedDelta);
+		}
+
+		if (isImpact) {
+			// Dynamic intensity based on standard movement speed (~200px/s)
+			// A drop from the sky yields a massive speed and will cleanly cap out at a 4x multiplier.
+			const intensity = Phaser.Math.Clamp(impactSpeed / 200, 1, 4);
+			this.triggerImpact(intensity);
 		}
 
 		if (this.isImpacting) {
@@ -158,7 +173,7 @@ export default class SquashStretch extends ScriptNode {
 		});
 	}
 
-	triggerImpact() {
+	triggerImpact(intensity = 1) {
 		if (this.isImpacting) return;
 
 		this.isImpacting = true;
@@ -170,14 +185,19 @@ export default class SquashStretch extends ScriptNode {
 		const absY = Math.abs(this.lastVelocity.y);
 		const horizontalImpact = absX >= absY;
 
+		// Calculate dynamic squash/stretch bounds based on intensity
+		const flex = 0.15 * intensity;
+		const squash = Math.max(0.2, 1 - flex);
+		const stretch = 1 + flex;
+
 		let impactX;
 		let impactY;
 		if (horizontalImpact) {
-			impactX = this.baseScale.x * 0.85;
-			impactY = this.baseScale.y * 1.15;
+			impactX = this.baseScale.x * squash;
+			impactY = this.baseScale.y * stretch;
 		} else {
-			impactX = this.baseScale.x * 1.15;
-			impactY = this.baseScale.y * 0.85;
+			impactX = this.baseScale.x * stretch;
+			impactY = this.baseScale.y * squash;
 		}
 
 		const impactTween1 = this.scene.tweens.add({
@@ -219,7 +239,7 @@ export default class SquashStretch extends ScriptNode {
 	}
 
 	resetScale() {
-		if (this.gameObject) {
+		if (this.gameObject && this.baseScale) {
 			this.gameObject.scaleX = this.baseScale.x;
 			this.gameObject.scaleY = this.baseScale.y;
 		}

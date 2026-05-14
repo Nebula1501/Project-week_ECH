@@ -38,16 +38,24 @@ export default class CameraController extends ScriptNode {
 	    this.scene.events.once('create', () => {
 	        this.player = (this.scene.globalEntities || []).find(c => c && c.getData && c.getData('type') === 'player');
 	        if (this.player) {
-	            // Instantly snap camera to player's starting position (prevents panning from 0,0 on checkpoint respawn)
-	            this.scene.cameras.main.centerOn(this.player.x, this.player.y);
-	            this.scene.cameras.main.startFollow(this.player, true, 0.08, 0.08);
+	            // Check if PlayerSpawn gave us a target landing spot
+	            const spawnTarget = this.player.getData('spawnTarget');
+	            const startX = spawnTarget ? spawnTarget.x : this.player.x;
+	            const startY = spawnTarget ? spawnTarget.y : this.player.y;
+
+	            this.scene.cameras.main.centerOn(startX, startY);
+	            if (!spawnTarget) {
+	                this.scene.cameras.main.startFollow(this.player, true, 0.08, 0.08);
+	            }
 	            this.scene.cameras.main.setZoom(this.zoomLevel);
 	        }
 	    });
 	}
 
 	update() {
+	    if (this.scene.isPlayerDead) return;
 	    if (!this.player || !this.player.body) return;
+	    if (this.player.getData('isSpawning')) return;
 
 	    const speed = Math.abs(this.player.body.velocity.x) + Math.abs(this.player.body.velocity.y);
 	    const isMoving = speed > 10;

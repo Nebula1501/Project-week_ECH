@@ -129,11 +129,11 @@ export default class Tier1HerbivoreRoamingController extends ScriptNode {
 		                 this.gameObject._behaviourOpportunity?.eating;
 		const isCombat = this.gameObject._stateManager?.currentState === 'combat';
 
-		if (isCombat && this.scene.anims.exists('creature_combat')) {
+		if (isCombat) {
 			this.gameObject.play('creature_combat', true);
-		} else if (isEating && this.scene.anims.exists('tier1herb_eat')) {
+		} else if (isEating) {
 			this.gameObject.play('tier1herb_eat', true);
-		} else if ((body.velocity.x !== 0 || body.velocity.y !== 0) && this.scene.anims.exists('tier1herb_walk')) {
+		} else if (body.velocity.x !== 0 || body.velocity.y !== 0) {
 			this.gameObject.play('tier1herb_walk', true);
 		} else {
 			this.gameObject.play('tier1herb_idle', true);

@@ -24,6 +24,12 @@ export default class PlayerInventory extends ScriptNode {
 		this.maxCapacity = 1;
 		this.selectedIndex = 0;
 		this.scene.playerInventory = this;
+
+		// Load carried items from the previous level (if any)
+		const savedItems = this.scene.game.registry.get('savedInventory');
+		if (savedItems && Array.isArray(savedItems)) {
+			this.items = [...savedItems];
+		}
 	}
 
 	addItem(itemType) {

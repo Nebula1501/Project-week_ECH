@@ -27,9 +27,6 @@ export default class CreatureTilemapCollider extends ScriptNode {
 			return;
 		}
 
-		// Hide the collision tiles so they act as invisible bounds
-		layer.setVisible(false);
-
 		// Enable Arcade Physics on every painted tile
 		layer.setCollisionByExclusion([-1]);
 

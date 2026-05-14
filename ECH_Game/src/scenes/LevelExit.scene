@@ -1,5 +1,5 @@
 {
-    "id": "d2584426-6d45-4343-b0e2-027028e5e212",
+    "id": "9aa16c9d-8364-4e76-b384-a813ad4c11ff",
     "sceneType": "PREFAB",
     "settings": {
         "exportClass": true,
@@ -13,19 +13,9 @@
     },
     "displayList": [
         {
-            "type": "Rectangle",
-            "id": "10d1a4f4-e52b-4b5c-8e85-397292a1cc20",
-            "label": "rectangle_1",
-            "isFilled": true,
-            "width": 128,
-            "height": 128,
-            "list": [
-                {
-                    "prefabId": "657a7a58-492f-4669-8a0f-8b109052cfc0",
-                    "id": "8023adae-edc8-464d-bbb0-245373fa021e",
-                    "label": "levelExitLogic"
-                }
-            ]
+            "type": "ScriptNode",
+            "id": "9ccc08ed-d790-4ce3-8c54-03876910fddf",
+            "label": "scriptnode_1"
         }
     ],
     "plainObjects": [],

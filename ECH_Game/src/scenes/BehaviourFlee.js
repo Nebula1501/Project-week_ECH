@@ -120,8 +120,13 @@ export default class BehaviourFlee extends ScriptNode {
 				this.fleeComplete = true;
 				this.gameObject.body.setVelocity(0, 0);
 				this.gameObject._stateManager.currentState = null;
-				const defaultState = this.gameObject.getData('defaultState') ?? 'neutral';
-				this.gameObject._stateManager.switchState(defaultState);
+				
+				if (this.gameObject._stateDecider) {
+					this.gameObject._stateDecider.evaluate(this.gameObject._detectionRadius?.detected ?? []);
+				} else {
+					const defaultState = this.gameObject.getData('defaultState') ?? 'neutral';
+					this.gameObject._stateManager.switchState(defaultState);
+				}
 			}
 			return;
 		}

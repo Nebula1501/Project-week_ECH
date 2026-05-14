@@ -12,6 +12,8 @@ import PlayerDeath from "./PlayerDeath.js";
 import PlayerTuning from "./PlayerTuning.js";
 import AtmosphereDepth from "./AtmosphereDepth.js";
 import YSort from "./YSort.js";
+import PlayerSpawn from "./PlayerSpawn.js";
+import MovementDust from "./MovementDust.js";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -54,8 +56,18 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		// ySort
 		const ySort = new YSort(this);
 
+		// playerSpawn
+		new PlayerSpawn(this);
+
+		// movementDust
+		const movementDust = new MovementDust(this);
+
 		// ySort (prefab fields)
 		ySort.isStatic = false;
+
+		// movementDust (prefab fields)
+		movementDust.dustColour = "#ffffffff";
+		movementDust.dustScale = 0.5;
 
 		/* START-USER-CTR-CODE */
 		this.setData('type', 'player');

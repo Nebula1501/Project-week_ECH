@@ -19,8 +19,8 @@
             "texture": {
                 "key": "sprite_herb2"
             },
-            "scaleX": 0.5,
-            "scaleY": 0.5,
+            "scaleX": 0.27,
+            "scaleY": 0.27,
             "originY": 1,
             "body.width": 750,
             "body.height": 650,
@@ -84,6 +84,11 @@
                     "prefabId": "2e55141f-1ce4-452d-8133-f6e730e11d7c",
                     "id": "86ef2165-1912-4275-8fb8-f1944a5e6897",
                     "label": "atmosphereDepth"
+                },
+                {
+                    "prefabId": "e3b478cf-92e3-499e-b5b4-edc405471b3e",
+                    "id": "465aea5c-d19d-4ca7-bf4a-38908c18d48d",
+                    "label": "movementDust"
                 }
             ]
         }

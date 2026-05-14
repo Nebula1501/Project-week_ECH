@@ -20,11 +20,6 @@ export default class PlayerMovement extends ScriptNode {
 	/* START-USER-CODE */
 
 	awake() {
-		// Snap to checkpoint if one exists globally
-		const checkpoint = this.scene.game.registry.get('activeCheckpoint');
-		if (checkpoint) {
-			this.gameObject.setPosition(checkpoint.x, checkpoint.y);
-		}
 
 		this.cursors = this.scene.input.keyboard.createCursorKeys();
 		this.wasd = this.scene.input.keyboard.addKeys({
@@ -52,6 +47,14 @@ export default class PlayerMovement extends ScriptNode {
 	update() {
 		if (!this.gameObject || !this.gameObject.body) return;
 		if (this.gameObject.getData('isDead')) return;
+		if (this.gameObject.getData('isTransitioning')) return;
+
+		// Lock movement if the main menu is open
+		if (this.scene.game.registry.get('isMenuOpen')) {
+			this.gameObject.body.setVelocity(0);
+			this.gameObject.play('player_idle', true);
+			return;
+		}
 
 		const body = this.gameObject.body;
 		const cursors = this.cursors;
