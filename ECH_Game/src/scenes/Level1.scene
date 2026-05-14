@@ -15,6 +15,18 @@
     },
     "displayList": [
         {
+            "type": "Image",
+            "id": "9493dc7f-b1a5-44c0-981b-5323f3495e53",
+            "label": "sprite_bridge1",
+            "texture": {
+                "key": "sprite_bridge1"
+            },
+            "x": 2914,
+            "y": 1196,
+            "scaleX": 1.95,
+            "scaleY": 1.9
+        },
+        {
             "type": "Layer",
             "id": "e17baa06-9e19-49d8-8617-845414251835",
             "label": "Tiles",
@@ -36,6 +48,7 @@
                     "type": "EditableTilemapLayer",
                     "id": "ebec5363-70f4-4c93-8319-c0f53780467a",
                     "label": "collision layer",
+                    "editorRender": false,
                     "list": [
                         {
                             "prefabId": "dbf8116f-36e6-4f37-a41a-c302030db7b8",
@@ -669,25 +682,6 @@
         },
         {
             "prefabId": "31093b2c-adb8-4fec-80be-cc7a72f12c91",
-            "id": "8a6d1157-ffb8-4f4e-8587-02542decd8c8",
-            "unlock": [
-                "x",
-                "y",
-                "scaleX",
-                "scaleY",
-                "texture"
-            ],
-            "label": "envAss_17",
-            "texture": {
-                "key": "A_N_tree_03."
-            },
-            "x": 4895,
-            "y": 2896,
-            "scaleX": 1.55,
-            "scaleY": 1.55
-        },
-        {
-            "prefabId": "31093b2c-adb8-4fec-80be-cc7a72f12c91",
             "id": "25db1de6-d43a-42af-bfc8-3a8cede24c24",
             "unlock": [
                 "x",
@@ -947,6 +941,98 @@
             "flipY": false
         },
         {
+            "type": "Image",
+            "id": "037b4753-6ae3-46fe-ab54-11b570637015",
+            "label": "a_Mineshaft_1",
+            "texture": {
+                "key": "A_TrainTracks_01"
+            },
+            "x": 2678,
+            "y": 3072,
+            "scaleX": 0.65,
+            "scaleY": 0.75,
+            "originY": 1,
+            "list": [
+                {
+                    "prefabId": "7d41317a-4090-4b04-a60b-37f321621170",
+                    "id": "9af68ba9-f88e-4918-bf88-981df3a1c166",
+                    "label": "ySort_6"
+                }
+            ]
+        },
+        {
+            "type": "Image",
+            "id": "7a7c34e1-9c88-491b-86b8-9d9f4fd19e5a",
+            "label": "a_Mineshaft_2",
+            "texture": {
+                "key": "A_TrainTracks_02"
+            },
+            "x": 3708,
+            "y": 2475,
+            "scaleX": 0.6,
+            "scaleY": 0.6,
+            "originY": 1,
+            "list": [
+                {
+                    "prefabId": "7d41317a-4090-4b04-a60b-37f321621170",
+                    "id": "d7553c2e-e0ba-42d0-8bf2-cb26ae62413c",
+                    "label": "ySort_7"
+                }
+            ]
+        },
+        {
+            "prefabId": "31093b2c-adb8-4fec-80be-cc7a72f12c91",
+            "id": "f88e27cf-16f4-4c41-8c6a-e686605ed71c",
+            "unlock": [
+                "x",
+                "y",
+                "scaleX",
+                "scaleY",
+                "texture",
+                "flipX",
+                "flipY"
+            ],
+            "label": "envAss_27",
+            "texture": {
+                "key": "A_N_Rock_tri"
+            },
+            "x": 5508,
+            "y": 3284,
+            "scaleX": 1.4,
+            "scaleY": 1.4,
+            "flipX": false,
+            "flipY": false
+        },
+        {
+            "prefabId": "31093b2c-adb8-4fec-80be-cc7a72f12c91",
+            "id": "b29fbc84-5322-4b32-88d8-ef593169403e",
+            "unlock": [
+                "x",
+                "y",
+                "scaleX",
+                "scaleY",
+                "texture",
+                "flipX",
+                "flipY",
+                "originX",
+                "originY",
+                "angle"
+            ],
+            "label": "envAss_33",
+            "texture": {
+                "key": "A_N_Rock_M_01"
+            },
+            "x": 6951,
+            "y": 3365,
+            "scaleX": 2.15,
+            "scaleY": 2.15,
+            "angle": -4,
+            "originX": 0.5,
+            "originY": 0.5,
+            "flipX": false,
+            "flipY": false
+        },
+        {
             "prefabId": "31093b2c-adb8-4fec-80be-cc7a72f12c91",
             "id": "79d6326e-10f6-402b-9e3e-e7480843e792",
             "unlock": [
@@ -1067,95 +1153,35 @@
         },
         {
             "type": "Image",
-            "id": "037b4753-6ae3-46fe-ab54-11b570637015",
-            "label": "a_Mineshaft_1",
+            "id": "eab59d34-5e7b-494a-a17c-a148601aef64",
+            "label": "sprite_bridge2",
             "texture": {
-                "key": "A_TrainTracks_01"
+                "key": "sprite_bridge2"
             },
-            "x": 2678,
-            "y": 3072,
-            "scaleX": 0.65,
-            "scaleY": 0.75,
-            "originY": 1,
-            "list": [
-                {
-                    "prefabId": "7d41317a-4090-4b04-a60b-37f321621170",
-                    "id": "9af68ba9-f88e-4918-bf88-981df3a1c166",
-                    "label": "ySort_6"
-                }
-            ]
-        },
-        {
-            "type": "Image",
-            "id": "7a7c34e1-9c88-491b-86b8-9d9f4fd19e5a",
-            "label": "a_Mineshaft_2",
-            "texture": {
-                "key": "A_TrainTracks_02"
-            },
-            "x": 3708,
-            "y": 2475,
-            "scaleX": 0.6,
-            "scaleY": 0.6,
-            "originY": 1,
-            "list": [
-                {
-                    "prefabId": "7d41317a-4090-4b04-a60b-37f321621170",
-                    "id": "d7553c2e-e0ba-42d0-8bf2-cb26ae62413c",
-                    "label": "ySort_7"
-                }
-            ]
+            "x": 4662,
+            "y": 2321,
+            "scaleX": 1.7,
+            "scaleY": 1.75,
+            "angle": 2
         },
         {
             "prefabId": "31093b2c-adb8-4fec-80be-cc7a72f12c91",
-            "id": "f88e27cf-16f4-4c41-8c6a-e686605ed71c",
+            "id": "8a6d1157-ffb8-4f4e-8587-02542decd8c8",
             "unlock": [
                 "x",
                 "y",
                 "scaleX",
                 "scaleY",
-                "texture",
-                "flipX",
-                "flipY"
+                "texture"
             ],
-            "label": "envAss_27",
+            "label": "envAss_17",
             "texture": {
-                "key": "A_N_Rock_tri"
+                "key": "A_N_tree_03."
             },
-            "x": 5508,
-            "y": 3284,
-            "scaleX": 1.4,
-            "scaleY": 1.4,
-            "flipX": false,
-            "flipY": false
-        },
-        {
-            "prefabId": "31093b2c-adb8-4fec-80be-cc7a72f12c91",
-            "id": "b29fbc84-5322-4b32-88d8-ef593169403e",
-            "unlock": [
-                "x",
-                "y",
-                "scaleX",
-                "scaleY",
-                "texture",
-                "flipX",
-                "flipY",
-                "originX",
-                "originY",
-                "angle"
-            ],
-            "label": "envAss_33",
-            "texture": {
-                "key": "A_N_Rock_M_01"
-            },
-            "x": 6951,
-            "y": 3365,
-            "scaleX": 2.15,
-            "scaleY": 2.15,
-            "angle": -4,
-            "originX": 0.5,
-            "originY": 0.5,
-            "flipX": false,
-            "flipY": false
+            "x": 5222,
+            "y": 2906,
+            "scaleX": 1.1,
+            "scaleY": 1.35
         }
     ],
     "plainObjects": [

@@ -167,6 +167,11 @@ export default class Level1 extends Phaser.Scene {
 		editabletilemap.addTilesetImage("Ground_Dark_03");
 		editabletilemap.addTilesetImage("Ground_light_03");
 
+		// sprite_bridge1
+		const sprite_bridge1 = this.add.image(2914, 1196, "sprite_bridge1");
+		sprite_bridge1.scaleX = 1.95;
+		sprite_bridge1.scaleY = 1.9;
+
 		// Tiles
 		const tiles = this.add.layer();
 
@@ -421,12 +426,6 @@ export default class Level1 extends Phaser.Scene {
 		envAss_16.flipX = false;
 		envAss_16.flipY = false;
 
-		// envAss_17
-		const envAss_17 = new EnvAss(this, 4895, 2896, "A_N_tree_03.");
-		this.add.existing(envAss_17);
-		envAss_17.scaleX = 1.55;
-		envAss_17.scaleY = 1.55;
-
 		// envAss_18
 		const envAss_18 = new EnvAss(this, 6666, 2395, "A_N_clift_01");
 		this.add.existing(envAss_18);
@@ -515,6 +514,42 @@ export default class Level1 extends Phaser.Scene {
 		envAss_26.flipX = true;
 		envAss_26.flipY = false;
 
+		// a_Mineshaft_1
+		const a_Mineshaft_1 = this.add.image(2678, 3072, "A_TrainTracks_01");
+		a_Mineshaft_1.scaleX = 0.65;
+		a_Mineshaft_1.scaleY = 0.75;
+		a_Mineshaft_1.setOrigin(0.5, 1);
+
+		// ySort_6
+		new YSort(a_Mineshaft_1);
+
+		// a_Mineshaft_2
+		const a_Mineshaft_2 = this.add.image(3708, 2475, "A_TrainTracks_02");
+		a_Mineshaft_2.scaleX = 0.6;
+		a_Mineshaft_2.scaleY = 0.6;
+		a_Mineshaft_2.setOrigin(0.5, 1);
+
+		// ySort_7
+		new YSort(a_Mineshaft_2);
+
+		// envAss_27
+		const envAss_27 = new EnvAss(this, 5508, 3284, "A_N_Rock_tri");
+		this.add.existing(envAss_27);
+		envAss_27.scaleX = 1.4;
+		envAss_27.scaleY = 1.4;
+		envAss_27.flipX = false;
+		envAss_27.flipY = false;
+
+		// envAss_33
+		const envAss_33 = new EnvAss(this, 6951, 3365, "A_N_Rock_M_01");
+		this.add.existing(envAss_33);
+		envAss_33.scaleX = 2.15;
+		envAss_33.scaleY = 2.15;
+		envAss_33.angle = -4;
+		envAss_33.setOrigin(0.5, 0.5);
+		envAss_33.flipX = false;
+		envAss_33.flipY = false;
+
 		// envAss_29
 		const envAss_29 = new EnvAss(this, 3016, 1385, "A_N_Rib_Bone_1");
 		this.add.existing(envAss_29);
@@ -556,41 +591,17 @@ export default class Level1 extends Phaser.Scene {
 		envAss_32.flipX = true;
 		envAss_32.flipY = false;
 
-		// a_Mineshaft_1
-		const a_Mineshaft_1 = this.add.image(2678, 3072, "A_TrainTracks_01");
-		a_Mineshaft_1.scaleX = 0.65;
-		a_Mineshaft_1.scaleY = 0.75;
-		a_Mineshaft_1.setOrigin(0.5, 1);
+		// sprite_bridge2
+		const sprite_bridge2 = this.add.image(4662, 2321, "sprite_bridge2");
+		sprite_bridge2.scaleX = 1.7;
+		sprite_bridge2.scaleY = 1.75;
+		sprite_bridge2.angle = 2;
 
-		// ySort_6
-		new YSort(a_Mineshaft_1);
-
-		// a_Mineshaft_2
-		const a_Mineshaft_2 = this.add.image(3708, 2475, "A_TrainTracks_02");
-		a_Mineshaft_2.scaleX = 0.6;
-		a_Mineshaft_2.scaleY = 0.6;
-		a_Mineshaft_2.setOrigin(0.5, 1);
-
-		// ySort_7
-		new YSort(a_Mineshaft_2);
-
-		// envAss_27
-		const envAss_27 = new EnvAss(this, 5508, 3284, "A_N_Rock_tri");
-		this.add.existing(envAss_27);
-		envAss_27.scaleX = 1.4;
-		envAss_27.scaleY = 1.4;
-		envAss_27.flipX = false;
-		envAss_27.flipY = false;
-
-		// envAss_33
-		const envAss_33 = new EnvAss(this, 6951, 3365, "A_N_Rock_M_01");
-		this.add.existing(envAss_33);
-		envAss_33.scaleX = 2.15;
-		envAss_33.scaleY = 2.15;
-		envAss_33.angle = -4;
-		envAss_33.setOrigin(0.5, 0.5);
-		envAss_33.flipX = false;
-		envAss_33.flipY = false;
+		// envAss_17
+		const envAss_17 = new EnvAss(this, 5222, 2906, "A_N_tree_03.");
+		this.add.existing(envAss_17);
+		envAss_17.scaleX = 1.1;
+		envAss_17.scaleY = 1.35;
 
 		this.editabletilemap = editabletilemap;
 

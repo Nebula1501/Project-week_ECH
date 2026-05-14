@@ -278,6 +278,16 @@
                 "key": "sprite_background"
             },
             {
+                "url": "assets/sprite_bridge1.png",
+                "type": "image",
+                "key": "sprite_bridge1"
+            },
+            {
+                "url": "assets/sprite_bridge2.png",
+                "type": "image",
+                "key": "sprite_bridge2"
+            },
+            {
                 "url": "assets/sprites/creatures/tier2-carnivore/sprite_carnivore1.png",
                 "type": "image",
                 "key": "sprite_carnivore1"
