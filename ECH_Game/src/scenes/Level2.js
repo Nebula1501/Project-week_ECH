@@ -175,12 +175,6 @@ export default class Level2 extends Phaser.Scene {
 		editabletilemap.addTilesetImage("Ground_Dark_03");
 		editabletilemap.addTilesetImage("Ground_light_03");
 
-		// sprite_ground_lvl2
-		const sprite_ground_lvl2 = this.add.image(2117, 186, "sprite_ground_lvl2");
-		sprite_ground_lvl2.scaleX = 1.6;
-		sprite_ground_lvl2.scaleY = 1.65;
-		sprite_ground_lvl2.setOrigin(0, 0);
-
 		// tiles
 		const tiles = this.add.layer();
 
@@ -201,6 +195,12 @@ export default class Level2 extends Phaser.Scene {
 
 		// creatureTilemapCollider
 		new CreatureTilemapCollider(creatureCollision);
+
+		// sprite_ground_lvl2
+		const sprite_ground_lvl2 = this.add.image(2117, 186, "sprite_ground_lvl2");
+		sprite_ground_lvl2.scaleX = 1.6;
+		sprite_ground_lvl2.scaleY = 1.65;
+		sprite_ground_lvl2.setOrigin(0, 0);
 
 		// Pickups
 		const pickups = this.add.layer();
@@ -335,9 +335,9 @@ export default class Level2 extends Phaser.Scene {
 		this.add.existing(inventoryHUD);
 
 		// envAss
-		const envAss = new EnvAss(this, 3708, 4752, "A_M_Rock");
+		const envAss = new EnvAss(this, 3588, 4731, "A_M_Rock");
 		this.add.existing(envAss);
-		envAss.scaleX = 0.75;
+		envAss.scaleX = 0.5;
 		envAss.scaleY = 0.55;
 
 		// envAss_1
@@ -499,7 +499,7 @@ export default class Level2 extends Phaser.Scene {
 		// envAss_25
 		const envAss_25 = new EnvAss(this, 6040, 2624, "A_M_Rock");
 		this.add.existing(envAss_25);
-		envAss_25.scaleX = 0.35;
+		envAss_25.scaleX = 0.3;
 		envAss_25.scaleY = 0.35;
 
 		// envAss_26

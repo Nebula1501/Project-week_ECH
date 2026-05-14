@@ -13,20 +13,6 @@
     },
     "displayList": [
         {
-            "type": "Image",
-            "id": "843732ff-abb0-4b03-8a6c-4e49f45dc0a7",
-            "label": "sprite_ground_lvl2",
-            "texture": {
-                "key": "sprite_ground_lvl2"
-            },
-            "x": 2117,
-            "y": 186,
-            "scaleX": 1.6,
-            "scaleY": 1.65,
-            "originX": 0,
-            "originY": 0
-        },
-        {
             "type": "Layer",
             "id": "283598f9-da21-4384-90de-6bea8dea6e46",
             "label": "tiles",
@@ -64,6 +50,20 @@
                     "tilemapId": "8085e620-68e0-4772-b1e2-b7fc78e78a92"
                 }
             ]
+        },
+        {
+            "type": "Image",
+            "id": "843732ff-abb0-4b03-8a6c-4e49f45dc0a7",
+            "label": "sprite_ground_lvl2",
+            "texture": {
+                "key": "sprite_ground_lvl2"
+            },
+            "x": 2117,
+            "y": 186,
+            "scaleX": 1.6,
+            "scaleY": 1.65,
+            "originX": 0,
+            "originY": 0
         },
         {
             "type": "Layer",
@@ -420,9 +420,9 @@
             "texture": {
                 "key": "A_M_Rock"
             },
-            "x": 3708,
-            "y": 4752,
-            "scaleX": 0.75,
+            "x": 3588,
+            "y": 4731,
+            "scaleX": 0.5,
             "scaleY": 0.55
         },
         {
@@ -921,7 +921,7 @@
             },
             "x": 6040,
             "y": 2624,
-            "scaleX": 0.35,
+            "scaleX": 0.3,
             "scaleY": 0.35
         },
         {
