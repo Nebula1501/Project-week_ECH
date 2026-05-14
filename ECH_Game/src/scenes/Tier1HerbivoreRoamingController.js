@@ -135,6 +135,7 @@ export default class Tier1HerbivoreRoamingController extends ScriptNode {
 			this.gameObject.play('tier1herb_eat', true);
 		} else if (body.velocity.x !== 0 || body.velocity.y !== 0) {
 			this.gameObject.play('tier1herb_walk', true);
+			this.scene.soundManager?.play('footstep', this.gameObject);
 		} else {
 			this.gameObject.play('tier1herb_idle', true);
 		}

@@ -119,6 +119,20 @@ export default class MimicController extends ScriptNode {
 		}
 	}
 
+	update() {
+		if (!this.gameObject || !this.gameObject.body) return;
+		const body = this.gameObject.body;
+		
+		if (body.velocity.x < 0) {
+			this.gameObject.flipX = true;
+		} else if (body.velocity.x > 0) {
+			this.gameObject.flipX = false;
+		}
+
+		if (body.velocity.x !== 0 || body.velocity.y !== 0) {
+			this.scene.soundManager?.play('footstep', this.gameObject);
+		}
+	}
 	/* END-USER-CODE */
 }
 

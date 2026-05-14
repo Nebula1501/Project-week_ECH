@@ -111,6 +111,21 @@ export default class Tier1CarnivoreController extends ScriptNode {
 		stateManager.switchState('patrol');
 		console.log('Tier1Carnivore state machine ready');
 	}
+
+	update() {
+		if (!this.gameObject || !this.gameObject.body) return;
+		const body = this.gameObject.body;
+		
+		if (body.velocity.x < 0) {
+			this.gameObject.flipX = true;
+		} else if (body.velocity.x > 0) {
+			this.gameObject.flipX = false;
+		}
+
+		if (body.velocity.x !== 0 || body.velocity.y !== 0) {
+			this.scene.soundManager?.play('footstep', this.gameObject);
+		}
+	}
 }
 
 /* END OF COMPILED CODE */

@@ -152,6 +152,7 @@ export default class Tier2CarnivoreController extends ScriptNode {
 			if (currentAnim !== 'tier2carn_walkstart' && currentAnim !== 'tier2carn_walk') {
 				this.gameObject.play('tier2carn_walkstart', true).chain('tier2carn_walk');
 			}
+			this.scene.soundManager?.play('footstep', this.gameObject);
 		} else {
 			const currentAnim = this.gameObject.anims.currentAnim?.key;
 			if (currentAnim === 'tier2carn_walk' || currentAnim === 'tier2carn_walkstart') {

@@ -134,7 +134,7 @@ export default class Tier2HerbivoreController extends ScriptNode {
 		if (this._lastDetectedCount === undefined) this._lastDetectedCount = 0;
 
 		if (currentDetectedCount > this._lastDetectedCount) {
-			this.scene.soundManager?.play('startle');
+			this.scene.soundManager?.play('startle', this.gameObject);
 			this.gameObject.setData('isStartled', true);
 			if (this.gameObject.anims && this.scene.anims.exists('tier2herb__startled')) {
 				this.gameObject.play({ key: 'tier2herb__startled', repeat: 0 });
@@ -170,6 +170,7 @@ export default class Tier2HerbivoreController extends ScriptNode {
 			this.gameObject.play('tier2herb_eat', true);
 		} else if (body.velocity.x !== 0 || body.velocity.y !== 0) {
 			this.gameObject.play('tier2herb_walk', true);
+			this.scene.soundManager?.play('footstep', this.gameObject);
 		} else {
 			this.gameObject.play('tier2herb_idle', true);
 		}

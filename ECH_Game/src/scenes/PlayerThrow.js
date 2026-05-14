@@ -156,7 +156,7 @@ export default class PlayerThrow extends ScriptNode {
 				thrownFruit.setData('isHeld', false);
 				thrownFruit.setData('pickupDisabled', false);
 				console.log('Object landed');
-				this.scene.soundManager?.play('impact');
+				this.scene.soundManager?.play('impact', thrownFruit);
 
 				// Impact Squash when hitting the ground
 				this.scene.tweens.add({

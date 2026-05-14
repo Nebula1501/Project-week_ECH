@@ -93,12 +93,12 @@ export default class PlayerMovement extends ScriptNode {
 			this.gameObject.play('player_walk', true);
 			
 			// Play the walk sound continuously (SoundManager will prevent overlaps!)
-			this.scene.soundManager?.play('footstep', 'player');
+			this.scene.soundManager?.play('footstep', this.gameObject);
 		} else {
 			this.gameObject.play('player_idle', true);
 			
 			// Stop the walk sound cleanly when stopping
-			this.scene.soundManager?.stop('footstep', 'player');
+			this.scene.soundManager?.stop('footstep', this.gameObject);
 		}
 	}
 
